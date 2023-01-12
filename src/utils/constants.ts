@@ -1,9 +1,21 @@
-const BASE_API_URL = 'https://visitki.practicum-team.ru/api';
+const BASE_API_URL = "https://visitki.practicum-team.ru/api";
 
 // Список эндпоинтов
 export const USERS_URL = `${BASE_API_URL}/users`;
 export const COMMENTS_URL = `${BASE_API_URL}/comments`;
 export const PROFILES_URL = `${BASE_API_URL}/profiles`;
+
+// Список маршрутов
+export const HOME_ROUTE = "/";
+export const LOGIN_ROUTE = `${HOME_ROUTE}login`;
+//куратор может заходить на страницу любой когорты по адресу /cohort/{name} (COHORT_ROUTE) по ссылкам из админки.
+export const COHORT_ROUTE = `${HOME_ROUTE}cohort/:name`;
+// страница с детальной информацией о пользователе (которая с темами)
+export const DETAIL_ROUTE = `${HOME_ROUTE}detail/:id`;
+export const PROFILE_ROUTE = `${HOME_ROUTE}detail/:id`;
+export const MAP_ROUTE = `${HOME_ROUTE}map`;
+export const ADMIN_ROUTE = `${HOME_ROUTE}admin`;
+export const ADMIN_USERS_ROUTE = `${ADMIN_ROUTE}/users`;
 
 /*
     Оставляю поясния к эндпойнтам, что удалось узнать. Прошу после выполнения всех запросов на сервер, не забыть удалить данное пояснение
