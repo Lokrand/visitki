@@ -6,6 +6,7 @@ import { Main } from "../../pages/Main/Main";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 
+
 export const App = () => {
   return (
     <>
@@ -16,6 +17,6 @@ export const App = () => {
         <Route path='/gallery' element={<Gallery />} />
       </Routes>
       <Footer />
-    </>
+      </>
   );
 };

@@ -1,46 +1,112 @@
-# Getting Started with Create React App
+# Платформа-визитница VISITKI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Ссылка на проект
 
-## Available Scripts
+https://Lokrand.github.io/visitki
 
-In the project directory, you can run:
+## О проекте
 
-### `npm start`
+Проект содержит личные профили студентов и кураторов 11 и 12 когорт. Платформа позволяет студентам ближе познакомится с друг-другом, узнать об увлечениях, семье, работе друг-друга. Также студент может оставлять коментари под постами других пользователей сервиса.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Примененные знания
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Современная верстка с использованием Flexbox и Grid Layout
+- Семантическая верстка
+- Адаптивная верстка сайта для разных экранов 
+- Создание интерактивных элементов
+- Авторизация на клиенте через Яндекс ID (OAuth)
+- Работа с картами и подсказками городов используя API Яндекс Карт 
+- Реализация различных тем страниц
+- Роутинг
+## Используемые технологии
 
-### `npm test`
+<div>
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/d1c752b99bb25a0e5aa363bae1db2809173ee966/icons/TypeScript.svg" title="ts" alt="ts" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/React-Dark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/Sass.svg" title="sass" alt="sass" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/HTML.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/Figma-Dark.svg" title="figma" alt="figma" width="40" height="40"/>&nbsp;
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Создано в соавторстве
 
-### `npm run build`
+- 👨‍💻 [Антон Помазков](https://github.com/pomazkovanton)
+- 👨‍💻 [Данила Ильин](https://github.com/Daniel-il)
+- 👨‍💻 [Дмитрий Платонов](https://github.com/Lokrand)
+- 👨‍💻 [Виталий Головкин](https://github.com/SmokyDogg)
+- 👨‍💻 [Лидия Косинова](https://github.com/kglidiya)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+# Как работать (удалить когда все разберутся)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Про линтеры 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+👉 Линтер — это программа, которая автоматизирует всю эту возню и сама «причёсывает» код по определённым правилам. Даёшь ей чумазый и неуклюжий код, она чистит на уровне каких-то простых правил.
 
-### `npm run eject`
+[Подробнее](https://thecode.media/linter/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Мы будем использовать следующие линтеры: 
+- ESLint (для проверки JS и TS)
+- Prettier (для форматирования всего кода)
+- StyleLint (для форматирования SCSS)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Для работы нужно установить все расширения в свое IDE, для VS CODE вот ссылочки: 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Также не забудьте доустановить все зависимости из packaje.json 
 
-## Learn More
+## Про коммиты 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Комиты пишем исходя из следующих рекомендаций:
+- https://www.conventionalcommits.org/en/v1.0.0/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Для проверки написания коммитов в сборке поставил следующий линтер:
+- https://commitlint.js.org/#/
+
+Для облегчения и автоматизации написания коммитов используем следующий пакет: 
+- https://commitizen-tools.github.io/commitizen/
+
+Позволяет задать шаблон коммита и использовать его, не набирая куча текста вручную. Плюс позволяет держать себя в тонусе, ставить префиксы и не делать коммиты длинее 72 символов.
+
+Для создания коммита используем следующий алгоритм:
+- git add 
+- git cz
+- выбираем тип коммита (feat, fix, refactor и тд)
+- пишем область коммита (npm, ui и тд.). Пишется по желанию, для пропуска, просто жмите Enter
+- далее кратко пишем коммит в повелительном наклонении (добавить, сделать, исправить, отредактировать и тд.)
+Важно: Не забудьте в конце описания добавить пробел и написать номер ишью, чтобы связать свой коммит с ним
+
+    Например:
+    ```
+    feat: добавить страницу с профилем пользователя #45
+    ```
+- далее если есть желание можно добавить более детальное описания, о том что было сделано
+- Далее два раза нажимайте Enter и коммит создаться автоматически, но перед этим запустится гит-хук для проверки линтерами кода.
+
+## Про гит-хуки 
+
+Если вкратце, hook — кастомный скрипт, выполняющийся до или после событий вроде commit, push 
+
+Для работы хуков в сборке используется утилита Husky: 
+https://typicode.github.io/husky/#/
+
+Всё что вам нужно, после устанвоки зависимостей, так это выполнить скрипт prepare, для иницилизации Husky.
+После этого при коммите у вас автоматически будет проверяться сам коммит и все файлы которые добавленны в данный момент в индекс гита. Если линтеры смогут, то они автоматически исправят все форматирование и ошибки, если нет, то в консоли увидете в каком файле и какое правило было нарушено, придется в этом случае ручками поправить и добавить файлы снова в индекс и повторить коммит. Если ошибок много, чтобы не пытаться каждый раз делать коммиты и ждать проверки, можно самому проверить линтерами ваш код, для этого есть следующие скрипты: 
+- Для форматирования с помощью Prettier
+    ```
+    "format": "npx prettier src --check",
+    "format:fix": "npm run format -- --write",
+    ```
+- Для проверки скриптов
+    ```
+    "lint:es": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint:es:fix": "npm run lint:es -- --fix",
+    ```
+- Для проверки стилей
+    ```
+    "lint:css": "stylelint src",
+    "lint:css:fix": "npm run lint:css -- --fix",
+    ```

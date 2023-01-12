@@ -1,0 +1,112 @@
+@import "../../styles/constants.scss";
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  width: inherit;
+  height: 48px;
+  border-radius: 4px 4px 0 0;
+  outline: none;
+  color: $text-dark;
+  padding-left: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  transition: all 0.5s linear;
+  margin-top: 4px;
+
+  &_status_default {
+    border: 1px solid $text-dark;
+  }
+
+  &_status_active {
+    border: 1px solid $input-hover;
+  }
+}
+
+.button {
+  position: absolute;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  background: url(../../icons/arrow.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  transition: all 0.5s linear;
+
+  &_default {
+    top: 40px;
+    rotate: 180deg;
+  }
+  &_active {
+    top: 45px;
+    rotate: 0;
+  }
+}
+
+.label {
+  width: inherit;
+  color: $text-dark;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.wrapper {
+  border: 1px solid $text-dark;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: all 0.3s linear;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $placeholder;
+    height: 42px;
+    border-radius: 3px;
+  }
+
+  &_default {
+    opacity: 0;
+    visibility: hidden;
+  }
+  &_active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+}
+
+.option {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding-right: 6px;
+  padding-left: 6px;
+  font-size: 16px;
+  line-height: 24px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: $neon-pink;
+  color: #ffffff;
+}
