@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "../../pages/Login/Login";
-import { Main } from "../../pages/Main/Main";
+
+import { LoginPage } from "../../pages/LoginPage";
+import { MainPage } from "../../pages/MainPage";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 
@@ -10,8 +11,8 @@ export const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<MainPage />} />
+        <Route path='/login' element={<LoginPage />} />
       </Routes>
       <Footer />
     </>
