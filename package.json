@@ -31,9 +31,11 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "format": "npx prettier src --check",
-    "format:fix": "npx prettier src --write",
+    "format:fix": "npm run format -- --write",
     "lint:es": "eslint --ext .js,.jsx,.ts,.tsx src",
-    "lint:es:fix": "npm run lint:es -- --fix"
+    "lint:es:fix": "npm run lint:es -- --fix",
+    "lint:css": "stylelint src",
+    "lint:css:fix": "npm run lint:css -- --fix"
   },
   "browserslist": {
     "production": [
@@ -51,6 +53,10 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-prettier": "^4.2.1",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "stylelint": "^14.16.1",
+    "stylelint-config-clean-order": "^2.3.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard-scss": "^6.1.0"
   }
 }
