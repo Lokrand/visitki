@@ -1,0 +1,48 @@
+@import "../../styles/constants.scss";
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  width: inherit;
+  height: 48px;
+  border-radius: 4px;
+  outline: none;
+  color: $text-dark;
+  padding-left: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  transition: all 0.5s linear;
+  margin-top: 4px;
+
+  &_status_default {
+    border: 1px solid $text-dark;
+  }
+
+  &_status_active {
+    border: 1px solid $input-hover;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 53%;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  background: url(../../icons/akar-icons_cross.svg);
+  border: none;
+  transition: all 0.5s linear;
+}
+
+.label {
+  width: inherit;
+  color: $text-dark;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
