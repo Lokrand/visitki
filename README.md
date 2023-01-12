@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# Платформа-визитница VISITKI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Ссылка на проект
 
-## Available Scripts
+https://Lokrand.github.io/visitki
 
-In the project directory, you can run:
+## О проекте
 
-### `npm start`
+Проект содержит личные профили студентов и кураторов 11 и 12 когорт. Платформа позволяет студентам ближе познакомится с друг-другом, узнать об увлечениях, семье, работе друг-друга. Также студент может оставлять коментари под постами других пользователей сервиса.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Примененные знания
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Современная верстка с использованием Flexbox и Grid Layout
+- Семантическая верстка
+- Адаптивная верстка сайта для разных экранов 
+- Создание интерактивных элементов
+- Авторизация на клиенте через Яндекс ID (OAuth)
+- Работа с картами и подсказками городов используя API Яндекс Карт 
+- Реализация различных тем страниц
+- Роутинг
+## Используемые технологии
 
-### `npm test`
+<div>
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/d1c752b99bb25a0e5aa363bae1db2809173ee966/icons/TypeScript.svg" title="ts" alt="ts" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/React-Dark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/sass.svg" title="sass" alt="sass" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/HTML.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/a50fa57465e82a1147fa512fb3d64cc5902df578/icons/figma.svg" title="figma" alt="figma" width="40" height="40"/>&nbsp;
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Создано в соавторстве
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 👨‍💻 [Антон Помазков](https://github.com/pomazkovanton)
+- 👨‍💻 [Данила Ильин](https://github.com/Daniel-il)
+- 👨‍💻 [Дмитрий Платонов](https://github.com/Lokrand)
+- 👨‍💻 [Виталий Головкин](https://github.com/SmokyDogg)
+- 👨‍💻 [Лидия Косинова](https://github.com/kglidiya)
