@@ -7,3 +7,12 @@
   font-family: 'IBM Plex Sans';
   font-weight: 500;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 72px;
+  background-color: red;
+}
