@@ -2,13 +2,7 @@ import React, { FC } from "react";
 
 export const Marks: FC = () => {
   return (
-    <svg
-      width='48'
-      height='45'
-      viewBox='0 0 48 45'
-      xmlns='http://www.w3.org/2000/svg'
-      fill='currentColor'
-    >
+    <svg width='48' height='45' viewBox='0 0 48 45' xmlns='http://www.w3.org/2000/svg' fill='currentColor'>
       <path
         d='M9.92657 23.7914L10.0022 24.4566H10.6718H19.25V44.25H0.801923V23.7066V23.6744L0.799152 23.6422C0.307053 17.9338 3.27621 5.41714 19.25 0.973846V8.68196C17.4053 9.33218 14.9823 10.7107 13.0516 12.9621C10.9077 15.4622 9.38464 19.0262 9.92657 23.7914Z'
         stroke='#100C34'

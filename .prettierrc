@@ -4,7 +4,7 @@
   "semi": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "printWidth": 100,
+  "printWidth": 120,
   "bracketSameLine": false,
   "useTabs": false,
   "arrowParens": "always",
