@@ -12,7 +12,7 @@ export const LOGIN_ROUTE = `${HOME_ROUTE}login`;
 export const COHORT_ROUTE = `${HOME_ROUTE}cohort/:name`;
 // страница с детальной информацией о пользователе (которая с темами)
 export const DETAIL_ROUTE = `${HOME_ROUTE}detail/:id`;
-export const PROFILE_ROUTE = `${HOME_ROUTE}detail/:id`;
+export const PROFILE_ROUTE = `${HOME_ROUTE}profile/:id`;
 export const MAP_ROUTE = `${HOME_ROUTE}map`;
 export const ADMIN_ROUTE = `${HOME_ROUTE}admin`;
 export const ADMIN_USERS_ROUTE = `${ADMIN_ROUTE}/users`;
