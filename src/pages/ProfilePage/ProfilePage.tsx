@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./profilepage.module.scss";
+import styles from "./profilepage.module.scss";
 
-export const ProfilePage: React.FC = () => {
+export const ProfilePage: FC = () => {
   return <h1>Profile Page</h1>;
 };

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./adminuserspage.module.scss";
+import styles from "./adminUsersPage.module.scss";
 
-export const AdminUsersPage: React.FC = () => {
+export const AdminUsersPage: FC = () => {
   return <h1>Admin Users Page</h1>;
 };

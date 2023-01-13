@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./mainpage.module.scss";
+import styles from "./mainPage.module.scss";
 
-export const MainPage: React.FC = () => {
+export const MainPage: FC = () => {
   return <h1>Main Page</h1>;
 };

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./mappage.module.scss";
+import styles from "./mapPage.module.scss";
 
-export const MapPage: React.FC = () => {
+export const MapPage: FC = () => {
   return <h1>MapPage</h1>;
 };

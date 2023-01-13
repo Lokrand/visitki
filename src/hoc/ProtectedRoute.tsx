@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 import { useAuth } from "../hook/useAuth";
 
 import { LOGIN_ROUTE } from "../utils/constants";
 
-export const ProtectedRoute: React.FC = () => {
+export const ProtectedRoute: FC = () => {
   const location = useLocation();
   const { user } = useAuth();
 

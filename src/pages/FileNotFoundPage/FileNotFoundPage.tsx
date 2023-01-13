@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./filenotfoundpage.module.scss";
+import styles from "./fileNotFoundPage.module.scss";
 
-export const FileNotFoundPage: React.FC = () => {
+export const FileNotFoundPage: FC = () => {
   return <h1>File Not Found</h1>;
 };
