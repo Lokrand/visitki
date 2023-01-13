@@ -34,7 +34,7 @@ export const AppRouter: React.FC = () => {
   return (
     <Routes>
       <Route path={MAIN_ROUTE} element={<AppLayout />}>
-        <Route element={<ProtectedRoute user={false} />}>
+        <Route element={<ProtectedRoute />}>
           <Route index element={<MainPage />} />
           <Route path={COHORT_ROUTE} element={<CohortPage />} />
           <Route path={DETAIL_ROUTE} element={<DetailPage />} />
