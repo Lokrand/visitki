@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import styles from "./loginPage.module.scss";
+import styles from "./loginpage.module.scss";
 
 import { useAuth } from "../../hook/useAuth";
 import { MAIN_ROUTE } from "../../utils/constants";
