@@ -1,8 +1,18 @@
+// Цвета
 $text-dark: rgb(16 12 52 / 100%);
 $text-light: rgb(163 163 163 / 100%);
+$text-white: rgb(240 240 240 / 100%);
 $input-hover: rgb(102 102 102 / 100%);
 $placeholder: rgb(131 130 143 / 100%);
 $neon-pink: rgb(255 0 168 / 100%);
 $neon-green: rgb(56 236 66 / 100%);
 $error: rgb(233 13 65 / 100%);
+$disabled: rgb(191 191 191 / 100%);
+
+// Градиенты
+$gradient-button-main: linear-gradient(269.17deg, #3b23b7 30.28%, #c914e7 63.24%);
+$gradient-button-hover: linear-gradient(269.17deg, #3f26c4 30.28%, #d315f2 63.24%);
+$gradient-button-active: linear-gradient(269.17deg, #4328d1 30.28%, #de16ff 63.24%);
+
+// Шрифт
 $text-font-family: "IBM Plex Sans", arial, helvetica, sans-serif;
