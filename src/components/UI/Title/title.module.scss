@@ -1,8 +1,10 @@
+@import "../../../styles/constants";
+
 .title {
   margin: 0;
   padding: 0;
-  font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif; // Заменить на переменную. Кто их там делает. Плиз) Предлагаю назвать main-font
-  color: #100c34; // Заменить на переменную. Кто их там делает. Плиз)
+  font-family: $text-font-family;
+  color: $text-dark;
 }
 
 .titleH1 {
