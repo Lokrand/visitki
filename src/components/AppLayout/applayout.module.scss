@@ -1,4 +1,16 @@
 .conteiner {
+  box-sizing: border-box;
+  min-width: 320px;
   padding-right: 40px;
   padding-left: 40px;
+
+  @media screen and (max-width: 768px) {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  @media screen and (max-width: 350px) {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
 }

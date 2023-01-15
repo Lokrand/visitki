@@ -32,6 +32,10 @@
       padding: 20px 45px;
       font-size: 20px;
       line-height: 28px;
+
+      @media screen and (max-width: 350px) {
+        padding: 16px 45px;
+      }
     }
 
     &_m {
