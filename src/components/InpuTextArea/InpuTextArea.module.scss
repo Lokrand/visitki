@@ -6,11 +6,13 @@
 }
 
 .input {
+  resize: none;
+
   box-sizing: border-box;
   width: inherit;
-  height: 48px;
+  height: 130px;
   margin-top: 4px;
-  padding-right: 40px;
+  padding-right: 16px;
   padding-left: 16px;
 
   font-size: 16px;
@@ -23,6 +25,24 @@
 
   transition: all 0.5s linear;
 
+  &::placeholder {
+    color: $placeholder;
+  }
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 42px;
+    background: $placeholder;
+    border-radius: 3px;
+  }
+
   &_status_default {
     border: 1px solid $text-dark;
   }
@@ -30,19 +50,6 @@
   &_status_active {
     border: 1px solid $input-hover;
   }
-}
-
-.button {
-  position: absolute;
-  top: 53%;
-  right: 15px;
-
-  width: 20px;
-  height: 20px;
-
-  border: none;
-
-  transition: all 0.5s linear;
 }
 
 .label {
