@@ -1,6 +1,8 @@
 @import "../../styles/constants";
 
 .card {
+  position: relative;
+
   &__image {
     max-width: 325px;
     height: 325px;
