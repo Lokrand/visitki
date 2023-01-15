@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./cohortpage.module.scss";
+import styles from "./cohortPage.module.scss";
 
-export const CohortPage: React.FC = () => {
+export const CohortPage: FC = () => {
   return <h1>Cohort Page</h1>;
 };

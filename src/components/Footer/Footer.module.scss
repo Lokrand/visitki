@@ -1,10 +1,12 @@
+@import "../../styles/constants";
+
 .h {
-  font-family: 'IBM Plex Sans';
+  font-family: $text-font-family;
   font-weight: 400;
 }
 
 .p {
-  font-family: 'IBM Plex Sans';
+  font-family: $text-font-family;
   font-weight: 500;
 }
 
@@ -12,7 +14,9 @@
   position: fixed;
   bottom: 0;
   left: 0;
+
   width: 100vw;
   min-height: 72px;
+
   background-color: red;
 }

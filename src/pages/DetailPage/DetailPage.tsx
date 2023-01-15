@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-import classes from "./detailpage.module.scss";
+import styles from "./detailPage.module.scss";
 
-export const DetailPage: React.FC = () => {
+export const DetailPage: FC = () => {
   return <h1>Detail Page</h1>;
 };

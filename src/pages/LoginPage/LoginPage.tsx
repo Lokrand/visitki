@@ -1,12 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import classes from "./loginpage.module.scss";
+import styles from "./loginPage.module.scss";
 
 import { useAuth } from "../../hook/useAuth";
 import { MAIN_ROUTE } from "../../utils/constants";
 
-export const LoginPage: React.FC = () => {
+export const LoginPage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { loginUser } = useAuth();

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 
 import styles from "./Footer.module.scss";
-export const Footer = () => {
-  return (
-    <>
-    <div className={styles.footer}>
-    <p >The quick brown fox jumps over the lazy dog.</p>
 
+import { Text } from "../UI/Text";
+
+export const Footer: FC = () => {
+  return (
+    <div className={styles.footer}>
+      <Text>The quick brown fox jumps over the lazy dog.</Text>
     </div>
-    </>
   );
 };

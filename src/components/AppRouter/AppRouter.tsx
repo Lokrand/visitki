@@ -1,10 +1,12 @@
+import React, { FC } from "react";
+
 import { Routes, Route } from "react-router-dom";
 
 // Импорт hoc
 import { ProtectedRoute } from "../../hoc/ProtectedRoute";
 
 // Импорты страниц
-import { AdminComentPage } from "../../pages/AdminComentPage";
+import { AdminCommentPage } from "../../pages/AdminCommentPage";
 import { AdminUsersPage } from "../../pages/AdminUsersPage";
 import { CohortPage } from "../../pages/CohortPage";
 import { DetailPage } from "../../pages/DetailPage";
@@ -30,7 +32,7 @@ import {
 // Импорт шаблона страницы
 import { AppLayout } from "../AppLayout";
 
-export const AppRouter: React.FC = () => {
+export const AppRouter: FC = () => {
   return (
     <Routes>
       <Route path={MAIN_ROUTE} element={<AppLayout />}>
@@ -40,7 +42,7 @@ export const AppRouter: React.FC = () => {
           <Route path={DETAIL_ROUTE} element={<DetailPage />} />
           <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
           <Route path={MAP_ROUTE} element={<MapPage />} />
-          <Route path={ADMIN_ROUTE} element={<AdminComentPage />} />
+          <Route path={ADMIN_ROUTE} element={<AdminCommentPage />} />
           <Route path={ADMIN_USERS_ROUTE} element={<AdminUsersPage />} />
         </Route>
         <Route path={LOGIN_ROUTE} element={<LoginPage />} />
