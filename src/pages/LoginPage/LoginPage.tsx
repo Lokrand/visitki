@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./loginPage.module.scss";
@@ -11,12 +11,21 @@ export const LoginPage: FC = () => {
   const navigate = useNavigate();
   const { loginUser } = useAuth();
 
-  const fromPage = location.state?.from?.pathname || MAIN_ROUTE;
+  const fromPage = localStorage.getItem("fromPage") || null;
+  const token = location.hash.split("&")[0].split("=")[1] || null;
 
-  const fakeUser = { name: "Igor", email: "test@yandex.ru" };
+  if (!fromPage) localStorage.setItem("fromPage", location.state?.from?.pathname || MAIN_ROUTE);
+
+  useEffect(() => {
+    if (token) {
+      loginUser(token, () => navigate(fromPage || MAIN_ROUTE, { replace: true }));
+      localStorage.removeItem("fromPage");
+    }
+  }, [token]);
 
   const fakeHandlerLogin = () => {
-    loginUser(fakeUser, () => navigate(fromPage, { replace: true }));
+    window.location.href =
+      "https://oauth.yandex.ru/authorize?response_type=token&client_id=cfa419b389d2459a8c19d502eba6df11";
   };
 
   return (
