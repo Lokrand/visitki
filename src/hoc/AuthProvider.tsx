@@ -1,18 +1,18 @@
 import React, { createContext, PropsWithChildren, useState, FC } from "react";
 
-import { TAuthValue, TUser } from "../utils/types";
+import { TAuthValue } from "../utils/types";
 
 export const AuthContext = createContext({} as TAuthValue);
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<TUser | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-  const loginUser = (user: TUser, cb: () => void): void => {
-    setUser(user);
+  const loginUser = (token: string, cb: () => void): void => {
+    setToken(token);
     cb();
   };
 
-  const value: TAuthValue = { user, loginUser };
+  const value: TAuthValue = { token, loginUser };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

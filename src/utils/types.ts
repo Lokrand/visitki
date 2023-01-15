@@ -1,9 +1,4 @@
-export type TUser = {
-  name: string;
-  email: string;
-};
-
 export type TAuthValue = {
-  user: TUser | null;
-  loginUser: (user: TUser, cb: () => void) => void;
+  token: string | null;
+  loginUser: (user: string, cb: () => void) => void;
 };
