@@ -1,0 +1,43 @@
+@import "../../../styles/constants";
+
+.button {
+  cursor: pointer;
+
+  width: 100%;
+
+  font-family: $text-font-family;
+  color: $text-white;
+
+  background: $gradient-button-main;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+
+  &:hover {
+    background: $gradient-button-hover;
+  }
+
+  &:active,
+  &:focus {
+    background: $gradient-button-active;
+  }
+
+  &:disabled {
+    cursor: default;
+    background: $disabled;
+  }
+
+  &_size {
+    &_l {
+      padding: 20px 45px;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    &_m {
+      padding: 12px 30px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
