@@ -22,7 +22,7 @@ export const Card: FC<ICard> = ({ name, city, img }) => {
       <img src={img} alt='Фотография студента' className={styles.card__image} />
       <h2 className={styles.card__name}>{name}</h2>
       <p className={styles.card__city}>{city}</p>
-      <Chat forImage={true} counter={922} />
+      <Chat forImage={true} counter={53} />
     </div>
   );
 };
