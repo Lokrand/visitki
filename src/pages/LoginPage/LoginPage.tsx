@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./loginpage.module.scss";
 
+import { Button } from "../../components/UI/Button";
+import { Title } from "../../components/UI/Title";
 import { useAuth } from "../../hook/useAuth";
 import { MAIN_ROUTE } from "../../utils/constants";
 
@@ -23,15 +25,19 @@ export const LoginPage: FC = () => {
     }
   }, [token]);
 
-  const fakeHandlerLogin = () => {
+  const handlerLogin = () => {
     window.location.href =
       "https://oauth.yandex.ru/authorize?response_type=token&client_id=cfa419b389d2459a8c19d502eba6df11";
   };
 
   return (
-    <>
-      <h1>С кем я учусь?</h1>
-      <button onClick={fakeHandlerLogin}>Войти с Яндекс ID</button>
-    </>
+    <div className={styles.wrapper}>
+      <div className={styles.title}>
+        <Title size='xl'>С кем я учусь?</Title>
+      </div>
+      <Button size='l' handlerClick={handlerLogin}>
+        Войти с Яндекс ID
+      </Button>
+    </div>
   );
 };
