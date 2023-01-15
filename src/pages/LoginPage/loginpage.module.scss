@@ -6,6 +6,16 @@
 
   max-width: 440px;
   margin: 200px auto 0;
+
+  @media screen and (max-width: 768px) {
+    gap: 80px;
+    margin-top: 220px;
+  }
+
+  @media screen and (max-width: 350px) {
+    gap: 30px;
+    margin-top: 110px;
+  }
 }
 
 .title {
