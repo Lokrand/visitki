@@ -1,9 +1,7 @@
-const BASE_API_URL = "https://visitki.practicum-team.ru/api";
-
 // Список эндпоинтов
-export const USERS_URL = `${BASE_API_URL}/users`;
-export const COMMENTS_URL = `${BASE_API_URL}/comments`;
-export const PROFILES_URL = `${BASE_API_URL}/profiles`;
+export const USERS_URL = "/users";
+export const COMMENTS_URL = "/comments";
+export const PROFILES_URL = "/profiles";
 
 // Список маршрутов
 export const MAIN_ROUTE = "/";
