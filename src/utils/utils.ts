@@ -1,13 +1,18 @@
 import axios from "axios";
 
-import { TMethod } from "./types";
+import { TMethod, TToken } from "./types";
 
 //Универсальный обработчик запроса на сервер
-export const handleRequest = async <T>(url: string, method: TMethod, data = {}, headers = {}): Promise<T> => {
+export const handleRequest = async <T>(
+  url: string,
+  method: TMethod,
+  token: TToken = null,
+  data: {} | null = null,
+): Promise<T> => {
   const res = await (<T>axios(url, {
     method: method,
     data: data,
-    headers: headers,
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
   }));
   return res;
 };
