@@ -1,0 +1,18 @@
+@import "../../styles/constants";
+
+.modalComments {
+  position: absolute;
+  top: 50px;
+  left: 0;
+
+  width: 323px;
+  min-height: 90px;
+
+  background-color: #fff;
+  border: 1px solid $comments-input-border;
+  border-radius: 4px;
+
+  &_inactive {
+    display: none;
+  }
+}
