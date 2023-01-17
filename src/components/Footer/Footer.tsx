@@ -1,13 +1,11 @@
-import React, { FC } from "react";
-
 import styles from "./Footer.module.scss";
-
-import { Text } from "../UI/Text";
-
-export const Footer: FC = () => {
+export const Footer = () => {
   return (
-    <div className={styles.footer}>
-      <Text>The quick brown fox jumps over the lazy dog.</Text>
-    </div>
+    <>
+      <section className={styles.footer}>
+        <p className={styles.footer__text}>© Визитки</p>
+        <p className={styles.footer__text_praktikum}>Яндекс Практикум</p>
+      </section>
+    </>
   );
 };
