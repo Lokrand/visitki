@@ -1,63 +1,61 @@
 import { COMMENTS_URL, PROFILES_URL, USERS_URL } from "./constants";
 import {
-  TAxiosCommentsResponse,
-  TAxiosFullProfileResponse,
-  TAxiosGetReactionsResponse,
-  TAxiosProfilesResponse,
-  TAxiosUsersResponse,
   TReqProfile,
   TReqReaction,
   TReqUserData,
-  TToken,
+  TReturnData,
+  TReturnDataAddUserReactions,
+  TReturnDataChangeUser,
+  TReturnDataChangeUserProfile,
+  TReturnDataNewUser,
 } from "./types";
-import { handleRequest } from "./utils";
 
 //Получение данных об пользователях с сервера
-export const getAllUsers = (token: TToken) => {
-  return handleRequest<TAxiosUsersResponse>(USERS_URL, "GET", token);
+export const getAllUsers = (): TReturnData => {
+  return { url: USERS_URL, method: "GET" };
 };
 
 //Создать нового пользователя на сервере
-export const addNewUser = (token: TToken, body: TReqUserData) => {
-  return handleRequest<TAxiosUsersResponse>(USERS_URL, "POST", token, body);
+export const addNewUser = (body: TReqUserData): TReturnDataNewUser => {
+  return { url: USERS_URL, method: "POST", body };
 };
 
 //Обновить информацию о пользователе
-export const changeUserData = (idUser: string, token: TToken, body: TReqUserData) => {
-  return handleRequest<TAxiosUsersResponse>(`${USERS_URL}/${idUser}`, "PUT", token, body);
+export const changeUserData = (idUser: string, body: TReqUserData): TReturnDataChangeUser => {
+  return { url: `${USERS_URL}/${idUser}`, method: "PUT", body };
 };
 
 //Получение всех коментариев пользователей
-export const getAllComments = (token: TToken) => {
-  return handleRequest<TAxiosCommentsResponse>(COMMENTS_URL, "GET", token);
+export const getAllComments = (): TReturnData => {
+  return { url: COMMENTS_URL, method: "GET" };
 };
 
 //Удаление комментария по его id (надо проверить)
-export const deleteComment = (idComment: string, token: TToken) => {
-  return handleRequest(`${COMMENTS_URL}/${idComment}`, "DELETE", token);
+export const deleteComment = (idComment: string): TReturnData => {
+  return { url: `${COMMENTS_URL}/${idComment}`, method: "DELETE" };
 };
 
 //Получение всех профилей пользователей
-export const getAllProfiles = (token: TToken) => {
-  return handleRequest<TAxiosProfilesResponse>(PROFILES_URL, "GET", token);
+export const getAllProfiles = (): TReturnData => {
+  return { url: PROFILES_URL, method: "GET" };
 };
 
 //Получение полного профиля пользователя по id
-export const getFullProfile = (idUser: string, token: TToken) => {
-  return handleRequest<TAxiosFullProfileResponse>(`${PROFILES_URL}/${idUser}`, "GET", token);
+export const getFullProfile = (idUser: string): TReturnData => {
+  return { url: `${PROFILES_URL}/${idUser}`, method: "GET" };
 };
 
 //Получение полного профиля пользователя по id
-export const changeUserProfile = (idUser: string, token: TToken, body: TReqProfile) => {
-  return handleRequest<TAxiosFullProfileResponse>(`${PROFILES_URL}/${idUser}`, "PATCH", token, body);
+export const changeUserProfile = (idUser: string, body: TReqProfile): TReturnDataChangeUserProfile => {
+  return { url: `${PROFILES_URL}/${idUser}`, method: "PATCH", body };
 };
 
 //Получение реакций пользователя по id
-export const getUserReactions = (idUser: string, token: TToken) => {
-  return handleRequest<TAxiosGetReactionsResponse>(`${PROFILES_URL}/${idUser}/reactions`, "GET", token);
+export const getUserReactions = (idUser: string): TReturnData => {
+  return { url: `${PROFILES_URL}/${idUser}/reactions`, method: "GET" };
 };
 
 //Добавить реакцию на выбранный пост по id пользователя
-export const addUserReactions = (idUser: string, token: TToken, body: TReqReaction) => {
-  return handleRequest(`${PROFILES_URL}/${idUser}/reactions`, "POST", token, body);
+export const addUserReactions = (idUser: string, body: TReqReaction): TReturnDataAddUserReactions => {
+  return { url: `${PROFILES_URL}/${idUser}/reactions`, method: "POST", body };
 };

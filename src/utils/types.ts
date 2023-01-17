@@ -1,5 +1,3 @@
-import { AxiosRequestConfig } from "axios";
-
 export type TMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
 export type TToken = string | null;
@@ -64,23 +62,6 @@ export type TDescriptionUser = {
   template: string | null;
 };
 
-// Типизация для профиля пользователя
-export type TProfile = {
-  _id: string;
-  createdAt: number;
-  updatedAt: number | null;
-  email: string;
-  cohort: string;
-  profile: {
-    name: string;
-    photo: string;
-    city: {
-      name: string;
-      geocode: number[];
-    };
-  };
-};
-
 // Типизация запроса на изменение профиля
 export type TReqProfile = {
   profile: TDescriptionUser;
@@ -117,69 +98,24 @@ export type TFullProfile = {
   reactions: number;
 };
 
-// Типизация комментария(реакции) пользователя
-export type TReaction = {
-  _id: string;
-  from: TUserFromComment;
-  target: string;
-  text: string;
+// Типизация тела запросов на сервер
+export type TReturnData = {
+  url: string;
+  method: TMethod;
 };
 
-// Типизация запросов с сервера
-// Общая часть типизации ответа с сервера (для Axios)
-export type TAxiosResponse = {
-  status: number;
-  statusText: string;
-  headers: any;
-  config: AxiosRequestConfig;
-  request?: any;
-};
+export type TReturnDataNewUser = {
+  body: TReqUserData;
+} & TReturnData;
 
-// Типизация ответа от /users
-export type TUsersResponse = {
-  total: number;
-  items: TUser[];
-};
+export type TReturnDataChangeUser = {
+  body: TReqUserData;
+} & TReturnData;
 
-// Типизация ответа от /comments
-export type TCommentsResponse = {
-  total: number;
-  items: TComment[];
-};
+export type TReturnDataChangeUserProfile = {
+  body: TReqProfile;
+} & TReturnData;
 
-// Типизация ответа от /profiles
-export type TProfilesResponse = {
-  total: number;
-  items: TProfile[];
-};
-
-// Типизация ответа от /profiles/:id/reactions
-export type TGetReactionsResponse = {
-  total: number;
-  items: TReaction[];
-};
-
-// Типизация ответа от /users (axios)
-export type TAxiosUsersResponse = {
-  data: TUsersResponse;
-} & TAxiosResponse;
-
-// Типизация ответа от /comments (axios)
-export type TAxiosCommentsResponse = {
-  data: TCommentsResponse;
-} & TAxiosResponse;
-
-// Типизация ответа от /profiles (axios)
-export type TAxiosProfilesResponse = {
-  data: TProfilesResponse;
-} & TAxiosResponse;
-
-// Типизация ответа от /profiles:id (axios)
-export type TAxiosFullProfileResponse = {
-  data: TFullProfile;
-} & TAxiosResponse;
-
-// Типизация ответа от /profiles:id/reactions (axios)
-export type TAxiosGetReactionsResponse = {
-  data: TGetReactionsResponse;
-} & TAxiosResponse;
+export type TReturnDataAddUserReactions = {
+  body: TReqReaction;
+} & TReturnData;
