@@ -1,3 +1,6 @@
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
+
 import React, { FC, useState } from "react";
 
 import styles from "./ModalComments.module.scss";
@@ -14,7 +17,8 @@ export const ModalComments: FC<IModalComments> = ({ active }) => {
   }
   return (
     <div className={active ? styles.modalComments : `${styles.modalComments} ${styles.modalComments_inactive}`}>
-      qwed
+      <input />
+      <Picker data={data} onEmojiSelect={handleOnEnter} />
     </div>
   );
 };
