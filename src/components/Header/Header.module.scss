@@ -1,4 +1,91 @@
+@import "../../styles/constants";
+
 .header {
-  min-height: 112px;
-  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100vw;
+  height: 112px;
+  margin: 0 auto 8px;
+
+  &__logo {
+    max-width: 130px;
+    max-height: 26px;
+    margin: 0 0 0 40px;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+    max-width: 248px;
+    margin: 0 40px 0 0;
+
+    &__avatar {
+      width: 32px;
+      height: 32px;
+      margin: 0 4px 0 0;
+
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    &__name {
+      overflow: hidden;
+
+      max-width: 212px;
+
+      font: 400 16px/24px $text-font-family;
+      color: $text-dark;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 768px;
+    height: 112px;
+    margin: 0 auto 8px;
+
+    &__logo {
+      margin: 0 0 0 32px;
+    }
+
+    .user {
+      margin: 0 32px 0 0;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 320px;
+    height: 112px;
+    margin: 0 auto 8px;
+
+    &__logo {
+      margin: 0 0 0 24px;
+    }
+
+    .user {
+      margin: 0 24px 0 0;
+
+      &__name {
+        display: none;
+      }
+    }
+  }
 }
