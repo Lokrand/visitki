@@ -7,7 +7,7 @@ import { Button } from "../../components/UI/Button";
 import { Title } from "../../components/UI/Title";
 import { useAuth } from "../../hook/useAuth";
 import { useLocalStorage } from "../../hook/useLocalStorage";
-import { MAIN_ROUTE } from "../../utils/constants";
+import { ADMIN_ROUTE, MAIN_ROUTE } from "../../utils/constants";
 import { TInitialUserData } from "../../utils/types";
 
 export const LoginPage: FC = () => {
@@ -27,14 +27,16 @@ export const LoginPage: FC = () => {
   };
 
   useEffect(() => {
-    if (user?.isLogin) {
-    }
-    navigate(MAIN_ROUTE, { replace: true });
+    if (user?.isLogin) navigate(MAIN_ROUTE, { replace: true });
 
     if (token) {
       initialUserData.isLogin = true;
       initialUserData.token = token;
-      loginUser(initialUserData, () => navigate(fromPage || MAIN_ROUTE, { replace: true }));
+      if (initialUserData.role === "student") {
+        loginUser(initialUserData, () => navigate(fromPage || MAIN_ROUTE, { replace: true }));
+      } else {
+        loginUser(initialUserData, () => navigate(fromPage || ADMIN_ROUTE, { replace: true }));
+      }
       localStorage.removeItem("from");
     }
   }, [token]);
