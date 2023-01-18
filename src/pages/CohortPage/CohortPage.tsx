@@ -17,8 +17,8 @@ export const CohortPage: FC = () => {
         <p>Посмотреть на карте</p>
       </div>
       <div className={styles.gallery__students}>
-        {students.map((student) => {
-          return <Card name={student.name} city={student.city} img={student.img} />;
+        {students.map((student, index) => {
+          return <Card key={index} name={student.name} city={student.city} img={student.img} />;
         })}
       </div>
     </section>
