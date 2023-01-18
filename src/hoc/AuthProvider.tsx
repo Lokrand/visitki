@@ -1,18 +1,19 @@
-import React, { createContext, PropsWithChildren, useState, FC } from "react";
+import { createContext, PropsWithChildren, FC } from "react";
 
-import { TAuthValue } from "../utils/types";
+import { useLocalStorage } from "../hook/useLocalStorage";
+import { TAuthValue, TInitialUserData } from "../utils/types";
 
 export const AuthContext = createContext({} as TAuthValue);
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useLocalStorage<TInitialUserData | null>(null, "user");
 
-  const loginUser = (token: string, cb: () => void): void => {
-    setToken(token);
+  const loginUser = (user: TInitialUserData, cb: () => void): void => {
+    setUser(user);
     cb();
   };
 
-  const value: TAuthValue = { token, loginUser };
+  const value: TAuthValue = { user, loginUser };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
