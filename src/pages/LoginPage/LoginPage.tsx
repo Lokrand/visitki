@@ -27,16 +27,14 @@ export const LoginPage: FC = () => {
   };
 
   useEffect(() => {
-    if (user?.isLogin) navigate(MAIN_ROUTE, { replace: true });
+    if (user?.isLogin) navigate(user.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true });
 
     if (token) {
       initialUserData.isLogin = true;
       initialUserData.token = token;
-      if (initialUserData.role === "student") {
-        loginUser(initialUserData, () => navigate(fromPage || MAIN_ROUTE, { replace: true }));
-      } else {
-        loginUser(initialUserData, () => navigate(fromPage || ADMIN_ROUTE, { replace: true }));
-      }
+      loginUser(initialUserData, () =>
+        navigate(fromPage || user?.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true }),
+      );
       localStorage.removeItem("from");
     }
   }, [token]);
