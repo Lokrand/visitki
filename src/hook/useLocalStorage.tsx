@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-export const useLocalStorage = (ininialValue: {} | [] | string | number | boolean, key: string) => {
+type SetValue<T> = Dispatch<SetStateAction<T>>;
+
+export function useLocalStorage<T>(ininialValue: T, key: string): [T, SetValue<T>] {
   const getValue = () => {
     const storage = localStorage.getItem(key);
 
@@ -11,11 +13,11 @@ export const useLocalStorage = (ininialValue: {} | [] | string | number | boolea
     return ininialValue;
   };
 
-  const [value, setValue] = useState(getValue);
+  const [value, setValue] = useState<T>(getValue);
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
   }, [value]);
 
   return [value, setValue];
-};
+}

@@ -12,7 +12,7 @@ type TStateStatus = {
 };
 
 export const useFetch = (url: string, method: TMethod, body?: {} | null) => {
-  const { token } = useAuth();
+  const { user } = useAuth();
   const [status, setStatus] = useState<TStateStatus>({
     loading: false,
     data: null,
@@ -34,10 +34,12 @@ export const useFetch = (url: string, method: TMethod, body?: {} | null) => {
   };
 
   useEffect(() => {
-    if (body) {
-      handleRequest(url, method, token, body);
+    if (body && user) {
+      handleRequest(url, method, user.token, body);
+    } else if (user) {
+      handleRequest(url, method, user.token);
     } else {
-      handleRequest(url, method, token);
+      setStatus({ ...status, loading: false, error: "Ошибка: Не удалось получить токен" });
     }
   }, []);
 
