@@ -5,9 +5,10 @@
   top: 50px;
   left: 0;
 
-  width: 323px;
-  min-height: 90px;
-  max-height: 275px;
+  width: 299px;
+  min-height: 76px;
+  max-height: 251px;
+  padding: 12px;
 
   background-color: #fff;
   border: 1px solid $comments-input-border;
@@ -15,5 +16,32 @@
 
   &_inactive {
     display: none;
+  }
+
+  &__textarea {
+    resize: none;
+
+    display: flex;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+
+    font: 400 14px/20px $text-font-family;
+
+    background-color: $text-white;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+
+    &:focus {
+      border: 2px solid $neon-pink;
+    }
+  }
+
+  &__reactionBlock {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
   }
 }

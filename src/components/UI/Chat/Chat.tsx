@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import styles from "./Chat.module.scss";
 
 import { ChatIcon } from "../../../icons/Chat/ChatIcon";
-import { Text } from "../Text";
 
 interface IChat {
   forImage: boolean;
