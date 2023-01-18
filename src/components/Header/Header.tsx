@@ -9,7 +9,7 @@ export const Header: FC = () => {
   useEffect(() => {
     localStorage.setItem("userId", "abfccdaa23e0bd1c4448d2f3");
   }, []);
-  const userId: string = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
   console.log(userId);
   const { url, method } = getFullProfile(userId);
   const { data, error, loading } = useFetch(url, method);

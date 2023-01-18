@@ -41,7 +41,7 @@ export const getAllProfiles = (): TReturnData => {
 };
 
 //Получение полного профиля пользователя по id
-export const getFullProfile = (idUser: string): TReturnData => {
+export const getFullProfile = (idUser: string | null): TReturnData => {
   return { url: `${PROFILES_URL}/${idUser}`, method: "GET" };
 };
 
