@@ -1,10 +1,19 @@
 export type TMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-
 export type TToken = string | null;
+export type TTemplate = "default" | "romantic" | "daring";
+export type TRoleUser = "student" | "curator";
+
+export type TInitialUserData = {
+  isLogin: boolean;
+  id: string;
+  template: TTemplate;
+  role: TRoleUser;
+  token: TToken;
+};
 
 export type TAuthValue = {
-  token: TToken;
-  loginUser: (user: string, cb: () => void) => void;
+  user: TInitialUserData | null;
+  loginUser: (user: TInitialUserData, cb: () => void) => void;
 };
 
 export type TReqUserData = {

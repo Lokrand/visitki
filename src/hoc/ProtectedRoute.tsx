@@ -7,9 +7,10 @@ import { LOGIN_ROUTE } from "../utils/constants";
 
 export const ProtectedRoute: FC = () => {
   const location = useLocation();
-  const { token } = useAuth();
+  const { user } = useAuth();
 
-  if (!token) {
+  if (!user?.isLogin) {
+    console.log(location);
     return <Navigate to={LOGIN_ROUTE} state={{ from: location }} />;
   }
 
