@@ -1,11 +1,6 @@
 @import "../../styles/constants";
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
   display: flex;
   align-items: center;
   justify-content: space-between;
