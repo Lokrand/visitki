@@ -21,7 +21,7 @@
   border-radius: 4px;
   outline: none;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 
   &_status_default {
     border: 1px solid $text-dark;
@@ -42,7 +42,7 @@
 
   border: none;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 }
 
 .label {

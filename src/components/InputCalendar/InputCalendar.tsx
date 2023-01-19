@@ -8,15 +8,15 @@ import styles from "./InputCalendar.module.scss";
 
 import { ArrowCalendar } from "../../icons/ArrowCalendar/ArrowCalendar";
 import { Calendar } from "../../icons/Calendar/Calendar";
-import { IForm } from "../../utils/types";
+import { TForm } from "../../utils/types";
 
 interface IInputCalendar {
   inputName: string;
   years: number[];
   months: string[];
   error: string;
-  setValue: Dispatch<SetStateAction<IForm>>;
-  form: IForm;
+  setValue: any;
+  form: any;
   setIsErrorBirthday: Dispatch<SetStateAction<boolean>>;
   isErrorBirthday: boolean;
 }
@@ -65,6 +65,7 @@ const InputCalendar: FC<IInputCalendar> = ({
     <div className={styles.container}>
       <label className={styles.input__label}>Дата рождения *</label>
       <input
+        placeholder={form.birthday}
         name={inputName}
         value={value}
         onClick={() => {
@@ -112,7 +113,6 @@ const InputCalendar: FC<IInputCalendar> = ({
   const handleToggleYear = () => {
     setIsYear(!isYear);
   };
-
   return (
     <>
       <DatePicker
@@ -138,7 +138,7 @@ const InputCalendar: FC<IInputCalendar> = ({
                 className={styles.input_year}
                 onChange={handleYearChange}
                 value={yearValue}
-                placeholder={"Год"}
+                placeholder={String(new Date(form.birthday).getFullYear())}
               />
               <span
                 className={`${styles.button_year} ${!isYear ? styles.button_year_default : styles.button_year_active}`}
@@ -176,7 +176,7 @@ const InputCalendar: FC<IInputCalendar> = ({
                 className={styles.input_month}
                 onChange={handleMonthChange}
                 value={monthValue}
-                placeholder={"Месяц"}
+                placeholder={months[new Date(form.birthday).getMonth()]}
               />
               <span
                 className={`${styles.button_month} ${

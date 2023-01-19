@@ -4,11 +4,11 @@ import { FC, useState, FormEventHandler, useCallback, useMemo } from "react";
 import styles from "./ProfilePhoto.module.scss";
 
 import { Camera } from "../../icons/Camera/Camera";
-import { IForm } from "../../utils/types";
+import { TForm } from "../../utils/types";
 
 interface IProfilePhoto {
-  setValue: Dispatch<SetStateAction<IForm>>;
-  form: IForm;
+  setValue: any;
+  form: any;
   isErrorPhoto: boolean;
   setIsErrorPhoto: Dispatch<SetStateAction<boolean>>;
 }
@@ -31,10 +31,10 @@ const ProfilePhoto: FC<IProfilePhoto> = ({ setValue, form, isErrorPhoto, setIsEr
   };
 
   const handleButtonVisibility = useCallback(() => {
-    if (img !== undefined && hover) {
+    if (form.photo !== undefined && hover) {
       setIsVisible(true);
     }
-    if (img !== undefined && !hover) {
+    if (form.photo !== undefined && !hover) {
       setIsVisible(false);
     } else setIsVisible(true);
   }, [hover, img]);
@@ -63,7 +63,7 @@ const ProfilePhoto: FC<IProfilePhoto> = ({ setValue, form, isErrorPhoto, setIsEr
             onMouseEnter={handleInputHover}
             onMouseLeave={handleInputHover}
           >
-            <img src={img} alt={""} className={styles.label__image}></img>
+            <img src={form.photo} alt={form.photo} className={styles.label__image}></img>
             <span
               className={`${styles.label__button} 
             ${isVisible ? styles.label__button_status_default : styles.label__button_status_active}`}

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC, FormEventHandler, useState } from "react";
+import React, { ChangeEventHandler, FC, FormEventHandler, useEffect, useState } from "react";
 
 import styles from "./profilepage.module.scss";
 
@@ -7,23 +7,32 @@ import InputCalendar from "../../components/InputCalendar/InputCalendar";
 import InputTextArea from "../../components/InpuTextArea/InpuTextArea";
 import InputFile from "../../components/InputFile/InputFile";
 import InputSelect from "../../components/InputSelect/InputSelect";
+import InputSuggestView from "../../components/InputSuggestView/InputSuggestView";
 import ProfilePhoto from "../../components/ProfilePhoto/ProfilePhoto";
 import { Button } from "../../components/UI/Button";
 import { Text } from "../../components/UI/Text";
+import { useFetch } from "../../hook/useFetch";
+import { getFullProfile } from "../../utils/api";
 
 import { years, months } from "../../utils/calendar";
-import { cities } from "../../utils/cities";
 
 import { template } from "../../utils/template";
+import { TForm } from "../../utils/types";
 
 export const ProfilePage: FC = () => {
+  const { url, method } = getFullProfile("abfccdaa23e0bd1c4448d2f3");
+  const { data, error, loading } = useFetch(url, method);
+
   const [form, setValue] = useState({
     photo: "",
     birthday: "",
-    city: "",
+    city: {
+      name: "",
+      geocode: [] as number[],
+    },
     telegram: "",
     github: "",
-    template: "",
+    template: "" as string | null,
     quote: "",
     hobbyImage: "",
     hobby: "",
@@ -32,6 +41,29 @@ export const ProfilePage: FC = () => {
     job: "",
     edu: "",
   });
+  useEffect(() => {
+    if (data) {
+      const { profile, info } = data;
+      setValue({
+        photo: profile.photo,
+        birthday: "1956-05-26T13:51:50.417-07:00",
+        city: {
+          name: profile.city.name,
+          geocode: profile.city.geocode,
+        },
+        telegram: profile.telegram,
+        github: profile.github,
+        template: data.profile.template,
+        quote: profile.quote,
+        hobbyImage: info.hobby.image,
+        hobby: info.hobby.text,
+        statusImage: info.status.image,
+        status: info.status.text,
+        job: info.job.text,
+        edu: info.edu.text,
+      });
+    }
+  }, [data]);
   const [isErrorCity, setIsErrorCity] = useState(false);
   const [isErrorBirthday, setIsErrorBirthday] = useState(false);
   const [isErrorPhoto, setIsErrorPhoto] = useState(false);
@@ -58,7 +90,8 @@ export const ProfilePage: FC = () => {
       setIsErrorPhoto(true);
       scrollToTop();
     }
-    if (form.city === "") {
+    if (form.city.name === "") {
+      console.log(form.city.name === "");
       setIsErrorCity(true);
       scrollToTop();
     }
@@ -82,18 +115,15 @@ export const ProfilePage: FC = () => {
           isErrorBirthday={isErrorBirthday}
           setIsErrorBirthday={setIsErrorBirthday}
         />
-        <InputSelect
-          label='Выберите город *'
-          inputName='city'
-          options={cities}
+        <InputSuggestView
           setValue={setValue}
-          error='Поле обязательно для заполнения'
           form={form}
           isErrorCity={isErrorCity}
           setIsErrorCity={setIsErrorCity}
+          error='Поле обязательно для заполнения'
         />
-        <Input label='Ник в телеграм' inputName='telegram' handleChange={handleChange} values={form.telegram} />
-        <Input label='Ник на гитхабе' inputName='github' handleChange={handleChange} values={form.github} />
+        <Input label='Ник в телеграм' inputName='telegram' setValue={setValue} form={form} />
+        <Input label='Ник на гитхабе' inputName='github' setValue={setValue} form={form} />
         <InputSelect label='Выберите шаблон' inputName='template' options={template} setValue={setValue} form={form} />
         <InputTextArea
           label='Девиз, цитата'

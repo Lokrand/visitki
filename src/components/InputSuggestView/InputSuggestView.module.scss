@@ -1,5 +1,36 @@
 @import "../../styles/constants";
 
+.ymaps[class*="search__suggest"] {
+  font-family: $text-font-family;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+
+  box-shadow: none !important;
+
+  transition: all 0.2s linear;
+}
+
+.ymaps[class*="popup"] {
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.ymaps[class*="suggest-item_selected_yes"]:hover {
+  height: 34px;
+  color: #fff !important;
+  vertical-align: middle;
+  background-color: $neon-pink !important;
+}
+
+.ymaps[class*="suggest-item"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+}
+
 .container {
   position: relative;
   width: 100%;
@@ -25,34 +56,16 @@
 
   transition: all 0.2s linear;
 
+  &::placeholder {
+    color: $text-dark;
+  }
+
   &_status_default {
     border: 1px solid $text-dark;
   }
 
   &_status_active {
     border: 1px solid $input-hover;
-  }
-
-  &__button {
-    position: absolute;
-    right: 15px;
-
-    width: 20px;
-    height: 20px;
-
-    border: none;
-
-    transition: all 0.2s linear;
-
-    &_default {
-      top: 43px;
-      rotate: 180deg;
-    }
-
-    &_active {
-      top: 40px;
-      rotate: 0;
-    }
   }
 
   &__error {
@@ -65,20 +78,55 @@
       color: #e90d41;
     }
   }
+}
 
-  &__label {
-    width: inherit;
+.button {
+  cursor: pointer;
 
+  position: absolute;
+  right: 15px;
+
+  width: 20px;
+  height: 20px;
+
+  border: none;
+
+  transition: all 0.2s linear;
+
+  &_default {
+    top: 43px;
+    rotate: 180deg;
+  }
+
+  &_active {
+    top: 40px;
+    rotate: 0;
+  }
+}
+
+.label {
+  width: inherit;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: $text-dark;
+}
+
+.error {
+  display: none;
+
+  &_active {
+    display: block;
     font-size: 16px;
-    font-weight: 400;
     line-height: 24px;
-    color: $text-dark;
+    color: #e90d41;
   }
 }
 
 .wrapper {
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   top: 76px;
   right: 0;
   left: 0;
@@ -124,25 +172,25 @@
 .list {
   margin: 0;
   padding: 0;
+}
 
-  &__option {
-    cursor: pointer;
+.option {
+  cursor: pointer;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    height: 36px;
-    padding-right: 6px;
-    padding-left: 6px;
+  height: 36px;
+  padding-right: 6px;
+  padding-left: 6px;
 
-    font-size: 16px;
-    line-height: 24px;
+  font-size: 16px;
+  line-height: 24px;
 
-    transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
 
-    &:hover {
-      color: #fff;
-      background-color: $neon-pink;
-    }
-  }
+.option:hover {
+  color: #fff;
+  background-color: $neon-pink;
 }

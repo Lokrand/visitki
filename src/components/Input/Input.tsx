@@ -9,25 +9,25 @@ interface IInputProps {
   label: string;
   inputName: string;
   placeholder?: string;
-  handleChange: (e: {
-    target: {
-      name: string;
-      value: string;
-    };
-  }) => void;
-  values: string;
+  // handleChange: (e: {
+  //   target: {
+  //     name: string;
+  //     value: string;
+  //   };
+  // }) => void;
+  // values: string;
+  setValue: any;
+  form: any;
 }
 
-const Input: FC<IInputProps> = ({ label, inputName, handleChange, values, placeholder }) => {
+const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [, setValue] = React.useState("");
   const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
-
-  const handleInputChange: FormEventHandler<HTMLInputElement> = (e) => {
-    const target = e.target as HTMLInputElement;
-    setValue(values);
-    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
+  console.log(form);
+  const handleInputChange = (e: any) => {
+    setValue({ ...form, [e.target.name]: e.target.value });
+    e.target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
 
   const handleInputFocus = () => {
@@ -39,7 +39,7 @@ const Input: FC<IInputProps> = ({ label, inputName, handleChange, values, placeh
   };
 
   const handleButtonClick = () => {
-    setValue("");
+    setValue({ ...form, [inputName]: "" });
     setDisplayStyle({ display: "none" });
   };
 
@@ -55,17 +55,14 @@ const Input: FC<IInputProps> = ({ label, inputName, handleChange, values, placeh
       <input
         type='text'
         name={inputName}
-        value={values}
+        value={form[inputName]}
         className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
                 ${hover ? styles.input_status_active : styles.input_status_default}`}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         onMouseEnter={handleInputHover}
         onMouseLeave={handleInputHover}
-        onChange={(e) => {
-          handleInputChange(e);
-          handleChange(e);
-        }}
+        onChange={handleInputChange}
         placeholder={placeholder}
       />
       <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>

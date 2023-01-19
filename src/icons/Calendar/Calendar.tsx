@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 export const Calendar: FC = () => {
   return (
-    <svg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg width='18' height='19' viewBox='0 0 18 19' fill='rgba(0, 0, 0, 0.85)' xmlns='http://www.w3.org/2000/svg'>
       <path
         fillRule='evenodd'
         clipRule='evenodd'
