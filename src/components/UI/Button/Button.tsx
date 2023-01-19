@@ -7,7 +7,7 @@ interface IButtonProps {
   size: "l" | "m";
   disabled?: boolean;
   children: ReactNode;
-  handlerClick: () => void;
+  handlerClick?: () => void;
 }
 
 export const Button: FC<IButtonProps> = ({ children, handlerClick, size, disabled = false }) => {

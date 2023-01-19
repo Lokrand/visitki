@@ -8,21 +8,24 @@ import { Cross } from "../../icons/Cross/Cross";
 interface IInputProps {
   label: string;
   inputName: string;
-  required: boolean;
   placeholder?: string;
-  handleChange?: any;
-  values?: any;
+  handleChange: (e: {
+    target: {
+      name: string;
+      value: string;
+    };
+  }) => void;
+  values: string;
 }
 
-const Input: FC<IInputProps> = ({ label, inputName, handleChange, values, required, placeholder }) => {
+const Input: FC<IInputProps> = ({ label, inputName, handleChange, values, placeholder }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [inputValue, setValue] = React.useState("");
+  const [, setValue] = React.useState("");
   const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
 
   const handleInputChange: FormEventHandler<HTMLInputElement> = (e) => {
     const target = e.target as HTMLInputElement;
-    console.log(values);
     setValue(values);
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
@@ -59,8 +62,10 @@ const Input: FC<IInputProps> = ({ label, inputName, handleChange, values, requir
         onBlur={handleInputBlur}
         onMouseEnter={handleInputHover}
         onMouseLeave={handleInputHover}
-        onChange={handleChange}
-        required={required}
+        onChange={(e) => {
+          handleInputChange(e);
+          handleChange(e);
+        }}
         placeholder={placeholder}
       />
       <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>

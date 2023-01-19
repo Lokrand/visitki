@@ -1,9 +1,10 @@
-import React, { MouseEventHandler } from "react";
+import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction } from "react";
 import { FC, useState, useRef, useCallback } from "react";
 
 import styles from "./InputFile.module.scss";
 
 import { Attach } from "../../icons/Attach/Attach";
+import { IForm } from "../../utils/types";
 
 interface IInputFile {
   label: string;
@@ -11,8 +12,8 @@ interface IInputFile {
   requirements: string;
   id: string;
   htmlFor: string;
-  setValue?: any;
-  form?: any;
+  setValue: Dispatch<SetStateAction<IForm>>;
+  form: IForm;
 }
 
 const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor, setValue, form }) => {
@@ -23,9 +24,10 @@ const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor
     } else setHover(false);
   };
 
-  const [fileName, setFileName] = useState("") as any;
+  const [fileName, setFileName] = useState("");
 
   const handleImageChange = (e: any) => {
+    //const target = e.target as HTMLInputElement
     const [file] = e.target.files;
     setFileName(file.name);
     setValue({ ...form, [e.target.name]: URL.createObjectURL(file) });
@@ -33,7 +35,7 @@ const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor
 
   return (
     <>
-      <p>{label}</p>
+      <p className={styles.input__label}>{label}</p>
       <div
         className={`${styles.input} 
                 ${hover ? styles.input_status_active : styles.input_status_default}`}
@@ -50,12 +52,12 @@ const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor
         />
         <span>{fileName}</span>
         <label htmlFor={htmlFor}>
-          <span className={styles.button}>
+          <span className={styles.input__button}>
             <Attach />
           </span>
         </label>
       </div>
-      <p className={styles.requirements}>{requirements}</p>
+      <p className={styles.input__requirements}>{requirements}</p>
     </>
   );
 };
