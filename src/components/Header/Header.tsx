@@ -10,12 +10,11 @@ export const Header: FC = () => {
     localStorage.setItem("userId", "abfccdaa23e0bd1c4448d2f3");
   }, []);
   const userId = localStorage.getItem("userId");
-  console.log(userId);
   const { url, method } = getFullProfile(userId);
   const { data, error, loading } = useFetch(url, method);
 
   return (
-    <section className={headerStyles.header}>
+    <header className={headerStyles.header}>
       <Logo className={headerStyles.header__logo} />
       {data !== null && (
         <div className={headerStyles.user}>
@@ -23,6 +22,6 @@ export const Header: FC = () => {
           <p className={headerStyles.user__name}>{data.profile.name}</p>
         </div>
       )}
-    </section>
+    </header>
   );
 };

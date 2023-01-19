@@ -98,6 +98,11 @@ export type TFullProfile = {
   reactions: number;
 };
 
+export type TFullProfiles = {
+  total: number;
+  items: ReadonlyArray<TFullProfile> | null;
+};
+
 // Типизация тела запросов на сервер
 export type TReturnData = {
   url: string;

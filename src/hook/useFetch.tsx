@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 
 import { useAuth } from "./useAuth";
 
-import { TFullProfile, TMethod, TToken } from "../utils/types";
+import { TFullProfile, TFullProfiles, TMethod, TToken } from "../utils/types";
 
 type TStateStatus = {
   loading: boolean;
-  data: TFullProfile | null;
+  data: TFullProfiles | TFullProfile | null;
   error: null | unknown;
 };
 
