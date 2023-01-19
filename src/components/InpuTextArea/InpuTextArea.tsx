@@ -1,5 +1,5 @@
-import React, { ChangeEventHandler, MouseEventHandler } from "react";
-import { FC, useState, FormEventHandler } from "react";
+import React, { MouseEventHandler } from "react";
+import { FC, useState } from "react";
 
 import styles from "./InpuTextArea.module.scss";
 
@@ -8,8 +8,13 @@ interface IInputProps {
   inputName: string;
   placeholder: string;
   maxLength: number;
-  handleChange?: any;
-  values?: any;
+  handleChange: (e: {
+    target: {
+      name: string;
+      value: string;
+    };
+  }) => void;
+  values: string;
 }
 
 const InputTextArea: FC<IInputProps> = ({ label, inputName, placeholder, maxLength, handleChange, values }) => {
@@ -32,7 +37,7 @@ const InputTextArea: FC<IInputProps> = ({ label, inputName, placeholder, maxLeng
 
   return (
     <div className={styles.container}>
-      <label className={styles.label}>{label}</label>
+      <label className={styles.input__label}>{label}</label>
       <textarea
         maxLength={maxLength}
         placeholder={placeholder}

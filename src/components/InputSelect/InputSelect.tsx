@@ -1,20 +1,32 @@
-import React, { MouseEventHandler, useMemo, useCallback } from "react";
+import React, { MouseEventHandler, useMemo, useCallback, Dispatch, SetStateAction } from "react";
 import { FC, useState, FormEventHandler, useRef } from "react";
 
 import styles from "./InputSelect.module.scss";
 
 import { Arrow } from "../../icons/Arrow/Arrow";
+import { IForm } from "../../utils/types";
 
 interface IInputSelectsProps {
   label: string;
   inputName: string;
   options: string[];
-  required: boolean;
-  setValue?: any;
-  form?: any;
+  error?: string;
+  setValue: Dispatch<SetStateAction<IForm>>;
+  form: IForm;
+  isErrorCity?: boolean;
+  setIsErrorCity?: Dispatch<SetStateAction<boolean>>;
 }
 
-const InputSelect: FC<IInputSelectsProps> = ({ label, inputName, options, setValue, form, required }) => {
+const InputSelect: FC<IInputSelectsProps> = ({
+  label,
+  inputName,
+  options,
+  setValue,
+  form,
+  error,
+  isErrorCity,
+  setIsErrorCity,
+}) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
   const [inputValue, setInputValue] = React.useState("");
@@ -24,15 +36,17 @@ const InputSelect: FC<IInputSelectsProps> = ({ label, inputName, options, setVal
 
   const ref = useRef<HTMLInputElement>(null);
 
-  const handleInputChange = (e: any) => {
-    const target = e.target;
-    setInputValue(target.value);
-    setValue({ ...form, [inputName]: target.textContent });
+  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
+    const target = e.target as HTMLInputElement;
+    setInputValue(target?.value);
+    if (target.value === target.textContent) {
+      setIsErrorCity?.(false);
+    } else setIsErrorCity?.(true);
   };
 
   const setHeight = useCallback(
     (options: string[]) => {
-      const optionsNumber = options.filter((option: string) => option.match(re));
+      const optionsNumber = options.filter((option) => option.match(re));
       height = !isActive ? 0 : optionsNumber.length >= 5 ? "180px" : `${optionsNumber.length * 36}px`;
       return height;
     },
@@ -69,13 +83,12 @@ const InputSelect: FC<IInputSelectsProps> = ({ label, inputName, options, setVal
 
   const handleOptionOnclick = (option: string) => {
     setInputValue(option);
-
     setActive(false);
   };
 
   return (
     <div className={styles.container}>
-      <label className={styles.label}>{label}</label>
+      <label className={styles.input__label}>{label}</label>
 
       <input
         ref={ref}
@@ -89,27 +102,28 @@ const InputSelect: FC<IInputSelectsProps> = ({ label, inputName, options, setVal
         onMouseEnter={handleInputHover}
         onMouseLeave={handleInputHover}
         onChange={handleInputChange}
-        required={required}
       />
       <span
-        className={`${styles.button} ${!isActive ? styles.button_default : styles.button_active}`}
+        className={`${styles.input__button} ${!isActive ? styles.input__button_default : styles.input__button_active}`}
         onClick={handleButtonClick}
       >
         <Arrow />
       </span>
+      <span className={`${!isErrorCity ? styles.input__error : styles.input__error_active}`}>{error}</span>
       <div
         className={`${styles.wrapper} ${!isActive ? styles.wrapper_default : styles.wrapper_active}`}
         style={{ height: height }}
       >
         <ul className={styles.list}>
-          {options.map((option: string, index: number) => {
+          {options.map((option, index) => {
             if (option.match(re)) {
               return (
                 <li
-                  className={styles.option}
+                  className={styles.list__option}
                   key={index}
-                  onClick={(e) => {
-                    handleInputChange(e);
+                  onClick={() => {
+                    setValue({ ...form, [inputName]: option });
+                    setIsErrorCity?.(false);
                     handleOptionOnclick(option);
                   }}
                 >

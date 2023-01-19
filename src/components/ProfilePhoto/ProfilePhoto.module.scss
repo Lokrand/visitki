@@ -10,6 +10,10 @@
     font-weight: 400;
     line-height: 24px;
     color: $text-dark;
+
+    &_error {
+      color: red;
+    }
   }
 
   &__requirements {

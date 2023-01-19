@@ -6,22 +6,36 @@ import styles from "./loginpage.module.scss";
 import { Button } from "../../components/UI/Button";
 import { Title } from "../../components/UI/Title";
 import { useAuth } from "../../hook/useAuth";
-import { MAIN_ROUTE } from "../../utils/constants";
+import { useLocalStorage } from "../../hook/useLocalStorage";
+import { ADMIN_ROUTE, MAIN_ROUTE } from "../../utils/constants";
+import { TInitialUserData } from "../../utils/types";
 
 export const LoginPage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loginUser } = useAuth();
+  const { user, loginUser } = useAuth();
+  const fromPath: string = location.state?.from?.pathname || MAIN_ROUTE;
+  const [fromPage] = useLocalStorage(fromPath, "from");
 
-  const fromPage = localStorage.getItem("fromPage") || null;
   const token = location.hash.split("&")[0].split("=")[1] || null;
-
-  if (!fromPage) localStorage.setItem("fromPage", location.state?.from?.pathname || MAIN_ROUTE);
+  const initialUserData: TInitialUserData = {
+    isLogin: false,
+    id: "e638ad9bce6d7efd1b5b035b",
+    template: "romantic",
+    role: "student",
+    token: null,
+  };
 
   useEffect(() => {
+    if (user?.isLogin) navigate(user.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true });
+
     if (token) {
-      loginUser(token, () => navigate(fromPage || MAIN_ROUTE, { replace: true }));
-      localStorage.removeItem("fromPage");
+      initialUserData.isLogin = true;
+      initialUserData.token = token;
+      loginUser(initialUserData, () =>
+        navigate(fromPage || user?.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true }),
+      );
+      localStorage.removeItem("from");
     }
   }, [token]);
 

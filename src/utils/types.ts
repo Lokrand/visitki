@@ -1,10 +1,19 @@
 export type TMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-
 export type TToken = string | null;
+export type TTemplate = "default" | "romantic" | "daring";
+export type TRoleUser = "student" | "curator";
+
+export type TInitialUserData = {
+  isLogin: boolean;
+  id: string;
+  template: TTemplate;
+  role: TRoleUser;
+  token: TToken;
+};
 
 export type TAuthValue = {
-  token: TToken;
-  loginUser: (user: string, cb: () => void) => void;
+  user: TInitialUserData | null;
+  loginUser: (user: TInitialUserData, cb: () => void) => void;
 };
 
 export type TReqUserData = {
@@ -124,3 +133,18 @@ export type TReturnDataChangeUserProfile = {
 export type TReturnDataAddUserReactions = {
   body: TReqReaction;
 } & TReturnData;
+export interface IForm {
+  photo: string;
+  birthday: string;
+  city: string;
+  telegram: string;
+  github: string;
+  template: string;
+  quote: string;
+  hobbyImage: string;
+  hobby: string;
+  statusImage: string;
+  status: string;
+  job: string;
+  edu: string;
+}

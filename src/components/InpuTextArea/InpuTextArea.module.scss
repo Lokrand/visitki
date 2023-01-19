@@ -3,6 +3,7 @@
 .container {
   position: relative;
   width: 100%;
+  margin-bottom: -5px;
 }
 
 .input {
@@ -10,8 +11,9 @@
 
   box-sizing: border-box;
   width: inherit;
-  height: 130px;
+  height: 118px;
   margin-top: 4px;
+  padding-top: 13px;
   padding-right: 16px;
   padding-left: 16px;
 
@@ -50,13 +52,13 @@
   &_status_active {
     border: 1px solid $input-hover;
   }
-}
 
-.label {
-  width: inherit;
+  &__label {
+    width: inherit;
 
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: $text-dark;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: $text-dark;
+  }
 }
