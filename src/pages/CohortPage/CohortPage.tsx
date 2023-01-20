@@ -9,11 +9,11 @@ import { Arrow } from "../../icons/Arrow/Arrow";
 import { students } from "../../utils/students";
 
 export const CohortPage: FC = () => {
-  const [inputActive, setInputActive] = useState(false);
+  const [filterModalActive, setFilterModalActive] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("Все города");
 
   const handleInputActive = () => {
-    setInputActive(!inputActive);
+    setFilterModalActive(!filterModalActive);
   };
 
   // const handleFilter: = (city: string) => {
@@ -27,12 +27,16 @@ export const CohortPage: FC = () => {
         <div className={styles.cohort__cities} onClick={handleInputActive}>
           <div className={styles.cohort__filter}>{currentFilter}</div>
           <span
-            className={inputActive ? styles.cohort__arrow : `${styles.cohort__arrow} ${styles.cohort__arrow_active}`}
+            className={
+              filterModalActive ? styles.cohort__arrow : `${styles.cohort__arrow} ${styles.cohort__arrow_active}`
+            }
           >
             <Arrow />
           </span>
           <div
-            className={inputActive ? styles.cohort__modal : `${styles.cohort__modal} ${styles.cohort__modal_active}`}
+            className={
+              filterModalActive ? styles.cohort__modal : `${styles.cohort__modal} ${styles.cohort__modal_active}`
+            }
           >
             {currentFilter === "Все города" ? null : (
               <div

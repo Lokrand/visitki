@@ -21,7 +21,10 @@ export const EmojisList: FC<IEmojisList> = ({ counter }) => {
   console.log(counter);
   return (
     <div className={styles.emojis}>
-      <img src={like} alt='Лайк' />
+      <div className={styles.emojis__like}>
+        <img src={like} alt='Лайк' />
+        <p className={styles.emojis__counter}>1</p>
+      </div>
       <img src={dislike} alt='Дизлайк' />
       <img src={hello} alt='Привет' />
       <img src={smile} alt='Улыбка' />
