@@ -1,0 +1,58 @@
+@import "../../styles/constants";
+
+.map {
+  display: flex;
+  width: 100vw;
+  height: 955px;
+  margin: 0 auto;
+
+  .text {
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 115px;
+    margin-left: 4px;
+
+    font: 500 16px/24px $text-font-family;
+    color: $text-dark;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mark {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 215px;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 155px;
+    max-height: 49px;
+    margin-left: 6px;
+
+    background-color: white;
+
+    &__info {
+      display: flex;
+      margin-bottom: 2px;
+    }
+
+    &__city {
+      overflow: hidden;
+
+      width: 100%;
+      max-width: 155px;
+
+      font: 500 16px/24px $text-font-family;
+      color: $text-light;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

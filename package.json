@@ -5,6 +5,7 @@
   "private": true,
   "proxy": "https://visitki.practicum-team.ru/api",
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.2",
     "@emoji-mart/data": "^1.1.1",
     "@emoji-mart/react": "^1.1.1",
     "@testing-library/jest-dom": "^5.16.5",
