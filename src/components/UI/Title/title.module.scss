@@ -1,10 +1,8 @@
-@import "../../../styles/constants";
-
 .title {
   margin: 0;
   padding: 0;
-  font-family: $text-font-family;
-  color: $text-dark;
+  font-family: var(--text-font-family);
+  color: var(--text-dark);
 
   &_size {
     &_xl {

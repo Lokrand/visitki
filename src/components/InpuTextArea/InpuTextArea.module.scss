@@ -1,5 +1,3 @@
-@import "../../styles/constants";
-
 .container {
   position: relative;
   width: 100%;
@@ -20,7 +18,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: $text-dark;
+  color: var(--text-dark);
 
   border-radius: 4px;
   outline: none;
@@ -28,7 +26,7 @@
   transition: all 0.5s linear;
 
   &::placeholder {
-    color: $placeholder;
+    color: var(--placeholder);
   }
 
   &::-webkit-scrollbar {
@@ -41,16 +39,16 @@
 
   &::-webkit-scrollbar-thumb {
     height: 42px;
-    background: $placeholder;
+    background: var(--placeholder);
     border-radius: 3px;
   }
 
   &_status_default {
-    border: 1px solid $text-dark;
+    border: 1px solid var(--text-dark);
   }
 
   &_status_active {
-    border: 1px solid $input-hover;
+    border: 1px solid var(--input-hover);
   }
 
   &__label {
@@ -59,6 +57,6 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: $text-dark;
+    color: var(--text-dark);
   }
 }

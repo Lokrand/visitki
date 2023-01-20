@@ -1,5 +1,3 @@
-@import "../../../styles/constants";
-
 .chat {
   position: absolute;
   top: 16px;
@@ -18,10 +16,10 @@
     width: 20px;
     height: 20px;
 
-    font: 500 12px/12px $text-font-family;
-    color: $text-white;
+    font: 500 12px/12px var(--text-font-family);
+    color: var(--text-white);
 
-    background-color: $text-dark;
+    background-color: var(--text-dark);
     border-radius: 20px;
 
     &_long {

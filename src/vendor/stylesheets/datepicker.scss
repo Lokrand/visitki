@@ -397,10 +397,10 @@
   margin: $datepicker__day-margin;
 }
 .react-datepicker__day:nth-of-type(6) {
-  color: $neon-pink;
+  color: var(--neon-pink);
 }
 .react-datepicker__day:nth-of-type(7) {
-  color: $neon-pink;
+  color: var(--neon-pink);
 }
 .react-datepicker__month,
 .react-datepicker__quarter {
@@ -435,7 +435,7 @@
 
   &:hover {
     border-radius: $datepicker__border-radius;
-    background-color:$neon-pink;
+    background-color: var(--neon-pink);
     color: #fff;
   }
 
