@@ -18,7 +18,7 @@
 
     padding-left: 2px;
 
-    font: 400 16px/24px $text-font-family;
+    font: 400 16px/24px var(--text-font-family);
     text-decoration: none;
     @media screen and (max-width: 767px) {
       flex-direction: column-reverse;
@@ -46,7 +46,7 @@
 
     &::-webkit-scrollbar-thumb {
       padding-top: 2px;
-      background-color: $placeholder;
+      background-color: var(--placeholder);
       border-radius: 4px;
     }
     @media screen and (max-width: 1110px) {
@@ -60,7 +60,7 @@
   }
 
   &__link {
-    color: $text-dark;
+    color: var(--text-dark);
     text-decoration: none;
     transition: opacity 0.2s linear;
 
@@ -85,7 +85,7 @@
     height: 22px;
     padding: 12px 16px;
 
-    border: 1px solid $text-dark;
+    border: 1px solid var(--text-dark);
     border-radius: 4px;
     @media screen and (max-width: 1110px) {
       width: 308px;
@@ -136,7 +136,7 @@
     max-height: 400px;
 
     background-color: #fff;
-    border: 1px solid $text-dark;
+    border: 1px solid var(--text-dark);
     border-radius: 4px;
 
     transition: all 0.2s linear;
@@ -154,13 +154,13 @@
 
   &__city {
     padding: 11px 16px;
-    font: 400 16px/24px $text-font-family;
+    font: 400 16px/24px var(--text-font-family);
     border-radius: 4px;
 
     &:hover {
       cursor: pointer;
       color: #fff;
-      background-color: $neon-pink;
+      background-color: var(--neon-pink);
     }
   }
 

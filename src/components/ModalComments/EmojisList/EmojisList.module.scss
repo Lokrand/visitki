@@ -14,12 +14,12 @@
 
     &:hover {
       border-radius: 40px;
-      box-shadow: 0 0 0 1px $neon-pink;
+      box-shadow: 0 0 0 1px var(--neon-pink);
     }
   }
 
   &__counter {
-    font: 500 12px/12px $text-font-family;
-    color: $neon-pink;
+    font: 500 12px/12px var(--text-font-family);
+    color: var(--neon-pink);
   }
 }

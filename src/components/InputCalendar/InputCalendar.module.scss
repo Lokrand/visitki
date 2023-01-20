@@ -1,3 +1,5 @@
+@import "../../styles/constants";
+
 .container {
   position: relative;
   width: 100%;
@@ -21,7 +23,7 @@
   transition: all 0.2s linear;
 
   &::placeholder {
-    color: $text-dark;
+    color: var(--text-dark);
   }
 
   &_status_default {

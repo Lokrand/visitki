@@ -1,3 +1,5 @@
+@import "../../styles/constants";
+
 .card {
   cursor: pointer;
   position: relative;
@@ -8,7 +10,7 @@
     object-fit: cover;
 
     &_active {
-      box-shadow: 0 0 0 2px $neon-pink;
+      box-shadow: 0 0 0 2px var(--neon-pink);
     }
     @media screen and (max-width: 1110px) {
       width: 342px;
@@ -28,7 +30,7 @@
     line-height: 28px;
 
     &_active {
-      color: $neon-pink;
+      color: var(--neon-pink);
     }
   }
 
@@ -38,6 +40,6 @@
     font-weight: 400;
     font-style: normal;
     line-height: 24px;
-    color: $text-light;
+    color: var(--text-light);
   }
 }

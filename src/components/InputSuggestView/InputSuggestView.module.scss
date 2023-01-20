@@ -1,14 +1,12 @@
 @import "../../styles/constants";
 
 .ymaps[class*="search__suggest"] {
-  font-family: $text-font-family;
+  font-family: var(--text-font-family);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 
   box-shadow: none !important;
-
-  
 }
 
 .ymaps[class*="popup"] {
@@ -21,7 +19,7 @@
   height: 34px;
   color: #fff !important;
   vertical-align: middle;
-  background-color: $neon-pink !important;
+  background-color: var(--neon-pink) !important;
 }
 
 .ymaps[class*="suggest-item"] {
@@ -47,7 +45,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: $text-dark;
+  color: var(--text-dark);
   text-overflow: ellipsis;
   white-space: nowrap;
 
@@ -57,15 +55,15 @@
   transition: all 0.2s linear;
 
   &::placeholder {
-    color: $text-dark;
+    color: var(--text-dark);
   }
 
   &_status_default {
-    border: 1px solid $text-dark;
+    border: 1px solid var(--text-dark);
   }
 
   &_status_active {
-    border: 1px solid $input-hover;
+    border: 1px solid var(--input-hover);
   }
 
   &__error {
@@ -110,7 +108,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: $text-dark;
+  color: var(--text-dark);
 }
 
 .error {
@@ -138,7 +136,7 @@
   width: inherit;
 
   background-color: white;
-  border: 1px solid $text-dark;
+  border: 1px solid var(--text-dark);
   border-top: none;
   border-radius: 0 0 4px 4px;
 
@@ -154,7 +152,7 @@
 
   &::-webkit-scrollbar-thumb {
     height: 42px;
-    background: $placeholder;
+    background: var(--placeholder);
     border-radius: 3px;
   }
 
@@ -192,5 +190,5 @@
 
 .option:hover {
   color: #fff;
-  background-color: $neon-pink;
+  background-color: var(--neon-pink);
 }
