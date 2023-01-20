@@ -1,4 +1,25 @@
+@import "../../../styles/constants";
+
 .emojis {
   display: flex;
   column-gap: 2px;
+
+  &__like {
+    display: flex;
+    align-items: center;
+
+    width: 30px;
+    height: 20px;
+    padding: 0 4px 0 0;
+
+    &:hover {
+      border-radius: 40px;
+      box-shadow: 0 0 0 1px $neon-pink;
+    }
+  }
+
+  &__counter {
+    font: 500 12px/12px $text-font-family;
+    color: $neon-pink;
+  }
 }

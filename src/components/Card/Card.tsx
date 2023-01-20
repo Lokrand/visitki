@@ -13,16 +13,30 @@ interface ICard {
 
 export const Card: FC<ICard> = ({ name, city, img }) => {
   const [modalCommentsActive, setModalCommentsActive] = useState(false);
+  const [hoverActive, setHoverActive] = useState(false);
   const handleChatClick = () => {
     setModalCommentsActive(!modalCommentsActive);
   };
+
+  const handleMouseEnter = () => {
+    setHoverActive(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverActive(false);
+    setModalCommentsActive(false);
+  };
   return (
     <>
-      <div className={styles.card}>
-        <img src={img} alt='Фотография студента' className={styles.card__image} />
-        <h2 className={styles.card__name}>{name}</h2>
+      <div className={styles.card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <img
+          src={img}
+          alt='Фотография студента'
+          className={hoverActive ? `${styles.card__image} ${styles.card__image_active}` : styles.card__image}
+        />
+        <h2 className={hoverActive ? `${styles.card__name} ${styles.card__name_active}` : styles.card__name}>{name}</h2>
         <p className={styles.card__city}>{city}</p>
-        <Chat forImage={true} counter={53} onClick={handleChatClick} />
+        {hoverActive && <Chat forImage={true} counter={53} onClick={handleChatClick} />}
         <ModalComments active={modalCommentsActive} />
       </div>
     </>

@@ -1,32 +1,179 @@
-.gallery {
-  overflow: scroll;
-  max-height: calc(100vh - 184px);
-  padding: 0 calc((100vw - 1440px) / 2);
+@import "../../styles/constants";
+
+.cohort {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+
+  // max-width: 1440px;
+  width: 1370px;
+
+  // justify-content: center;
+  margin: 0 auto;
 
   &__header {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 
-    margin: 8px 0 40px;
+    padding-left: 2px;
 
-    font: 400 16px/20px "IBM Plex Sans", sans-serif;
+    font: 400 16px/24px $text-font-family;
+    text-decoration: none;
+    @media screen and (max-width: 767px) {
+      flex-direction: column-reverse;
+      row-gap: 24px;
+      justify-content: start;
+      padding-left: 4px;
+    }
   }
 
   &__students {
-    display: grid;
-    grid-template-columns: repeat(4, 325px);
+    overflow: scroll;
+    display: flex;
+    flex-wrap: wrap;
     row-gap: 40px;
     column-gap: 20px;
-    align-items: center;
-    justify-content: center;
 
-    width: 100%;
+    max-height: calc(100vh - 268px);
+    padding-top: 2px;
+    padding-left: 2px;
+
+    &::-webkit-scrollbar {
+      // position: absolute;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      padding-top: 2px;
+      background-color: $placeholder;
+      border-radius: 4px;
+    }
+    @media screen and (max-width: 1110px) {
+      row-gap: 30px;
+      max-height: calc(100vh - 260px);
+    }
+    @media screen and (max-width: 767px) {
+      row-gap: 24px;
+      max-height: calc(100vh - 300px);
+    }
+  }
+
+  &__link {
+    color: $text-dark;
+    text-decoration: none;
+    transition: opacity 0.2s linear;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+    @media screen and (max-width: 767px) {
+      width: 272px;
+      text-align: end;
+    }
+  }
+
+  &__filter {
+    cursor: pointer;
+
+    width: 291px;
+    height: 22px;
+    padding: 12px 16px;
+
+    border: 1px solid $text-dark;
+    border-radius: 4px;
+    @media screen and (max-width: 1110px) {
+      width: 308px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 238px;
+      margin-right: 10px;
+    }
   }
 
   &__cities {
-    padding: 12px;
+    position: relative;
+  }
 
-    // min-height: 20px;
+  &__arrow {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    transition: all 0.2s linear;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+
+    &_active {
+      top: 15px;
+      transform: rotate(180deg);
+    }
+    @media screen and (max-width: 767px) {
+      right: 26px;
+    }
+  }
+
+  &__modal {
+    position: absolute;
+    z-index: 999;
+    top: 46px;
+    left: 0;
+
+    display: none;
+
+    width: 323px;
+    max-height: 400px;
+
+    background-color: #fff;
+    border: 1px solid $text-dark;
+    border-radius: 4px;
+
+    transition: all 0.2s linear;
+
+    &_active {
+      display: block;
+    }
+    @media screen and (max-width: 1110px) {
+      width: 340px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 270px;
+    }
+  }
+
+  &__city {
+    padding: 11px 16px;
+    font: 400 16px/24px $text-font-family;
+    border-radius: 4px;
+
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: $neon-pink;
+    }
+  }
+
+  // padding: 0 40px;
+  @media screen and (max-width: 1410px) {
+    width: 1024px;
+  }
+  @media screen and (max-width: 1110px) {
+    row-gap: 32px;
+    width: 714px;
+  }
+  @media screen and (max-width: 767px) {
+    row-gap: 24px;
+    width: 282px;
   }
 }

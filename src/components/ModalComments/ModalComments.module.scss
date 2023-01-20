@@ -51,4 +51,11 @@
     font: 400 16px/20px $text-font-family;
     border-bottom: 1px solid $text-dark;
   }
+
+  @media screen and (max-width: 1110px) {
+    width: 316px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 246px;
+  }
 }
