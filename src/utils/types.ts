@@ -130,13 +130,18 @@ export type TReturnDataChangeUserProfile = {
 export type TReturnDataAddUserReactions = {
   body: TReqReaction;
 } & TReturnData;
-export interface IForm {
+
+//Типы формы (пока не применяла)
+export type TForm = {
   photo: string;
   birthday: string;
-  city: string;
+  city: {
+    name: string;
+    geocode: number[];
+  };
   telegram: string;
   github: string;
-  template: string;
+  template: string | null;
   quote: string;
   hobbyImage: string;
   hobby: string;
@@ -144,4 +149,4 @@ export interface IForm {
   status: string;
   job: string;
   edu: string;
-}
+};

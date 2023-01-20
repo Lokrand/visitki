@@ -4,7 +4,7 @@ import { FC, useState, useRef, useCallback } from "react";
 import styles from "./InputFile.module.scss";
 
 import { Attach } from "../../icons/Attach/Attach";
-import { IForm } from "../../utils/types";
+import { TForm } from "../../utils/types";
 
 interface IInputFile {
   label: string;
@@ -12,8 +12,8 @@ interface IInputFile {
   requirements: string;
   id: string;
   htmlFor: string;
-  setValue: Dispatch<SetStateAction<IForm>>;
-  form: IForm;
+  setValue: any;
+  form: any;
 }
 
 const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor, setValue, form }) => {

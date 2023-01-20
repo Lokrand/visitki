@@ -18,7 +18,11 @@
   border-radius: 4px 4px 0 0;
   outline: none;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
+
+  &::placeholder {
+    color: $text-dark;
+  }
 
   &_status_default {
     border: 1px solid var(--text-dark);
@@ -74,7 +78,7 @@
 
   background-color: #f8f8f8;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 
   &::-webkit-scrollbar {
     width: 3px;
@@ -115,7 +119,7 @@
 
   background-color: #f8f8f8;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 
   &::-webkit-scrollbar {
     width: 3px;
@@ -230,7 +234,7 @@
 
     background-color: #f8f8f8;
 
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
 
     &:hover {
       cursor: pointer;
@@ -248,7 +252,7 @@
 
   border: none;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 
   &:hover {
     cursor: pointer;
@@ -279,7 +283,7 @@
 
   border: none;
 
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 
   &:hover {
     cursor: pointer;

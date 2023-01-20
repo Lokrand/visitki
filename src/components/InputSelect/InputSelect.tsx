@@ -4,15 +4,15 @@ import { FC, useState, FormEventHandler, useRef } from "react";
 import styles from "./InputSelect.module.scss";
 
 import { Arrow } from "../../icons/Arrow/Arrow";
-import { IForm } from "../../utils/types";
+import { TForm } from "../../utils/types";
 
 interface IInputSelectsProps {
   label: string;
   inputName: string;
   options: string[];
   error?: string;
-  setValue: Dispatch<SetStateAction<IForm>>;
-  form: IForm;
+  setValue: any;
+  form: any;
   isErrorCity?: boolean;
   setIsErrorCity?: Dispatch<SetStateAction<boolean>>;
 }
