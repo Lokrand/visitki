@@ -1,5 +1,3 @@
-@import "../../styles/constants";
-
 .container {
   max-width: 1290px;
   margin: 10px auto 0;
@@ -108,7 +106,7 @@
 
   object-fit: cover;
   object-position: center;
-  clip-path: $avatar-poligon;
+  clip-path: var(--avatar-poligon);
   filter: grayscale(100%);
 
   @media screen and (max-width: 768px) {
@@ -126,6 +124,8 @@
   gap: 8px;
 
   width: 255px;
+
+  color: var(--quote-color);
 
   @media screen and (max-width: 1290px) {
     position: static;

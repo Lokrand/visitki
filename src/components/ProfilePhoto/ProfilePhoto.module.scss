@@ -1,5 +1,3 @@
-@import "../../styles/constants";
-
 .avatar {
   display: flex;
   flex-direction: column;
@@ -9,7 +7,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: $text-dark;
+    color: var(--text-dark);
 
     &_error {
       color: red;
@@ -20,7 +18,7 @@
     margin-bottom: 8px;
     font-size: 14px;
     font-weight: 400;
-    color: $placeholder;
+    color: var(--placeholder);
   }
 
   .wrapper {
@@ -29,7 +27,7 @@
     width: 150px;
     height: 150px;
 
-    border: 1px solid $text-dark;
+    border: 1px solid var(--text-dark);
     border-radius: 50%;
   }
 }

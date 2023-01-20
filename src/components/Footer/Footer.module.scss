@@ -1,5 +1,3 @@
-@import "../../styles/constants";
-
 .footer {
   display: flex;
   align-items: center;
@@ -15,20 +13,20 @@
   &__text {
     margin: 0 0 0 32px;
 
-    font-family: $text-font-family;
+    font-family: var(--text-font-family);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: $text-light;
+    color: var(--text-light);
 
     &_praktikum {
       margin: 0 40px 0 0;
 
-      font-family: $text-font-family;
+      font-family: var(--text-font-family);
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
-      color: $text-light;
+      color: var(--text-light);
     }
   }
 }

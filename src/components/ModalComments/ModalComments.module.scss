@@ -1,5 +1,3 @@
-@import "../../styles/constants";
-
 .modalComments {
   position: absolute;
   top: 50px;
@@ -11,7 +9,7 @@
   padding: 12px;
 
   background-color: #fff;
-  border: 1px solid $comments-input-border;
+  border: 1px solid var(--comments-input-border);
   border-radius: 4px;
 
   &_inactive {
@@ -27,15 +25,15 @@
     width: 100%;
     padding: 8px;
 
-    font: 400 14px/20px $text-font-family;
+    font: 400 14px/20px var(--text-font-family);
 
-    background-color: $text-white;
+    background-color: var(--text-white);
     border: none;
     border-radius: 4px;
     outline: none;
 
     &:focus {
-      border: 2px solid $neon-pink;
+      border: 2px solid var(--neon-pink);
     }
   }
 
@@ -48,8 +46,8 @@
 
   &__comment {
     padding: 8px 0;
-    font: 400 16px/20px $text-font-family;
-    border-bottom: 1px solid $text-dark;
+    font: 400 16px/20px var(--text-font-family);
+    border-bottom: 1px solid var(--text-dark);
   }
 
   @media screen and (max-width: 1110px) {
