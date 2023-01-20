@@ -25,7 +25,7 @@ export const Post: FC<IPostProps> = ({ title, imgUrl, text, reactions }) => {
         <Chat forImage={false} counter={reactions} onClick={openModal} />
       </div>
       <Title size='m'>{title}</Title>
-      {imgUrl && <img src={imgUrl} alt={title} />}
+      {imgUrl && <img className={styles.post__img} src={imgUrl} alt={title} />}
       <Text>{text}</Text>
     </article>
   );
