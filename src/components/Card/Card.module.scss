@@ -8,7 +8,6 @@
     object-fit: cover;
 
     &_active {
-      // border: 2px solid $neon-pink;
       box-shadow: 0 0 0 2px $neon-pink;
     }
     @media screen and (max-width: 1110px) {
