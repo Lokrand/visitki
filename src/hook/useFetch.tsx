@@ -7,7 +7,7 @@ import { TFullProfile, TFullProfiles, TMethod, TToken } from "../utils/types";
 
 type TStateStatus = {
   loading: boolean;
-  data: TFullProfiles | TFullProfile | null;
+  data: TFullProfile | null;
   error: null | unknown;
 };
 

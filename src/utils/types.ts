@@ -97,12 +97,10 @@ export type TFullProfile = {
   cohort: string;
   profile: TDescriptionUser;
   info: {
-    hobby: {
-      info: TFullPost;
-      status: TFullPost;
-      job: TFullPost;
-      edu: TFullPost;
-    };
+    hobby: TFullPost;
+    status: TFullPost;
+    job: TFullPost;
+    edu: TFullPost;
   };
   reactions: number;
 };
