@@ -6,7 +6,6 @@ export type TRoleUser = "student" | "curator";
 export type TInitialUserData = {
   isLogin: boolean;
   id: string;
-  template: TTemplate;
   role: TRoleUser;
   token: TToken;
 };
@@ -68,7 +67,7 @@ export type TDescriptionUser = {
   quote: string;
   telegram: string;
   github: string;
-  template: string | null;
+  template: TTemplate;
 };
 
 // Типизация запроса на изменение профиля
