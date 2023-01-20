@@ -21,13 +21,22 @@
 }
 
 // Стандартная тема "default"
-$border-top: url("../images/border-top-line.svg");
-$avatar-poligon: inset(0 0 0 0);
+html[data-theme="default"] {
+  --post-border-top: url("../images/border-top-line.svg");
+  --avatar-poligon: inset(0 0 0 0);
+  --quote-color: var(--text-dark);
+}
 
 // Романтическая тема "romantic"
-// $border-top: url("../images/border-top-wavy-line.svg");
-// $avatar-poligon: circle(50% at 50% 50%);
+html[data-theme="romantic"] {
+  --post-border-top: url("../images/border-top-wavy-line.svg");
+  --avatar-poligon: circle(50% at 50% 50%);
+  --quote-color: var(--neon-pink);
+}
 
-// Дерзкая тема  "daring"
-// $border-top: url("../images/border-top-diamond-line.svg");
-// $avatar-poligon: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+// Стандартная тема "daring"
+html[data-theme="daring"] {
+  --post-border-top: url("../images/border-top-diamond-line.svg");
+  --avatar-poligon: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+  --quote-color: var(--neon-green);
+}
