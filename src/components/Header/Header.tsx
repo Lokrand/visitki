@@ -1,28 +1,26 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
-import headerStyles from "./Header.module.scss";
+import styles from "./Header.module.scss";
 
+import { useAuth } from "../../hook/useAuth";
 import { useFetch } from "../../hook/useFetch";
 import { Logo } from "../../icons/Logo/Logo";
 import { getFullProfile } from "../../utils/api";
+
 export const Header: FC = () => {
-  useEffect(() => {
-    localStorage.setItem("userId", "abfccdaa23e0bd1c4448d2f3");
-  }, []);
-  const userId = localStorage.getItem("userId");
-  console.log(userId);
-  const { url, method } = getFullProfile(userId);
-  const { data, error, loading } = useFetch(url, method);
+  const { user } = useAuth();
+  const { url, method } = getFullProfile(user?.id);
+  const { data } = useFetch(url, method);
 
   return (
-    <section className={headerStyles.header}>
-      <Logo className={headerStyles.header__logo} />
+    <header className={styles.header}>
+      <Logo className={styles.header__logo} />
       {data !== null && (
-        <div className={headerStyles.user}>
-          <img src={data.profile.photo} alt='аватар' className={headerStyles.user__avatar} />
-          <p className={headerStyles.user__name}>{data.profile.name}</p>
+        <div className={styles.user}>
+          <img className={styles.user__avatar} src={data.profile.photo} alt='аватар' />
+          <p className={styles.user__name}>{data.profile.name}</p>
         </div>
       )}
-    </section>
+    </header>
   );
 };

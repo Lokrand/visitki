@@ -1,16 +1,11 @@
 @import "../../styles/constants";
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  width: 100vw;
+  width: 100%;
   height: 72px;
   margin: 0 auto;
 
@@ -39,68 +34,21 @@
 
 @media screen and (max-width: 768px) {
   .footer {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    justify-content: space-between;
-
-    width: 100%;
-    max-width: 768px;
-    margin: 0 auto;
-
     &__text {
-      margin: 0 0 0 32px;
-
-      font-family: $text-font-family;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      color: $text-light;
-
       &_praktikum {
         margin: 0 32px 0 0;
-
-        font-family: $text-font-family;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        color: $text-light;
       }
     }
   }
 }
+
 @media screen and (max-width: 320px) {
   .footer {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    justify-content: space-between;
-
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-
     &__text {
       margin: 0 0 0 24px;
 
-      font-family: $text-font-family;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      color: $text-light;
-
       &_praktikum {
         margin: 0 24px 0 0;
-
-        font-family: $text-font-family;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        color: $text-light;
       }
     }
   }

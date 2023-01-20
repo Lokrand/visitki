@@ -12,12 +12,12 @@
       font-weight: 500;
       line-height: 60px;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1290px) {
         font-size: 40px;
         line-height: 40px;
       }
 
-      @media screen and (max-width: 350px) {
+      @media screen and (max-width: 768px) {
         font-size: 32px;
       }
     }
