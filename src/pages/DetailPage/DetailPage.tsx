@@ -1,9 +1,10 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
 import styles from "./detailpage.module.scss";
 
+import { ModalComments } from "../../components/ModalComments/ModalComments";
 import { Chat } from "../../components/UI/Chat/Chat";
 import { Post } from "../../components/UI/Post";
 import { SocialLink } from "../../components/UI/SocialLink";
@@ -18,13 +19,17 @@ export const DetailPage: FC = () => {
   const { idUser } = useParams<string>();
   const { url, method } = getFullProfile(idUser);
   const { data, error, loading } = useFetch(url, method);
+  const [modalActive, setModalActive] = useState(false);
   useTheme(data?.profile.template || "romantic");
 
   if (loading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Пользователь не найден</h1>;
 
   const openModal = () => {
-    console.log("Модальное окно открыто");
+    setModalActive(!modalActive);
+  };
+  const closeModal = () => {
+    setModalActive(false);
   };
 
   return (
@@ -55,6 +60,7 @@ export const DetailPage: FC = () => {
               <div className={styles.counter}>
                 <Chat forImage={false} counter={data?.reactions || 0} onClick={openModal} />
               </div>
+              <ModalComments active={modalActive} id={data?._id} modalFor='DetailsImage' />
             </div>
             {data?.profile.quote === "" && (
               <p className={styles.quote}>
@@ -68,6 +74,8 @@ export const DetailPage: FC = () => {
         <ul className={styles["post-list"]}>
           <li>
             <Post
+              id={data?._id}
+              modalFor='hobby'
               title='Увлечения'
               text={data?.info.hobby.text || ""}
               imgUrl={data?.info.hobby.image}
@@ -76,6 +84,8 @@ export const DetailPage: FC = () => {
           </li>
           <li>
             <Post
+              id={data?._id}
+              modalFor='status'
               title='Семья'
               text={data?.info.status.text || ""}
               imgUrl={data?.info.status.image}
@@ -84,6 +94,8 @@ export const DetailPage: FC = () => {
           </li>
           <li>
             <Post
+              id={data?._id}
+              modalFor='job'
               title='Cфера'
               text={data?.info.job.text || ""}
               imgUrl={data?.info.job.image}
@@ -92,6 +104,8 @@ export const DetailPage: FC = () => {
           </li>
           <li>
             <Post
+              id={data?._id}
+              modalFor='edu'
               title='Учеба'
               text={data?.info.edu.text || ""}
               imgUrl={data?.info.edu.image}
