@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -43,12 +43,9 @@ export const Card: FC<ICard> = ({ id, name, city, img }) => {
   };
   return (
     <div className={styles.card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <img
-        onClick={routeToDetails}
-        src={img}
-        alt='Фотография студента'
-        className={hoverActive ? `${styles.card__image} ${styles.card__image_active}` : styles.card__image}
-      />
+      <div className={hoverActive ? styles["card__image-wrapper"] : ""}>
+        <img onClick={routeToDetails} src={img} alt='Фотография студента' className={styles.card__image} />
+      </div>
       <h2
         onClick={routeToDetails}
         className={hoverActive ? `${styles.card__name} ${styles.card__name_active}` : styles.card__name}
