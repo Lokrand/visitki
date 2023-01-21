@@ -18,7 +18,7 @@ interface IEmojisList {
 }
 
 export const EmojisList: FC<IEmojisList> = ({ counter }) => {
-  console.log(counter);
+  // console.log(counter);
   return (
     <div className={styles.emojis}>
       <div className={styles.emojis__like}>
