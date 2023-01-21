@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import styles from "./Post.module.scss";
 
@@ -21,9 +21,25 @@ export const Post: FC<IPostProps> = ({ id, modalFor, title, imgUrl, text, reacti
   const openModal = () => {
     setModalActive(!modalActive);
   };
+  const closeModal = () => {
+    setModalActive(false);
+  };
 
+  useEffect(() => {
+    function closeByEscape(evt: KeyboardEvent) {
+      if (evt.key === "Escape") {
+        closeModal();
+      }
+    }
+    if (modalActive) {
+      document.addEventListener("keydown", closeByEscape);
+      return () => {
+        document.removeEventListener("keydown", closeByEscape);
+      };
+    }
+  }, [modalActive, closeModal]);
   return (
-    <article className={styles.post}>
+    <article className={styles.post} onMouseLeave={closeModal}>
       <div className={styles["post__border-top"]}></div>
       <div className={styles.post__counter}>
         <Chat forImage={false} counter={reactions} onClick={openModal} />

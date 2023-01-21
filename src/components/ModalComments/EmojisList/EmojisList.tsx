@@ -37,6 +37,8 @@ export const EmojisList: FC<IEmojisList> = ({ id, modalFor }) => {
       counter = data.info.status.reactions;
     } else if (modalFor === "job") {
       counter = data.info.job.reactions;
+    } else if (modalFor === "DetailsImage") {
+      counter = data.reactions;
     }
   }
   let countArr: number[] = [];

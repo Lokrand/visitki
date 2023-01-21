@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -35,12 +35,30 @@ export const Card: FC<ICard> = ({ id, name, city, img }) => {
 
   const handleMouseLeave = () => {
     setHoverActive(false);
-    // setModalCommentsActive(false);
+    setModalCommentsActive(false);
   };
   const navigate = useNavigate();
   const routeToDetails = () => {
     navigate(`detail/${id}`);
   };
+
+  const closeModal = () => {
+    setModalCommentsActive(false);
+  };
+
+  useEffect(() => {
+    function closeByEscape(evt: KeyboardEvent) {
+      if (evt.key === "Escape") {
+        closeModal();
+      }
+    }
+    if (modalCommentsActive) {
+      document.addEventListener("keydown", closeByEscape);
+      return () => {
+        document.removeEventListener("keydown", closeByEscape);
+      };
+    }
+  }, [modalCommentsActive, closeModal]);
   return (
     <div className={styles.card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className={hoverActive ? styles["card__image-wrapper"] : ""}>

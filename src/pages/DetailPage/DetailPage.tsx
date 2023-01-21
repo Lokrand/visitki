@@ -22,15 +22,29 @@ export const DetailPage: FC = () => {
   const [modalActive, setModalActive] = useState(false);
   useTheme(data?.profile.template || "romantic");
 
-  if (loading) return <h1>Идет загрузка данных...</h1>;
-  if (error) return <h1>Пользователь не найден</h1>;
-
   const openModal = () => {
     setModalActive(!modalActive);
   };
   const closeModal = () => {
     setModalActive(false);
   };
+
+  useEffect(() => {
+    function closeByEscape(evt: KeyboardEvent) {
+      if (evt.key === "Escape") {
+        closeModal();
+      }
+    }
+    if (modalActive) {
+      document.addEventListener("keydown", closeByEscape);
+      return () => {
+        document.removeEventListener("keydown", closeByEscape);
+      };
+    }
+  }, [modalActive, closeModal]);
+
+  if (loading) return <h1>Идет загрузка данных...</h1>;
+  if (error) return <h1>Пользователь не найден</h1>;
 
   return (
     <section className={styles.container}>
@@ -51,7 +65,7 @@ export const DetailPage: FC = () => {
             </ul>
           </div>
           <div className={styles["photo-wrapper"]}>
-            <div className={styles["photo-conteiner"]}>
+            <div className={styles["photo-conteiner"]} onMouseLeave={closeModal}>
               <img
                 className={styles.photo}
                 src={data?.profile.photo}

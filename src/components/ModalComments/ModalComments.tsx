@@ -1,11 +1,12 @@
-import React, { ChangeEvent, FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 
 import { EmojisList } from "./EmojisList/EmojisList";
 
 import styles from "./ModalComments.module.scss";
 
 import { useFetch } from "../../hook/useFetch";
-import { addUserReactions, getAllComments } from "../../utils/api";
+import { getAllComments } from "../../utils/api";
+import { TextareaNewComment } from "../UI/TextareaNewComment/TextareaNewComment";
 
 interface IModalComments {
   active: boolean;
@@ -14,19 +15,12 @@ interface IModalComments {
 }
 
 export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
-  const [commentValue, setCommentValue] = useState("");
-  const [startAddNewComment, setStartAddNewComment] = useState(false);
-  // const commentss = [
-  //   " efqwef efwqefwef 322 23 ef qwef wq 32few f",
-  //   "ew fqwef q3 f wewqefwqefqwef wefwqefwqef 23 wefwef23 ew fwqf32f ewf ",
-  //   "ew fqwef q3 f wewqefwqefqwef wefwqefwqef 23 wefwef23 ew fwqf32f ewf ",
-  // ];
-
   const { url, method } = getAllComments();
   const { data, error, loading } = useFetch(url, method);
-  // console.log("Данные приходящие в модалку", data);
+
   let comments: any[] = [];
   let renderComment = [];
+
   if (data) {
     comments = data.items;
     comments = comments.filter((el) => el.to._id === id);
@@ -44,31 +38,6 @@ export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
       }
     }
   }
-
-  const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(e.target.value);
-    setStartAddNewComment(true);
-  };
-
-  // useEffect(() => {
-  //   function addCommentWithEnter(evt: KeyboardEvent) {
-  //     if (evt.key === "Enter") {
-  //       addNewComment();
-  //     }
-  //   }
-  //   if (startAddNewComment) {
-  //     document.addEventListener("keydown", addCommentWithEnter);
-  //     return () => {
-  //       document.removeEventListener("keydown", addCommentWithEnter);
-  //     };
-  //   }
-  // }, [startAddNewComment]);
-
-  const addNewComment = () => {
-    const { url, method, body } = addUserReactions(id, { target: modalFor, text: commentValue });
-    // useFetch(url, method, body);
-    setCommentValue("");
-  };
 
   return (
     <div
@@ -91,13 +60,7 @@ export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
           })}
       </div>
       <div className={styles.modalComments__reactionBlock}>
-        <textarea
-          value={commentValue}
-          placeholder='Обратная связь'
-          onChange={handleChangeComment}
-          onMouseLeave={addNewComment}
-          className={styles.modalComments__textarea}
-        />
+        <TextareaNewComment modalFor={modalFor} id={id} />
         <EmojisList id={id} modalFor={modalFor} />
       </div>
     </div>
