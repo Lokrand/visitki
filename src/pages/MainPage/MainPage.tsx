@@ -47,14 +47,14 @@ export const MainPage: FC = () => {
           <div className={styles.cohort__filter}>{currentFilter}</div>
           <span
             className={
-              filterModalActive ? styles.cohort__arrow : `${styles.cohort__arrow} ${styles.cohort__arrow_active}`
+              filterModalActive ? `${styles.cohort__arrow} ${styles.cohort__arrow_active}` : styles.cohort__arrow
             }
           >
             <Arrow />
           </span>
           <div
             className={
-              filterModalActive ? styles.cohort__modal : `${styles.cohort__modal} ${styles.cohort__modal_active}`
+              filterModalActive ? `${styles.cohort__modal} ${styles.cohort__modal_active}` : styles.cohort__modal
             }
           >
             {currentFilter === "Все города" ? null : (

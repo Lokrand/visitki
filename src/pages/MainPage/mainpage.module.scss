@@ -5,10 +5,7 @@
   flex-direction: column;
   row-gap: 40px;
 
-  // max-width: 1440px;
   width: 1370px;
-
-  // justify-content: center;
   margin: 0 auto;
 
   &__header {
@@ -163,7 +160,6 @@
     }
   }
 
-  // padding: 0 40px;
   @media screen and (max-width: 1410px) {
     width: 1024px;
   }
