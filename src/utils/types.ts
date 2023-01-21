@@ -131,22 +131,38 @@ export type TReturnDataAddUserReactions = {
   body: TReqReaction;
 } & TReturnData;
 
-//Типы формы (пока не применяла)
 export type TForm = {
-  photo: string;
-  birthday: string;
-  city: {
+  profile: {
     name: string;
-    geocode: number[];
+    photo: string;
+    city: {
+      name: string;
+      geocode: number[];
+    };
+    birthday: string;
+    quote: string;
+    telegram: string;
+    github: string;
+    template: string;
+    [k: string]: any;
   };
-  telegram: string;
-  github: string;
-  template: string | null;
-  quote: string;
-  hobbyImage: string;
-  hobby: string;
-  statusImage: string;
-  status: string;
-  job: string;
-  edu: string;
+  info: {
+    hobby: {
+      text: string;
+      image: string | null;
+    };
+    status: {
+      text: string;
+      image: string | null;
+    };
+    job: {
+      text: string;
+      image: string | null;
+    };
+    edu: {
+      text: string;
+      image: string | null;
+    };
+    [k: string]: any;
+  };
 };

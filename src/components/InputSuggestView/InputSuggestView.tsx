@@ -5,10 +5,11 @@ import { YMaps, withYMaps } from "react-yandex-maps";
 import styles from "../../components/InputSuggestView/InputSuggestView.module.scss";
 
 import { Arrow } from "../../icons/Arrow/Arrow";
+import { TForm } from "../../utils/types";
 
 interface IInputSuggestView {
-  setValue?: any;
-  form?: any;
+  setValue: Dispatch<SetStateAction<TForm>>;
+  form: TForm;
   error: string;
   isErrorCity?: boolean;
   setIsErrorCity?: Dispatch<SetStateAction<boolean>>;
@@ -38,15 +39,13 @@ export const InputSuggestView: FC<IInputSuggestView> = ({ setValue, form, isErro
           results: 5,
           offset: [0, 0],
         });
-
         suggestView.events.add("select", function (e: any) {
           const coords: number[] = [];
           ymaps.geocode(e.get("item").value).then((res: any) => {
             const obj = res.geoObjects.get(0);
             coords.push(obj.geometry.getCoordinates());
           });
-          //console.log(form.city);
-          setValue({ ...form, city: { name: e.get("item").value, geocode: coords } });
+          setValue({ ...form, profile: { ...form.profile, city: { name: e.get("item").value, geocode: coords } } });
           setIsErrorCity?.(false);
           setActive(false);
         });
@@ -60,7 +59,7 @@ export const InputSuggestView: FC<IInputSuggestView> = ({ setValue, form, isErro
           id='suggest'
           type='text'
           name='city'
-          placeholder={focus ? "" : form.city.name}
+          placeholder={focus ? "" : form.profile.city.name}
           className={`${styles.input} 
           ${hover ? styles.input_status_active : styles.input_status_default}`}
           onFocus={() => {

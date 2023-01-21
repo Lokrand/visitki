@@ -1,5 +1,14 @@
-import React, { MouseEventHandler, useMemo, useCallback, Dispatch, SetStateAction } from "react";
-import { FC, useState, FormEventHandler, useRef } from "react";
+import React, {
+  Dispatch,
+  FC,
+  FormEventHandler,
+  MouseEventHandler,
+  SetStateAction,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import styles from "./InputSelect.module.scss";
 
@@ -11,8 +20,8 @@ interface IInputSelectsProps {
   inputName: string;
   options: string[];
   error?: string;
-  setValue: any;
-  form: any;
+  setValue: Dispatch<SetStateAction<TForm>>;
+  form: TForm;
   isErrorCity?: boolean;
   setIsErrorCity?: Dispatch<SetStateAction<boolean>>;
 }
@@ -122,7 +131,7 @@ const InputSelect: FC<IInputSelectsProps> = ({
                   className={styles.list__option}
                   key={index}
                   onClick={() => {
-                    setValue({ ...form, [inputName]: option });
+                    setValue({ ...form, profile: { ...form.profile, [inputName]: option } });
                     setIsErrorCity?.(false);
                     handleOptionOnclick(option);
                   }}

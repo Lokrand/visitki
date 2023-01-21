@@ -1,6 +1,4 @@
-@import "../../styles/constants";
-
-.ymaps[class*="search__suggest"] {
+ymaps[class*="search__suggest"] {
   font-family: var(--text-font-family);
   font-size: 16px;
   font-weight: 400;
@@ -9,20 +7,20 @@
   box-shadow: none !important;
 }
 
-.ymaps[class*="popup"] {
+ymaps[class*="popup"] {
   font-size: 16px;
   border: 1px solid black;
   border-radius: 4px;
 }
 
-.ymaps[class*="suggest-item_selected_yes"]:hover {
+ymaps[class*="suggest-item_selected_yes"]:hover {
   height: 34px;
   color: #fff !important;
   vertical-align: middle;
   background-color: var(--neon-pink) !important;
 }
 
-.ymaps[class*="suggest-item"] {
+ymaps[class*="suggest-item"] {
   display: flex;
   align-items: center;
   width: 100%;
@@ -120,75 +118,4 @@
     line-height: 24px;
     color: #e90d41;
   }
-}
-
-.wrapper {
-  position: absolute;
-  z-index: 5;
-  top: 76px;
-  right: 0;
-  left: 0;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  box-sizing: border-box;
-  width: inherit;
-
-  background-color: white;
-  border: 1px solid var(--text-dark);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-
-  transition: all 0.2s linear;
-
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: none;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    height: 42px;
-    background: var(--placeholder);
-    border-radius: 3px;
-  }
-
-  &_default {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  &_active {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-.list {
-  margin: 0;
-  padding: 0;
-}
-
-.option {
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-
-  height: 36px;
-  padding-right: 6px;
-  padding-left: 6px;
-
-  font-size: 16px;
-  line-height: 24px;
-
-  transition: all 0.2s linear;
-}
-
-.option:hover {
-  color: #fff;
-  background-color: var(--neon-pink);
 }

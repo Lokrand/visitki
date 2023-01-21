@@ -19,6 +19,13 @@
     font-size: 14px;
     font-weight: 400;
     color: var(--placeholder);
+
+    &_size {
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      color: red;
+    }
   }
 
   .wrapper {

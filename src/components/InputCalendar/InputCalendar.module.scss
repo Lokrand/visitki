@@ -1,5 +1,3 @@
-@import "../../styles/constants";
-
 .container {
   position: relative;
   width: 100%;
@@ -43,6 +41,8 @@
   }
 
   &__icon {
+    cursor: pointer;
+
     position: absolute;
     z-index: 6;
     top: 43px;

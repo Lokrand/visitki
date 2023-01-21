@@ -21,6 +21,11 @@
 
   transition: all 0.2s linear;
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+
   &_status_default {
     border: 1px solid var(--text-dark);
   }
