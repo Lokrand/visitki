@@ -6,7 +6,6 @@ import styles from "./YandexMap.module.scss";
 import { useFetch } from "../../hook/useFetch";
 import Mark from "../../icons/Mark/yandex-logo.svg";
 import { getAllProfiles } from "../../utils/api";
-import { TFullProfiles } from "../../utils/types";
 
 export const YandexMap = () => {
   const mapRef = useRef(null);

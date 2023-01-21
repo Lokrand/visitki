@@ -6,6 +6,11 @@
   width: 100%;
   height: 112px;
 
+  .link {
+    display: flex;
+    text-decoration: none;
+  }
+
   &__logo {
     min-width: 130px;
     max-height: 26px;
@@ -46,14 +51,8 @@
 }
 @media screen and (max-width: 768px) {
   .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    max-width: 768px;
-    height: 112px;
-    margin: 0 auto 8px;
+    height: 96px;
+    margin: 0 auto;
 
     &__logo {
       margin: 0 0 0 32px;
@@ -64,16 +63,9 @@
     }
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
   .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    max-width: 320px;
-    height: 112px;
-    margin: 0 auto 8px;
+    height: 80px;
 
     &__logo {
       margin: 0 0 0 24px;
