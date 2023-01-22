@@ -55,6 +55,12 @@ export const AdminCommentPage: FC = () => {
   return (
     <>
       <div className={styles.container}>
+        <a href='/admin/users' className={styles.title}>
+          Студенты
+        </a>
+        <a href='/admin' className={styles.title}>
+          Комментарии
+        </a>
         <label className={styles.label}>Фильтровать</label>
         <input
           type='text'
