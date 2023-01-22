@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, FormEventHandler, MouseEventHandler, SetStateAction, useState } from "react";
 
-import styles from "./AdminCommentPage.module.scss";
+import styles from "./admincommentpage.module.scss";
 
 import Input from "../../components/Input/Input";
 
@@ -26,15 +26,55 @@ const CommentFrame = () => {
 };
 
 export const AdminCommentPage: FC = () => {
+  const [form, setValue] = useState({ filter: "" });
+  const [focus, setFocus] = useState(false);
+  const [hover, setHover] = useState(false);
+  const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
+  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
+    const target = e.target as HTMLInputElement;
+    setValue({ filter: target.value });
+    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
+  };
+
+  const handleInputFocus = () => {
+    setFocus(true);
+  };
+
+  const handleInputBlur = () => {
+    setFocus(false);
+  };
+
+  const handleButtonClick = () => {
+    setValue({ filter: "" });
+    setDisplayStyle({ display: "none" });
+  };
+
+  const handleInputHover: MouseEventHandler<HTMLInputElement> = (e) => {
+    if (e.type === "mouseleave" && !focus) {
+      setHover(false);
+    } else setHover(true);
+  };
   return (
     <>
-      {/* <Input
-        label='Фильтровать'
-        inputName='AdminCommentPage'
-        placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
-        setValue='kek'
-        form='oue'
-      /> */}
+      <div className={styles.container}>
+        <label className={styles.label}>Фильтровать</label>
+        <input
+          type='text'
+          name='filter'
+          value={form.filter}
+          className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
+                ${hover ? styles.input_status_active : styles.input_status_default}`}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          onMouseEnter={handleInputHover}
+          onMouseLeave={handleInputHover}
+          onChange={handleInputChange}
+          placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
+        />
+        <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
+          <Cross />
+        </span>
+      </div>
       <div className={styles.main}>
         <p className={styles.column}>Когорта</p>
         <p className={styles.column}>Дата</p>

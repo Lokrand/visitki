@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import { Dispatch, FC, FormEventHandler, MouseEventHandler, SetStateAction, useState, ChangeEvent } from "react";
 
 import styles from "./AdminUsersPage.module.scss";
-
-import Input from "../../components/Input/Input";
 
 import { Button } from "../../components/UI/Button";
 import { useMutation } from "../../hook/useFetch";
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
+
+import { Cross } from "../../icons/Cross/Cross";
 
 const StudentFrame: FC = () => {
   return (
@@ -32,12 +32,37 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
   return result;
 };
 
+// export const AdminUsersPage: FC = () => {
+//   const handlerClick = () => {};
+
+//   const { handleRequest } = useMutation();
+
+//   const handleFileLoad = (ev: React.ChangeEvent<HTMLInputElement>) => {
+//     ev.preventDefault();
+//     const reader = new FileReader();
+//     reader.onload = async (e) => {
+//       const text = e.target?.result;
+//       console.log(text);
+//       if (typeof text === "string") {
+//         const newUsers = parseUsersCsv(text);
+//         const result = await Promise.all(
+//           newUsers.map((el) => {
+//             return handleRequest(USERS_URL, "POST", el);
+//           }),
+//         );
+//       } else {
+//         console.error("Неправильный тип файла");
+//       }
+//     };
+//     if (ev.target.files) {
+//       reader.readAsText(ev.target.files[0]);
+//     }
 export const AdminUsersPage: FC = () => {
-  const handlerClick = () => {};
+  // const handlerClick = () => {};
 
   const { handleRequest } = useMutation();
 
-  const handleFileLoad = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
@@ -58,17 +83,66 @@ export const AdminUsersPage: FC = () => {
       reader.readAsText(ev.target.files[0]);
     }
   };
+  
+  const [form, setValue] = useState({ filter: "" });
+  const [focus, setFocus] = useState(false);
+  const [hover, setHover] = useState(false);
+  const [displayStyle, setDisplayStyle] = useState({ display: "none" });
+  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
+    const target = e.target as HTMLInputElement;
+    setValue({ filter: target.value });
+    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
+  };
+
+  const handleInputFocus = () => {
+    setFocus(true);
+  };
+  const handleInputBlur = () => {
+    setFocus(false);
+  };
+  const handleButtonClick = () => {
+    setValue({ filter: "" });
+    setDisplayStyle({ display: "none" });
+  };
+  const handleInputHover: MouseEventHandler<HTMLInputElement> = (e) => {
+    if (e.type === "mouseleave" && !focus) {
+      setHover(false);
+    } else setHover(true);
+  };
+  const handlerClick = () => {
+    console.log("kek");
+  };
   return (
     <>
       <div className={styles.container}>
+        <a href='/admin/users' className={styles.title}>
+          Студенты
+        </a>
+        <a href='/admin' className={styles.title}>
+          Комментарии
+        </a>
+      </div>
+      <div className={styles.wrapper}>
         <div className={styles.table}>
-          {/* <Input
-            label='Фильтровать'
-            inputName='AdminUserPage'
-            setValue='лул'
-            placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
-            form='kek'
-          /> */}
+          <div className={styles.container_input}>
+            <label className={styles.label}>Фильтровать</label>
+            <input
+              type='text'
+              name='filter'
+              value={form.filter}
+              className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
+                 ${hover ? styles.input_status_active : styles.input_status_default}`}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              onMouseEnter={handleInputHover}
+              onMouseLeave={handleInputHover}
+              onChange={handleInputChange}
+              placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
+            />
+            <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
+              <Cross />
+            </span>
+          </div>
           <div className={styles.main}>
             <p className={styles.column}>Номер когорты</p>
             <p className={styles.column}>E-mail</p>
@@ -90,7 +164,7 @@ export const AdminUsersPage: FC = () => {
             Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
             студентов, вторая колонка — номер когорты.
           </p>
-          <Button size='l' children='Выберите файл' handlerClick={handlerClick} />
+          {/* <Button size='l' children='Выберите файл' handlerClick={handlerClick} /> */}
           <input type='file' accept={".csv"} onChange={handleFileLoad} />
         </div>
       </div>
