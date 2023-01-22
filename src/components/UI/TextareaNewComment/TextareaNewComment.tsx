@@ -2,8 +2,8 @@ import React, { ChangeEvent, FC, useState } from "react";
 
 import styles from "./TextareaNewComment.module.scss";
 
-import { PROFILES_URL } from "../../../utils/constants";
 import { useMutation } from "../../../hook/useMutation";
+import { PROFILES_URL } from "../../../utils/constants";
 
 interface ITextareaNewComment {
   modalFor: string;

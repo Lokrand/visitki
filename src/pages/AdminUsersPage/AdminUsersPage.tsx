@@ -4,6 +4,7 @@ import styles from "./AdminUsersPage.module.scss";
 
 import { Button } from "../../components/UI/Button";
 import { useMutation } from "../../hook/useMutation";
+import { Cross } from "../../icons/Cross/Cross";
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
 

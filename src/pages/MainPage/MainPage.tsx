@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import styles from "./mainPage.module.scss";
+import styles from "./mainpage.module.scss";
 
 import { Card } from "../../components/Card/Card";
 import { useFetch } from "../../hook/useFetch";
