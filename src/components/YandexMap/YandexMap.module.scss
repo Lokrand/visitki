@@ -1,9 +1,14 @@
 @import "../../styles/constants";
 
 .map {
+  position: absolute;
+  top: 112px;
+  left: 0;
+
   display: flex;
-  width: 100vw;
-  height: 955px;
+
+  width: 100%;
+  height: calc(100vh - 112px - 72px);
   margin: 0 auto;
 
   .text {
@@ -33,13 +38,13 @@
 
     min-width: 155px;
     max-height: 49px;
-    margin-left: 6px;
 
     background-color: white;
 
     &__info {
       display: flex;
       margin-bottom: 2px;
+      margin-left: 6px;
     }
 
     &__city {
@@ -54,5 +59,17 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  .map {
+    top: 96px;
+    height: calc(100vh - 96px - 72px);
+  }
+}
+@media screen and (max-width: 460px) {
+  .map {
+    top: 80px;
+    height: calc(100vh - 80px - 72px);
   }
 }
