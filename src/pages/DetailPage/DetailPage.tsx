@@ -81,7 +81,6 @@ export const DetailPage: FC = () => {
               <p className={styles.quote}>
                 <Marks />
                 <span>Делай, что должно и будь, что будет.</span>
-                {/* <span>{data?.profile.quote}</span> */}
               </p>
             )}
           </div>

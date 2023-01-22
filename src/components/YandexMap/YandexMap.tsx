@@ -62,23 +62,15 @@ export const YandexMap = () => {
           userCity: item.profile.city.name,
         },
         {
-          // Опции.
-          // Необходимо указать данный тип макета.
           iconLayout: MyMarkContentLayoutClass,
-          // Своё изображение иконки метки.
-          // Размеры метки.
-          // Смещение левого верхнего угла иконки относительно
-          // её "ножки" (точки привязки).
+
           iconImageOffset: [-24, -24],
-          // Смещение слоя с содержимым относительно слоя с картинкой.
+
           iconContentOffset: [15, 15],
-          // Макет содержимого.
         },
       );
       map.geoObjects.add(myPlacemarkWithContent);
     });
-
-    // Добавим метку на карту.
   }, [ymaps]);
   return <section className={styles.map} ref={mapRef}></section>;
 };

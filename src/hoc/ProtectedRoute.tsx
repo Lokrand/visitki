@@ -10,7 +10,6 @@ export const ProtectedRoute: FC = () => {
   const { user } = useAuth();
 
   if (!user?.isLogin) {
-    console.log(location);
     return <Navigate to={LOGIN_ROUTE} state={{ from: location }} />;
   }
 

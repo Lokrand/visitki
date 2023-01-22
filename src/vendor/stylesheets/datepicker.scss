@@ -441,8 +441,6 @@
 
   &--today {
     font-weight: bold;
-    // color: white;
-    // background-color: $neon-pink;
     border-radius: $datepicker__border-radius;
   }
 
@@ -483,10 +481,7 @@
 
   &--keyboard-selected {
     border-radius: $datepicker__border-radius;
-    // background-color: $datepicker__selected-color;
-    // color: white;
     
-
     &:hover {
       background-color: darken($datepicker__selected-color, 5%);
     }

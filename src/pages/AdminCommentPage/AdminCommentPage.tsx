@@ -5,6 +5,7 @@ import styles from "./admincommentpage.module.scss";
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
+import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
 import { COMMENTS_URL } from "../../utils/constants";
 
@@ -23,7 +24,6 @@ export const AdminCommentPage: FC = () => {
   if (data) {
     comments = data.items;
   }
-  console.log("comments", comments);
   const [searchParam, setValue] = useState("");
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
@@ -84,7 +84,7 @@ export const AdminCommentPage: FC = () => {
     }
   };
   return (
-    <>
+    <section>
       <div className={styles.container}>
         <a href='/admin/users' className={styles.title}>
           Студенты
@@ -136,6 +136,6 @@ export const AdminCommentPage: FC = () => {
           />
         );
       })}
-    </>
+    </section>
   );
 };

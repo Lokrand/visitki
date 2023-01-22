@@ -104,7 +104,6 @@ export const ProfilePage: FC = () => {
   const token = "y0_AgAAAABFA_OnAAj_OgAAAADZpb4FW6SfL6mCS3mlNzXjWiTo39dRbJo";
   function checkResponse(res: any) {
     if (res.ok) {
-      console.log(res);
       return res.json();
     }
     return Promise.reject(res.status);
@@ -124,7 +123,6 @@ export const ProfilePage: FC = () => {
   }
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    console.log(form);
     e.preventDefault();
     validate();
     if (form.profile.photo !== "" && form.profile.city.name !== "" && form.profile.birthday !== "") {

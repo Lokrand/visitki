@@ -32,20 +32,14 @@ const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor
     if (file.size > 2097152) {
       setFileName("Размер файла должен быть менее 2 мб");
     }
-    // setValue({
-    //   ...form,
-    //   info: {
-    //     ...form.info,
-    //     [e.target.name]: { ...form.info[target.name], image: URL.createObjectURL(file) },
-    //   },
-    // }); c блобом
+
     setValue({
       ...form,
       info: {
         ...form.info,
         [e.target.name]: { ...form.info[e.target.name], image: "https://loremflickr.com/640/480/cats" },
       },
-    }); //c заглушкой
+    });
   };
 
   return (

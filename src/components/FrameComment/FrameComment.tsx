@@ -34,7 +34,7 @@ export const CommentFrame: FC<ICommentFrame> = ({ id, commentDate, from, to, tar
   return (
     <>
       <div className={styles.frames}>
-        <p className={`${styles.frame}`} onClick={handleRedirectOnCohortPage}>
+        <p className={`${styles.frame} ${styles.frame_active}`} onClick={handleRedirectOnCohortPage}>
           {cohort}
         </p>
         <p className={`${styles.frame}`}>{commentDate}</p>

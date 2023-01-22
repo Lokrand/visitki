@@ -34,7 +34,6 @@ export const AdminUsersPage: FC = () => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       const text = e.target?.result;
-      console.log(text);
       if (typeof text === "string") {
         const newUsers = parseUsersCsv(text);
         const result = await Promise.all(
@@ -88,7 +87,7 @@ export const AdminUsersPage: FC = () => {
   }
 
   return (
-    <>
+    <section>
       <div className={styles.container}>
         <a href='/admin/users' className={styles.title}>
           Студенты
@@ -141,6 +140,6 @@ export const AdminUsersPage: FC = () => {
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 };

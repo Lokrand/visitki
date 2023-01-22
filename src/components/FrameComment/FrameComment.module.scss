@@ -4,14 +4,27 @@
   display: grid;
   grid-template-columns: 70px 100px 190px 190px 180px 442px 1fr;
   gap: 24px;
+
   padding: 12px 0;
+
   border-bottom: 1px solid var(--placeholder);
 }
+
 .frame {
   min-height: 32px;
-  color: var(--text-dark);
   font: 400 16px/24px var(--text-font-family);
+  color: var(--text-dark);
+
+  &_active {
+    transition: opacity 0.2s linear;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
 }
-.frame:first-child{
+
+.frame:first-child {
   cursor: pointer;
 }
