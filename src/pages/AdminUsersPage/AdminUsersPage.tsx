@@ -2,21 +2,18 @@ import { Dispatch, FC, FormEventHandler, MouseEventHandler, SetStateAction, useS
 
 import styles from "./AdminUsersPage.module.scss";
 
+import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
+import Input from "../../components/Input/Input";
 import { Button } from "../../components/UI/Button";
+
+import { useFetch } from "../../hook/useFetch";
+
 import { useMutation } from "../../hook/useMutation";
 import { Cross } from "../../icons/Cross/Cross";
+import { getAllUsers } from "../../utils/api";
+
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
-
-const StudentFrame: FC = () => {
-  return (
-    <div className={styles.frames}>
-      <input className={`${styles.cohort} ${styles.frame}`} />
-      <input className={`${styles.email} ${styles.frame}`} />
-      <input className={`${styles.student} ${styles.frame}`} />
-    </div>
-  );
-};
 
 const parseUsersCsv = (str: string): TReqUserData[] => {
   const result: TReqUserData[] = [];
@@ -108,9 +105,19 @@ export const AdminUsersPage: FC = () => {
       setHover(false);
     } else setHover(true);
   };
-  const handlerClick = () => {
-    console.log("kek");
-  };
+
+  const { url } = getAllUsers();
+  const { data, error } = useFetch(url);
+
+  if (error) return <h1>Студенты не найдены</h1>;
+  let studentsData: any[] = [];
+  let students: any[] = [];
+
+  if (data) {
+    studentsData = data.items;
+    studentsData.filter((el) => students.push(el));
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -147,15 +154,9 @@ export const AdminUsersPage: FC = () => {
             <p className={styles.column}>E-mail</p>
             <p className={styles.column}>Имя и фамилия студента</p>
           </div>
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
+          {students.map((student) => (
+            <StudentFrame student={student} />
+          ))}
         </div>
         <div className={styles.adder}>
           <h3 className={styles.title}>Добавить студентов</h3>
@@ -164,7 +165,7 @@ export const AdminUsersPage: FC = () => {
             студентов, вторая колонка — номер когорты.
           </p>
           {/* <Button size='l' children='Выберите файл' handlerClick={handlerClick} /> */}
-          <input type='file' accept={".csv"} onChange={handleFileLoad} />
+          <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.button} />
         </div>
       </div>
     </>
