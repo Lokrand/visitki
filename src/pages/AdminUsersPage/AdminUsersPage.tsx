@@ -123,7 +123,7 @@ export const AdminUsersPage: FC = () => {
             <p className={styles.column}>Имя и фамилия студента</p>
           </div>
           {students.map((student) => (
-            <StudentFrame student={student} />
+            <StudentFrame key={student._id} student={student} />
           ))}
         </div>
         <div className={styles.adder}>

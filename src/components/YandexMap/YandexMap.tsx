@@ -46,7 +46,7 @@ export const YandexMap = () => {
         </div>`,
     );
 
-    data.items.map((item: any) => {
+    data?.items.map((item: any) => {
       const myPlacemarkWithContent = new ymaps.Placemark(
         item.profile.city.geocode,
         {
