@@ -94,7 +94,6 @@ const commentsArr = [
     },
   },
 ];
-
 const CommentFrame: FC<ICommentFrame> = ({ birthday, commentDate, from, to, target, text }) => {
   return (
     <>
@@ -186,19 +185,8 @@ export const AdminCommentPage: FC = () => {
       return (target = "из блока Сфера");
     }
   };
-  const { url, method } = getAllComments();
-  const { data, error, loading } = useFetch(url, method);
-
-  if (error) return <h1>Студенты не найдены</h1>;
-  let commentsData: any[] = [];
-  let comments: any = [];
-
-  if (data) {
-    commentsData = data.items;
-    commentsData = commentsData.filter((el) => comments.push(el));
-  }
   return (
-    <section>
+    <>
       <div className={styles.container}>
         <a href='/admin/users' className={styles.title}>
           Студенты
