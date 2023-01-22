@@ -10,13 +10,17 @@ import { Arrow } from "../../icons/Arrow/Arrow";
 import { getAllProfiles } from "../../utils/api";
 import { MAP_ROUTE } from "../../utils/constants";
 
-export const MainPage: FC = () => {
+interface IMainPage {
+  cohort?: string;
+}
+
+export const MainPage: FC<IMainPage> = ({ cohort }) => {
   const [filterModalActive, setFilterModalActive] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("Все города");
 
   const { url } = getAllProfiles();
   const { data, error, isloading } = useFetch(url);
-
+  console.log(data);
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Студенты не найдены</h1>;
 
