@@ -24,6 +24,14 @@ export const AdminUsersPage: FC = () => {
   return (
     <>
       <div className={styles.container}>
+        <a href='/admin/users' className={styles.title}>
+          Студенты
+        </a>
+        <a href='/admin' className={styles.title}>
+          Комментарии
+        </a>
+      </div>
+      <div className={styles.wrapper}>
         <div className={styles.table}>
           <Input
             label='Фильтровать'

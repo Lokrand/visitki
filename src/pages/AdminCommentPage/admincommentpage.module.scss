@@ -27,3 +27,23 @@
   font-weight: 400;
   color: var(--text-dark);
 }
+.title {
+  margin: 0;
+  font-family: var(--text-font-family);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-dark)
+}
+.title:first-child{
+  color: var(--text-light);
+}
+.container {
+  margin: 48px 0;
+  display: grid;
+  grid-template-columns: 77px 81px;
+  gap: 81px;
+}
