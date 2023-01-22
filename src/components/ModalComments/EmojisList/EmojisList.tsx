@@ -23,8 +23,8 @@ interface IEmojisList {
 }
 
 export const EmojisList: FC<IEmojisList> = ({ id, modalFor }) => {
-  const { url, method } = getFullProfile(id);
-  const { data, loading, error } = useFetch(url, method);
+  const { url } = getFullProfile(id);
+  const { data } = useFetch(url);
   let counter;
   if (data) {
     if (modalFor === "main") {

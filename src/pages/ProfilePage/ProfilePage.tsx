@@ -14,7 +14,7 @@ import ProfilePhoto from "../../components/ProfilePhoto/ProfilePhoto";
 import { Button } from "../../components/UI/Button";
 import { Text } from "../../components/UI/Text";
 import { useFetch } from "../../hook/useFetch";
-import { getFullProfile, changeUserData, changeUserProfile } from "../../utils/api";
+import { getFullProfile } from "../../utils/api";
 
 import { years, months } from "../../utils/calendar";
 
@@ -24,8 +24,8 @@ import { TForm } from "../../utils/types";
 
 export const ProfilePage: FC = () => {
   const { id } = useParams();
-  const { url, method } = getFullProfile(id);
-  const { data, error, loading } = useFetch(url, method);
+  const { url } = getFullProfile(id);
+  const { data, error, isloading } = useFetch(url);
   const [form, setValue] = useState({
     profile: {
       name: "",
@@ -154,7 +154,7 @@ export const ProfilePage: FC = () => {
     }
   };
 
-  if (loading) return <h1>Идет загрузка данных...</h1>;
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Пользователь не найден</h1>;
   return (
     <section className={styles.container}>

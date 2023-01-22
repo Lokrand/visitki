@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useState } from "react";
 
 import styles from "./TextareaNewComment.module.scss";
 
-import { useFetch } from "../../../hook/useFetch";
+import { useMutation } from "../../../hook/useMutation";
 import { addUserReactions } from "../../../utils/api";
 
 interface ITextareaNewComment {
@@ -14,7 +14,7 @@ export const TextareaNewComment: FC<ITextareaNewComment> = ({ modalFor, id }) =>
   const [commentValue, setCommentValue] = useState("");
 
   const { url, method, body } = addUserReactions(id, { target: modalFor, text: commentValue });
-  useFetch(url, method, body);
+  const { mutationData } = useMutation();
 
   const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(e.target.value);

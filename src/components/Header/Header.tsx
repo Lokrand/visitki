@@ -10,8 +10,8 @@ import { Logo } from "../../icons/Logo/Logo";
 import { getFullProfile } from "../../utils/api";
 export const Header: FC = () => {
   const { user } = useAuth();
-  const { url, method } = getFullProfile(user?.id);
-  const { data } = useFetch(url, method);
+  const { url } = getFullProfile(user?.id);
+  const { data } = useFetch(url);
 
   return (
     <header className={styles.header}>

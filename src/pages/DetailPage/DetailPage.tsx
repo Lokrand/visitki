@@ -17,14 +17,15 @@ import { getFullProfile } from "../../utils/api";
 
 export const DetailPage: FC = () => {
   const { idUser } = useParams<string>();
-  const { url, method } = getFullProfile(idUser);
-  const { data, error, loading } = useFetch(url, method);
+  const { url } = getFullProfile(idUser);
+  const { data, error, isloading } = useFetch(url);
   const [modalActive, setModalActive] = useState(false);
   useTheme(data?.profile.template || "romantic");
 
   const openModal = () => {
     setModalActive(!modalActive);
   };
+
   const closeModal = () => {
     setModalActive(false);
   };
@@ -43,7 +44,7 @@ export const DetailPage: FC = () => {
     }
   }, [modalActive, closeModal]);
 
-  if (loading) return <h1>Идет загрузка данных...</h1>;
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Пользователь не найден</h1>;
 
   return (

@@ -5,8 +5,7 @@ import styles from "./AdminUsersPage.module.scss";
 import Input from "../../components/Input/Input";
 
 import { Button } from "../../components/UI/Button";
-import { useMutation } from "../../hook/useFetch";
-import { addNewUser } from "../../utils/api";
+import { useMutation } from "../../hook/useMutation";
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
 
@@ -36,7 +35,7 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
 export const AdminUsersPage: FC = () => {
   const handlerClick = () => {};
 
-  const { handleRequest } = useMutation();
+  const { mutationData } = useMutation();
 
   const handleFileLoad = (ev: React.ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
@@ -48,7 +47,7 @@ export const AdminUsersPage: FC = () => {
         const newUsers = parseUsersCsv(text);
         const result = await Promise.all(
           newUsers.map((el) => {
-            return handleRequest(USERS_URL, "POST", el);
+            return mutationData(USERS_URL, "POST", el);
           }),
         );
       } else {

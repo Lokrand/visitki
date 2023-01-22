@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 
-import styles from "./AdminCommentPage.module.scss";
-
-import Input from "../../components/Input/Input";
+import styles from "./admincommentpage.module.scss";
 
 import { Cross } from "../../icons/Cross/Cross";
 
