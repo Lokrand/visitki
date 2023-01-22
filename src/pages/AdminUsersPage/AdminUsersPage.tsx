@@ -6,7 +6,6 @@ import Input from "../../components/Input/Input";
 
 import { Button } from "../../components/UI/Button";
 import { useMutation } from "../../hook/useFetch";
-import { addNewUser } from "../../utils/api";
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
 

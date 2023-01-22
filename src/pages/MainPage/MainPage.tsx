@@ -67,9 +67,10 @@ export const MainPage: FC = () => {
                 Все города
               </div>
             )}
-            {cities.map((el) => {
+            {cities.map((el, index) => {
               return (
                 <div
+                  key={index}
                   className={styles.cohort__city}
                   onClick={() => {
                     setCurrentFilter(el);

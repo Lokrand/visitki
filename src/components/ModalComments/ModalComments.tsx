@@ -51,9 +51,9 @@ export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
     >
       <div className={styles.modalComments__comments}>
         {renderComment &&
-          renderComment.map((el) => {
+          renderComment.map((el, index) => {
             return (
-              <div className={styles.modalComments__comment}>
+              <div key={index} className={styles.modalComments__comment}>
                 <p>{el}</p>
               </div>
             );
