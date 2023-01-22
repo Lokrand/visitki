@@ -19,28 +19,7 @@
   font-family: var(--text-font-family);
   margin-left: 8px;
 }
-.frames {
-  display: grid;
-  grid-template-columns: 250px 300px 1fr;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--placeholder);
-}
-.frame {
-  min-height: 32px;
-  font-family: var(--text-font-family);
-  font-size: 16px;
-  line-height: 1.5;
-  border: none;
-}
-.frame:select .cohort {
-  width: 80px;
-}
-.email {
-  width: 271px;
-}
-.student {
-  width: 300px;
-}
+
 .adder {
   width: 285px;
 }

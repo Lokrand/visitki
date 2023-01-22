@@ -1,7 +1,8 @@
 @import "../../styles/constants";
-
+.containerScroll{
+  width: 100%;
+}
 .main {
-  width: inherit;
   margin-top: 55px;
   margin-bottom: 0;
   min-height: 48px;
@@ -12,21 +13,7 @@
   color: var(--placeholder);
   align-items: center;
 }
-.frames {
-  display: grid;
-  grid-template-columns: 70px 100px 190px 190px 180px 442px 1fr;
-  gap: 24px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--placeholder);
-}
-.frame {
-  min-height: 32px;
-  font-family: var(--text-font-family);
-  font-size: 16px;
-  line-height: 1.5;
-  font-weight: 400;
-  color: var(--text-dark);
-}
+
 .title {
   margin: 0;
   font-family: var(--text-font-family);
@@ -36,9 +23,9 @@
   line-height: 18px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--text-dark)
+  color: var(--text-dark);
 }
-.title:first-child{
+.title:first-child {
   color: var(--text-light);
 }
 .container {
