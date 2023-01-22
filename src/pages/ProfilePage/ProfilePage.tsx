@@ -1,6 +1,6 @@
 import React, { FC, FormEventHandler, useEffect, useState } from "react";
 
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import styles from "./profilepage.module.scss";
 
@@ -112,21 +112,23 @@ export const ProfilePage: FC = () => {
   function request(url: any, options: any) {
     return fetch(url, options).then(checkResponse);
   }
-  function changeUserProfile(form: TForm) {
+  function changeUserProfile(profile: any, info: any) {
     return request(`${PROFILES_URL}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ form }),
+      body: JSON.stringify({ profile, info }),
     });
   }
+
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    console.log(form);
     e.preventDefault();
     validate();
     if (form.profile.photo !== "" && form.profile.city.name !== "" && form.profile.birthday !== "") {
-      changeUserProfile(form);
+      changeUserProfile(form.profile, form.info);
     }
   };
   const scrollToTop = () => {
@@ -138,17 +140,14 @@ export const ProfilePage: FC = () => {
   };
   const validate = () => {
     if (form.profile.photo === "") {
-      console.log("no photo");
       setIsErrorPhoto(true);
       scrollToTop();
     }
     if (form.profile.city.name === "") {
-      console.log("no city");
       setIsErrorCity(true);
       scrollToTop();
     }
     if (form.profile.birthday === "") {
-      console.log("no dob");
       setIsErrorBirthday(true);
       scrollToTop();
     }
