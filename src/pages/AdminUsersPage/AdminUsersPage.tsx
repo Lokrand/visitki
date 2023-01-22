@@ -1,22 +1,15 @@
-import { Dispatch, FC, FormEventHandler, MouseEventHandler, SetStateAction, useState, ChangeEvent } from "react";
+import { Dispatch, FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
 
 import styles from "./AdminUsersPage.module.scss";
 
-import { Button } from "../../components/UI/Button";
 import { useMutation } from "../../hook/useMutation";
 import { Cross } from "../../icons/Cross/Cross";
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
+import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
+import { useFetch } from "../../hook/useFetch";
 
-const StudentFrame: FC = () => {
-  return (
-    <div className={styles.frames}>
-      <input className={`${styles.cohort} ${styles.frame}`} />
-      <input className={`${styles.email} ${styles.frame}`} />
-      <input className={`${styles.student} ${styles.frame}`} />
-    </div>
-  );
-};
+import { getAllUsers } from "../../utils/api";
 
 const parseUsersCsv = (str: string): TReqUserData[] => {
   const result: TReqUserData[] = [];
@@ -31,31 +24,6 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
   return result;
 };
 
-// export const AdminUsersPage: FC = () => {
-//   const handlerClick = () => {};
-
-//   const { handleRequest } = useMutation();
-
-//   const handleFileLoad = (ev: React.ChangeEvent<HTMLInputElement>) => {
-//     ev.preventDefault();
-//     const reader = new FileReader();
-//     reader.onload = async (e) => {
-//       const text = e.target?.result;
-//       console.log(text);
-//       if (typeof text === "string") {
-//         const newUsers = parseUsersCsv(text);
-//         const result = await Promise.all(
-//           newUsers.map((el) => {
-//             return handleRequest(USERS_URL, "POST", el);
-//           }),
-//         );
-//       } else {
-//         console.error("Неправильный тип файла");
-//       }
-//     };
-//     if (ev.target.files) {
-//       reader.readAsText(ev.target.files[0]);
-//     }
 export const AdminUsersPage: FC = () => {
   // const handlerClick = () => {};
 
@@ -108,11 +76,25 @@ export const AdminUsersPage: FC = () => {
       setHover(false);
     } else setHover(true);
   };
+  const { url, method } = getAllUsers();
+  const { data, error, loading } = useFetch(url, method);
+
+  if (error) return <h1>Студенты не найдены</h1>;
+  let studentsData: any[] = [];
+  let students: any[] = [];
+
+  if (data) {
+    studentsData = data.items;
+    studentsData = studentsData.filter((el) => students.push(el));
+  }
+  // const [form, setValue] = useState({
+  //   data: "",
+  // });
   const handlerClick = () => {
     console.log("kek");
   };
   return (
-    <>
+    <section>
       <div className={styles.container}>
         <a href='/admin/users' className={styles.title}>
           Студенты
@@ -147,15 +129,9 @@ export const AdminUsersPage: FC = () => {
             <p className={styles.column}>E-mail</p>
             <p className={styles.column}>Имя и фамилия студента</p>
           </div>
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
-          <StudentFrame />
+          {students.map((student) => (
+            <StudentFrame student={student} />
+          ))}
         </div>
         <div className={styles.adder}>
           <h3 className={styles.title}>Добавить студентов</h3>
@@ -163,10 +139,9 @@ export const AdminUsersPage: FC = () => {
             Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
             студентов, вторая колонка — номер когорты.
           </p>
-          {/* <Button size='l' children='Выберите файл' handlerClick={handlerClick} /> */}
           <input type='file' accept={".csv"} onChange={handleFileLoad} />
         </div>
       </div>
-    </>
+    </section>
   );
 };
