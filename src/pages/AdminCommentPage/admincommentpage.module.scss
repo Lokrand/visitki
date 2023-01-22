@@ -1,6 +1,7 @@
 @import "../../styles/constants";
 
 .main {
+  margin-bottom: 0;
   display: grid;
   grid-template-columns: 70px 100px 190px 190px 180px 1fr;
   gap: 24px;
@@ -94,4 +95,24 @@
   font-weight: 400;
   line-height: 24px;
   color: var(--text-dark);
+}
+.title {
+  margin: 0;
+  font-family: var(--text-font-family);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-dark)
+}
+.title:first-child{
+  color: var(--text-light);
+}
+.container {
+  margin: 48px 0;
+  display: grid;
+  grid-template-columns: 77px 81px;
+  gap: 81px;
 }
