@@ -1,10 +1,12 @@
-import React, { FC, FormEventHandler, MouseEventHandler, useMemo, useState } from "react";
+import React, { FC, FormEventHandler, MouseEventHandler, useCallback, useMemo, useRef, useState } from "react";
 
 import styles from "./admincommentpage.module.scss";
 
+import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
+import { COMMENTS_URL } from "../../utils/constants";
 
 interface ICommentFrame {
   birthday: string;
@@ -42,7 +44,7 @@ const commentsArr = [
     text: "Soluta consectetur tempore eaque modi sequi autem ducimus.",
     to: {
       _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Poppy Fadel",
+      name: "Poppy Bob",
       email: "Chaim.Armstrong@gmail.com",
     },
   },
@@ -72,7 +74,7 @@ const commentsArr = [
     text: "Accusantium neque minus tempora.",
     to: {
       _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Ricky Fadel",
+      name: "Ricky Marty",
       email: "Chaim.Armstrong@gmail.com",
     },
   },
@@ -109,6 +111,12 @@ const CommentFrame: FC<ICommentFrame> = ({ birthday, commentDate, from, to, targ
 };
 
 export const AdminCommentPage: FC = () => {
+  const search = (query: string) => {
+    fetch(`${COMMENTS_URL}?offset=38055382&limit=20&search=` + query).then((res: any) =>
+      res.json().then((res: any) => console.log(res)),
+    );
+  };
+  const debouncedSearch = useDebounce(search, 500);
   const { url } = getAllComments();
   const { data } = useFetch(url);
   let comments: any[] = [];
@@ -124,8 +132,8 @@ export const AdminCommentPage: FC = () => {
   const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
   const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
     const target = e.target as HTMLInputElement;
+    debouncedSearch(target.value);
     setValue(target.value);
-    filter();
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
 

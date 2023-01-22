@@ -94,7 +94,17 @@ const InputSelect: FC<IInputSelectsProps> = ({
     setInputValue(option);
     setActive(false);
   };
-
+  const setTheme = (option: string) => {
+    if (option === "серьезный") {
+      setValue({ ...form, profile: { ...form.profile, [inputName]: "default" } });
+    }
+    if (option === "романтичный") {
+      setValue({ ...form, profile: { ...form.profile, [inputName]: "romantic" } });
+    }
+    if (option === "дерзкий") {
+      setValue({ ...form, profile: { ...form.profile, [inputName]: "daring" } });
+    }
+  };
   return (
     <div className={styles.container}>
       <label className={styles.input__label}>{label}</label>
@@ -131,7 +141,7 @@ const InputSelect: FC<IInputSelectsProps> = ({
                   className={styles.list__option}
                   key={index}
                   onClick={() => {
-                    setValue({ ...form, profile: { ...form.profile, [inputName]: option } });
+                    setTheme(option);
                     setIsErrorCity?.(false);
                     handleOptionOnclick(option);
                   }}
