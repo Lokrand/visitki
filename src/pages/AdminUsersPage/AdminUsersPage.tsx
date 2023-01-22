@@ -165,7 +165,13 @@ export const AdminUsersPage: FC = () => {
             студентов, вторая колонка — номер когорты.
           </p>
           {/* <Button size='l' children='Выберите файл' handlerClick={handlerClick} /> */}
-          <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.button} />
+
+          <form method='post' encType='multipart/form-data'>
+            <label className={styles.inputfile}>
+              <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />
+              <span>Выберите файл</span>
+            </label>
+          </form>
         </div>
       </div>
     </>
