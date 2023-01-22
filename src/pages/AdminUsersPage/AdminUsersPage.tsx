@@ -80,7 +80,7 @@ export const AdminUsersPage: FC = () => {
   const { url } = getAllUsers();
   const { data, error } = useFetch(url);
 
-  if (error) return <h1>Студенты не найдены</h1>;
+  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
   let students: any[] = [];
 
   if (data) {

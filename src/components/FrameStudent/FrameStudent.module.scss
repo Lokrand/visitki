@@ -13,7 +13,7 @@
   line-height: 1.5;
   border: none;
 }
-.frame:hover{
+.frame:hover {
   box-sizing: border-box;
   cursor: pointer;
   border: 1px solid var(--text-dark);
@@ -27,4 +27,9 @@
 }
 .student {
   width: 300px;
+
+  &_text{
+    align-self: center;
+    cursor: pointer;
+  }
 }

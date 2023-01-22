@@ -42,11 +42,15 @@
   flex-direction: column;
   width: 85%;
 }
-
+.xfield {
+  display: inline;
+  position: relative;
+  width: 70%;
+}
 .input {
   box-sizing: border-box;
-  width: 70%;
   height: 48px;
+  width: 100%;
   margin-top: 4px;
   padding-right: 40px;
   padding-left: 16px;
@@ -75,17 +79,22 @@
   }
 }
 
-.button {
+.xfield .button {
   position: absolute;
-  top: 53%;
-  right: 17%;
-
+  padding: 0 5px;
+  right: 17px;
+  top: 35%;
   width: 20px;
   height: 20px;
 
   border: none;
 
   transition: all 0.2s linear;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
 
 .label {
@@ -104,9 +113,9 @@
   line-height: 18px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--text-dark)
+  color: var(--text-dark);
 }
-.title:first-child{
+.title:first-child {
   color: var(--text-light);
 }
 .container {
@@ -115,7 +124,7 @@
   grid-template-columns: 77px 81px;
   gap: 81px;
 }
-.filter{
+.filter {
   display: flex;
   flex-direction: column;
 }

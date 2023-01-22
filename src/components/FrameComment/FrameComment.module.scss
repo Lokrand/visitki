@@ -12,3 +12,6 @@
   color: var(--text-dark);
   font: 400 16px/24px var(--text-font-family);
 }
+.frame:first-child{
+  cursor: pointer;
+}

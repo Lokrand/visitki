@@ -12,16 +12,21 @@ type StudentFrame = {
 
 export const StudentFrame: FC<StudentFrame> = ({ student }) => {
   const navigate = useNavigate();
-  console.log(navigate);
   const handleNameClick = () => {
     navigate(`detail/${student._id}`);
   };
+
   return (
     <div className={styles.frames}>
       <input value={student.cohort} className={`${styles.cohort} ${styles.frame}`} />
-
       <input value={student.email} className={`${styles.email} ${styles.frame}`} />
-      {student.name ? <p>{student.name}</p> : <input value='' className={`${styles.student} ${styles.frame}`} />}
+      {student.name ? (
+        <p className={styles.student_text} onClick={handleNameClick}>
+          {student.name}
+        </p>
+      ) : (
+        <input value='' className={`${styles.student} ${styles.frame}`} />
+      )}
     </div>
   );
 };
