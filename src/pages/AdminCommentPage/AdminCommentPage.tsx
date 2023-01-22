@@ -176,22 +176,26 @@ export const AdminCommentPage: FC = () => {
       </div>
       <div className={styles.filter}>
         <label className={styles.label}>Фильтровать</label>
-        <input
-          type='text'
-          name='filter'
-          value={searchParam}
-          className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
+        <div className={styles.xfield}>
+          <input
+            type='text'
+            name='filter'
+            value={searchParam}
+            className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
                 ${hover ? styles.input_status_active : styles.input_status_default}`}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          onMouseEnter={handleInputHover}
-          onMouseLeave={handleInputHover}
-          onChange={handleInputChange}
-          placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
-        />
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+            onMouseEnter={handleInputHover}
+            onMouseLeave={handleInputHover}
+            onChange={handleInputChange}
+            placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
+          />
+          <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
+            <Cross />
+          </span>
+        </div>
       </div>
 
-      <span className={styles.button} style={displayStyle} onClick={handleButtonClick}></span>
       <div className={styles.main}>
         <p className={styles.column}>Когорта</p>
         <p className={styles.column}>Дата</p>

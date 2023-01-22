@@ -133,13 +133,20 @@
 }
 
 .button {
-
-  width: 285px;
-  height: 44px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 17px;
+  bottom: 17%;
 
   border: none;
 
   transition: all 0.2s linear;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
 
 .label {
@@ -173,7 +180,7 @@
 .inputfile span {
 	display: inline-block;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: 16px;
 	background: var(--gradient-button-main);
   background-color: transparent;
   border-radius: 4px;
