@@ -1,5 +1,5 @@
-import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction } from "react";
-import { FC, useState, useRef, useCallback } from "react";
+import React, { Dispatch, MouseEventHandler, SetStateAction } from "react";
+import { FC, useState } from "react";
 
 import styles from "./InputFile.module.scss";
 
@@ -12,8 +12,8 @@ interface IInputFile {
   requirements: string;
   id: string;
   htmlFor: string;
-  setValue: any;
-  form: any;
+  setValue: Dispatch<SetStateAction<TForm>>;
+  form: TForm;
 }
 
 const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor, setValue, form }) => {
@@ -27,10 +27,25 @@ const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor
   const [fileName, setFileName] = useState("");
 
   const handleImageChange = (e: any) => {
-    //const target = e.target as HTMLInputElement
     const [file] = e.target.files;
     setFileName(file.name);
-    setValue({ ...form, [e.target.name]: URL.createObjectURL(file) });
+    if (file.size > 2097152) {
+      setFileName("Размер файла должен быть менее 2 мб");
+    }
+    // setValue({
+    //   ...form,
+    //   info: {
+    //     ...form.info,
+    //     [e.target.name]: { ...form.info[target.name], image: URL.createObjectURL(file) },
+    //   },
+    // }); c блобом
+    setValue({
+      ...form,
+      info: {
+        ...form.info,
+        [e.target.name]: { ...form.info[e.target.name], image: "https://loremflickr.com/640/480/cats" },
+      },
+    }); //c заглушкой
   };
 
   return (
@@ -45,7 +60,7 @@ const InputFile: FC<IInputFile> = ({ label, inputName, requirements, id, htmlFor
         <input
           id={id}
           type='file'
-          accept='image/*'
+          accept='image/jpeg,image/png'
           className={`${styles.input_hidden}`}
           name={inputName}
           onChange={handleImageChange}

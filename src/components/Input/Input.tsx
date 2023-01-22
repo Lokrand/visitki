@@ -1,33 +1,27 @@
-import React, { MouseEventHandler } from "react";
+import React, { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { FC, useState, FormEventHandler } from "react";
 
 import styles from "./Input.module.scss";
 
 import { Cross } from "../../icons/Cross/Cross";
+import { TForm } from "../../utils/types";
 
 interface IInputProps {
   label: string;
   inputName: string;
   placeholder?: string;
-  // handleChange: (e: {
-  //   target: {
-  //     name: string;
-  //     value: string;
-  //   };
-  // }) => void;
-  // values: string;
-  setValue: any;
-  form: any;
+  setValue: Dispatch<SetStateAction<TForm>>;
+  form: TForm;
 }
 
 const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
   const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
-  console.log(form);
-  const handleInputChange = (e: any) => {
-    setValue({ ...form, [e.target.name]: e.target.value });
-    e.target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
+  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
+    const target = e.target as HTMLInputElement;
+    setValue({ ...form, profile: { ...form.profile, [inputName]: target.value } });
+    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
 
   const handleInputFocus = () => {
@@ -39,7 +33,7 @@ const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder 
   };
 
   const handleButtonClick = () => {
-    setValue({ ...form, [inputName]: "" });
+    setValue({ ...form, profile: { ...form.profile, [inputName]: "" } });
     setDisplayStyle({ display: "none" });
   };
 
@@ -48,14 +42,13 @@ const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder 
       setHover(false);
     } else setHover(true);
   };
-
   return (
     <div className={styles.container}>
       <label className={styles.label}>{label}</label>
       <input
         type='text'
         name={inputName}
-        value={form[inputName]}
+        value={form.profile[inputName]}
         className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
                 ${hover ? styles.input_status_active : styles.input_status_default}`}
         onFocus={handleInputFocus}

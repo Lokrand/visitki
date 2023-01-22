@@ -19,7 +19,6 @@ export const useFetch = (url: string, method: TMethod, body?: {} | null) => {
     data: null,
     error: null,
   });
-
   const handleRequest = async (url: string, method: TMethod, token: TToken, data: {} | null = null) => {
     try {
       setStatus({ ...status, loading: true });
