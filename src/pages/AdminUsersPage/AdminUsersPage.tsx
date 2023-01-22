@@ -1,10 +1,8 @@
-import { Dispatch, FC, FormEventHandler, MouseEventHandler, SetStateAction, useState, ChangeEvent } from "react";
+import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
 
 import styles from "./AdminUsersPage.module.scss";
 
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
-import Input from "../../components/Input/Input";
-import { Button } from "../../components/UI/Button";
 
 import { useFetch } from "../../hook/useFetch";
 
@@ -28,34 +26,7 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
   return result;
 };
 
-// export const AdminUsersPage: FC = () => {
-//   const handlerClick = () => {};
-
-//   const { handleRequest } = useMutation();
-
-//   const handleFileLoad = (ev: React.ChangeEvent<HTMLInputElement>) => {
-//     ev.preventDefault();
-//     const reader = new FileReader();
-//     reader.onload = async (e) => {
-//       const text = e.target?.result;
-//       console.log(text);
-//       if (typeof text === "string") {
-//         const newUsers = parseUsersCsv(text);
-//         const result = await Promise.all(
-//           newUsers.map((el) => {
-//             return handleRequest(USERS_URL, "POST", el);
-//           }),
-//         );
-//       } else {
-//         console.error("Неправильный тип файла");
-//       }
-//     };
-//     if (ev.target.files) {
-//       reader.readAsText(ev.target.files[0]);
-//     }
 export const AdminUsersPage: FC = () => {
-  // const handlerClick = () => {};
-
   const { mutationData } = useMutation();
 
   const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
@@ -110,12 +81,10 @@ export const AdminUsersPage: FC = () => {
   const { data, error } = useFetch(url);
 
   if (error) return <h1>Студенты не найдены</h1>;
-  let studentsData: any[] = [];
   let students: any[] = [];
 
   if (data) {
-    studentsData = data.items;
-    studentsData.filter((el) => students.push(el));
+    students = data.items;
   }
 
   return (
@@ -164,8 +133,6 @@ export const AdminUsersPage: FC = () => {
             Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
             студентов, вторая колонка — номер когорты.
           </p>
-          {/* <Button size='l' children='Выберите файл' handlerClick={handlerClick} /> */}
-
           <form method='post' encType='multipart/form-data'>
             <label className={styles.inputfile}>
               <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />

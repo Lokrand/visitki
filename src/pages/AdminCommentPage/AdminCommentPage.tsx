@@ -1,93 +1,12 @@
-import React, { FC, FormEventHandler, MouseEventHandler, useCallback, useMemo, useRef, useState } from "react";
+import React, { FC, FormEventHandler, MouseEventHandler, useMemo, useState } from "react";
 
 import styles from "./admincommentpage.module.scss";
 
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
-import { Cross } from "../../icons/Cross/Cross";
-import { CrossRed } from "../../icons/CrossRed/CrossRed";
 import { getAllComments } from "../../utils/api";
 import { COMMENTS_URL } from "../../utils/constants";
-
-// !!!!Для тестирования
-const commentsArr = [
-  {
-    _id: "c824a2de0b675b0acb5a2923",
-    from: {
-      _id: "e638ad9bce6d7efd1b5b035b",
-      name: "Elvira Grady",
-      email: "Ana93@hotmail.com",
-    },
-    target: "hobby",
-    text: "Laborum omnis harum modi omnis architecto ipsam adipisci dolore.",
-    to: {
-      _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Ricky Fadel",
-      email: "Chaim.Armstrong@gmail.com",
-    },
-  },
-  {
-    _id: "bad224dbc4a601caff7e0b2c",
-    from: {
-      _id: "e638ad9bce6d7efd1b5b035b",
-      name: "Kkkra Grady",
-      email: "Allla93@hotmail.com",
-    },
-    target: "edu",
-    text: "Soluta consectetur tempore eaque modi sequi autem ducimus.",
-    to: {
-      _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Poppy Bob",
-      email: "Chaim.Armstrong@gmail.com",
-    },
-  },
-  {
-    _id: "c2f15f9b4315bb20aebf9a1d",
-    from: {
-      _id: "e638ad9bce6d7efd1b5b035b",
-      name: "Peter Grady",
-      email: "Anita93@hotmail.com",
-    },
-    target: "status",
-    text: "Eveniet excepturi commodi eaque dignissimos quae nesciunt nam dolorum.",
-    to: {
-      _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Ricky Fadel",
-      email: "Chaim.Armstrong@gmail.com",
-    },
-  },
-  {
-    _id: "38eb4bbe3da2fcf2d4cfcd59",
-    from: {
-      _id: "e638ad9bce6d7efd1b5b035b",
-      name: "John Grady",
-      email: "Anita93@hotmail.com",
-    },
-    target: "job",
-    text: "Accusantium neque minus tempora.",
-    to: {
-      _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Ricky Marty",
-      email: "Chaim.Armstrong@gmail.com",
-    },
-  },
-  {
-    _id: "0ebcdb97d72b2b17345c30c8",
-    from: {
-      _id: "e638ad9bce6d7efd1b5b035b",
-      name: "Elvira Grady",
-      email: "Anita93@hotmail.com",
-    },
-    target: null,
-    text: "Libero ad tempora exercitationem numquam adipisci quibusdam doloremque incidunt.",
-    to: {
-      _id: "abfccdaa23e0bd1c4448d2f3",
-      name: "Ricky Fadel",
-      email: "Chaim.Armstrong@gmail.com",
-    },
-  },
-];
 
 export const AdminCommentPage: FC = () => {
   const search = (query: string) => {
@@ -104,7 +23,7 @@ export const AdminCommentPage: FC = () => {
   if (data) {
     comments = data.items;
   }
-
+  console.log("comments", comments);
   const [searchParam, setValue] = useState("");
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
@@ -117,7 +36,7 @@ export const AdminCommentPage: FC = () => {
   };
 
   const filter = () => {
-    return (renderComment = commentsArr.filter((comment) => {
+    return (renderComment = comments.filter((comment) => {
       if (comment.from.name.match(searchParam)) {
         return comment;
       }
@@ -200,37 +119,19 @@ export const AdminCommentPage: FC = () => {
         <p className={styles.column}>Откуда комментарий</p>
         <p className={styles.column}>Текст комментария</p>
       </div>
-      {data && renderComment.length > 0
-        ? renderComment.map((el: any) => {
-            return (
-              <>
-                <CommentFrame
-                  key={el._id}
-                  birthday={"1853"}
-                  commentDate={"20.12.2022"}
-                  target={checkTarget(el.target)}
-                  from={el.from.name}
-                  to={el.to.name}
-                  text={el.text}
-                />
-              </>
-            );
-          })
-        : commentsArr.map((el: any) => {
-            return (
-              <>
-                <CommentFrame
-                  key={el._id}
-                  birthday={"1853"}
-                  commentDate={"20.12.2022"}
-                  target={checkTarget(el.target)}
-                  from={el.from.name}
-                  to={el.to.name}
-                  text={el.text}
-                />
-              </>
-            );
-          })}
+      {comments.map((el: any) => {
+        return (
+          <CommentFrame
+            key={el._id}
+            id={el.from._id}
+            commentDate={"20.12.2022"}
+            target={checkTarget(el.target)}
+            from={el.from.name}
+            to={el.to.name}
+            text={el.text}
+          />
+        );
+      })}
     </>
   );
 };
