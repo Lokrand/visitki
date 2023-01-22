@@ -3,6 +3,12 @@ export type TToken = string | null;
 export type TTemplate = "default" | "romantic" | "daring";
 export type TRoleUser = "student" | "curator";
 
+export type TStateStatus = {
+  isloading: boolean;
+  data: any;
+  error: null | unknown;
+};
+
 export type TInitialUserData = {
   isLogin: boolean;
   id: string;

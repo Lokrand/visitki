@@ -15,8 +15,8 @@ interface IModalComments {
 }
 
 export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
-  const { url, method } = getAllComments();
-  const { data, error, loading } = useFetch(url, method);
+  const { url } = getAllComments();
+  const { data } = useFetch(url);
 
   let comments: any[] = [];
   let renderComment = [];

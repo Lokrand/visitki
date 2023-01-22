@@ -2,8 +2,8 @@ import React, { ChangeEvent, FC, useState } from "react";
 
 import styles from "./TextareaNewComment.module.scss";
 
-import { useMutation } from "../../../hook/useFetch";
 import { PROFILES_URL } from "../../../utils/constants";
+import { useMutation } from "../../../hook/useMutation";
 
 interface ITextareaNewComment {
   modalFor: string;
@@ -12,14 +12,15 @@ interface ITextareaNewComment {
 
 export const TextareaNewComment: FC<ITextareaNewComment> = ({ modalFor, id }) => {
   const [commentValue, setCommentValue] = useState("");
-  const { handleRequest } = useMutation();
+
+  const { mutationData } = useMutation();
 
   const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(e.target.value);
   };
 
   const addNewComment = () => {
-    handleRequest(`${PROFILES_URL}/${id}/reactions`, "POST", { target: modalFor, text: commentValue });
+    mutationData(`${PROFILES_URL}/${id}/reactions`, "POST", { target: modalFor, text: commentValue });
     setCommentValue("");
   };
 

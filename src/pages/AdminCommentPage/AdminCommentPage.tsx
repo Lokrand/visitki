@@ -1,8 +1,6 @@
-import React, { Dispatch, FC, FormEventHandler, MouseEventHandler, SetStateAction, useState } from "react";
+import React, { Dispatch, FC, FormEventHandler, MouseEventHandler, useState } from "react";
 
 import styles from "./admincommentpage.module.scss";
-
-import Input from "../../components/Input/Input";
 
 import { Cross } from "../../icons/Cross/Cross";
 

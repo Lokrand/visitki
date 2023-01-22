@@ -18,9 +18,9 @@ export const YandexMap = () => {
     "control.SearchControl",
     "control.FullscreenControl",
   ]);
-  const { url, method } = getAllProfiles();
-  const { data } = useFetch(url, method);
-  console.log(data);
+  const { url } = getAllProfiles();
+  const { data } = useFetch(url);
+
   useEffect(() => {
     if (!ymaps || !mapRef.current) {
       return;

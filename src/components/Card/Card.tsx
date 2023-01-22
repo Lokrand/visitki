@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Card.module.scss";
 
 import { useFetch } from "../../hook/useFetch";
-import { getFullProfile, getUserReactions } from "../../utils/api";
+import { getFullProfile } from "../../utils/api";
 import { ModalComments } from "../ModalComments/ModalComments";
 import { Chat } from "../UI/Chat/Chat";
 
@@ -23,8 +23,8 @@ export const Card: FC<ICard> = ({ id, name, city, img }) => {
     setModalCommentsActive(!modalCommentsActive);
   };
 
-  const { url, method } = getFullProfile(id);
-  const { data, loading, error } = useFetch(url, method);
+  const { url } = getFullProfile(id);
+  const { data } = useFetch(url);
 
   let counter = 0;
   if (data) counter = data.reactions;

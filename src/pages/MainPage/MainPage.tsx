@@ -14,10 +14,10 @@ export const MainPage: FC = () => {
   const [filterModalActive, setFilterModalActive] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("Все города");
 
-  const { url, method } = getAllProfiles();
-  const { data, error, loading } = useFetch(url, method);
+  const { url } = getAllProfiles();
+  const { data, error, isloading } = useFetch(url);
 
-  if (loading) return <h1>Идет загрузка данных...</h1>;
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Студенты не найдены</h1>;
 
   let students = [];
