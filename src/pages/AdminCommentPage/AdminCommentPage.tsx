@@ -2,20 +2,14 @@ import React, { FC, FormEventHandler, MouseEventHandler, useCallback, useMemo, u
 
 import styles from "./admincommentpage.module.scss";
 
+import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
 import { Cross } from "../../icons/Cross/Cross";
+import { CrossRed } from "../../icons/CrossRed/CrossRed";
 import { getAllComments } from "../../utils/api";
 import { COMMENTS_URL } from "../../utils/constants";
 
-interface ICommentFrame {
-  birthday: string;
-  commentDate: string;
-  from: string;
-  to: string;
-  target: any;
-  text: string;
-}
 // !!!!Для тестирования
 const commentsArr = [
   {
@@ -94,21 +88,6 @@ const commentsArr = [
     },
   },
 ];
-const CommentFrame: FC<ICommentFrame> = ({ birthday, commentDate, from, to, target, text }) => {
-  return (
-    <>
-      <div className={styles.frames}>
-        <p className={`${styles.frame}`}>{birthday}</p>
-        <p className={`${styles.frame}`}>{commentDate}</p>
-        <p className={`${styles.frame}`}>{from}</p>
-        <p className={`${styles.frame}`}>{to}</p>
-        <p className={`${styles.frame}`}>{target}</p>
-        <p className={`${styles.frame}`}>{text}</p>
-        <Cross />
-      </div>
-    </>
-  );
-};
 
 export const AdminCommentPage: FC = () => {
   const search = (query: string) => {
@@ -194,6 +173,8 @@ export const AdminCommentPage: FC = () => {
         <a href='/admin' className={styles.title}>
           Комментарии
         </a>
+      </div>
+      <div className={styles.filter}>
         <label className={styles.label}>Фильтровать</label>
         <input
           type='text'
@@ -208,10 +189,9 @@ export const AdminCommentPage: FC = () => {
           onChange={handleInputChange}
           placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
         />
-        <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
-          <Cross />
-        </span>
       </div>
+
+      <span className={styles.button} style={displayStyle} onClick={handleButtonClick}></span>
       <div className={styles.main}>
         <p className={styles.column}>Когорта</p>
         <p className={styles.column}>Дата</p>
