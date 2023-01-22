@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import styles from "./AdminCommentPage.module.scss";
 
@@ -26,6 +26,9 @@ const CommentFrame = () => {
 };
 
 export const AdminCommentPage: FC = () => {
+  const [form, setValue] = useState({
+    data: "",
+  });
   return (
     <>
       <div className={styles.container}>
@@ -40,8 +43,8 @@ export const AdminCommentPage: FC = () => {
         label='Фильтровать'
         inputName='AdminCommentPage'
         placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
-        setValue='kek'
-        form='oue'
+        setValue={setValue}
+        form={form}
       />
       <div className={styles.main}>
         <p className={styles.column}>Когорта</p>

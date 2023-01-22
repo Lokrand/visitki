@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import styles from "./AdminUsersPage.module.scss";
 
@@ -17,6 +17,9 @@ const StudentFrame: FC = () => {
 };
 
 export const AdminUsersPage: FC = () => {
+  const [form, setValue] = useState({
+    data: "",
+  });
   const handlerClick = () => {
     console.log("kek");
   };
@@ -36,9 +39,9 @@ export const AdminUsersPage: FC = () => {
           <Input
             label='Фильтровать'
             inputName='AdminUserPage'
-            setValue='лул'
+            setValue={setValue}
             placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
-            form='kek'
+            form={form}
           />
           <div className={styles.main}>
             <p className={styles.column}>Номер когорты</p>
