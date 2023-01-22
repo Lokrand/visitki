@@ -10,8 +10,8 @@ interface IInputProps {
   label: string;
   inputName: string;
   placeholder?: string;
-  setValue: Dispatch<SetStateAction<TForm>>;
-  form: TForm;
+  setValue: any;
+  form: any;
 }
 
 const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder }) => {

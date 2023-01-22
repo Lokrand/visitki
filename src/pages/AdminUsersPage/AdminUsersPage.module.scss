@@ -1,64 +1,155 @@
 @import "../../styles/constants";
 
 .main {
-  width: inherit;
-  margin-top: 55px;
-  min-height: 48px;
   display: grid;
   grid-template-columns: 250px 300px 1fr;
-  border-bottom: 1px solid var(--placeholder);
-  color: var(--placeholder);
   align-items: center;
+
+  width: inherit;
+  min-height: 48px;
+  margin-top: 55px;
+
+  color: var(--placeholder);
+
+  border-bottom: 1px solid var(--placeholder);
 }
-.container {
+
+.wrapper {
   display: grid;
   grid-template-columns: 1fr 285px;
   gap: 40px;
 }
+
 .column {
-  font-family: var(--text-font-family);
   margin-left: 8px;
+  font-family: var(--text-font-family);
 }
+
 .frames {
   display: grid;
   grid-template-columns: 250px 300px 1fr;
   padding: 12px 0;
   border-bottom: 1px solid var(--placeholder);
 }
+
 .frame {
   min-height: 32px;
+
   font-family: var(--text-font-family);
   font-size: 16px;
   line-height: 1.5;
+
   border: none;
 }
+
 .frame:select .cohort {
   width: 80px;
 }
+
 .email {
   width: 271px;
 }
+
 .student {
   width: 300px;
 }
+
 .adder {
   width: 285px;
 }
+
 .title {
   margin: 0;
   font-family: var(--text-font-family);
-  font-style: normal;
-  font-weight: 400;
   font-size: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  font-weight: 700;
+  font-style: normal;
   line-height: 1.33;
+  line-height: 18px;
+  color: var(--text-dark);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 12px 0 8px;
+
+  font-family: var(--text-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
   color: var(--text-dark);
 }
-.text {
-  font-family: var(--text-font-family);
-  font-style: normal;
-  font-weight: 400;
+
+.title:nth-child(2) {
+  color: var(--text-light);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 77px 81px;
+  gap: 81px;
+  margin: 48px 0;
+}
+
+.container_input {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: inherit;
+  height: 48px;
+  margin-top: 4px;
+  padding-right: 40px;
+  padding-left: 16px;
+
   font-size: 16px;
-  line-height: 1.5;
-  margin: 12px 0 8px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-dark);
+
+  border-radius: 4px;
+  outline: none;
+
+  transition: all 0.2s linear;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+
+  &_status_default {
+    border: 1px solid var(--text-dark);
+  }
+
+  &_status_active {
+    border: 1px solid var(--input-hover);
+  }
+}
+
+.button {
+  position: absolute;
+  top: 53%;
+  right: 15px;
+
+  width: 20px;
+  height: 20px;
+
+  border: none;
+
+  transition: all 0.2s linear;
+}
+
+.label {
+  width: inherit;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
   color: var(--text-dark);
 }
