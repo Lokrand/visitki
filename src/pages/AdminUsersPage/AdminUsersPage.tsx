@@ -7,8 +7,6 @@ import { useMutation } from "../../hook/useMutation";
 import { USERS_URL } from "../../utils/constants";
 import { TReqUserData } from "../../utils/types";
 
-import { Cross } from "../../icons/Cross/Cross";
-
 const StudentFrame: FC = () => {
   return (
     <div className={styles.frames}>
@@ -83,7 +81,7 @@ export const AdminUsersPage: FC = () => {
       reader.readAsText(ev.target.files[0]);
     }
   };
-  
+
   const [form, setValue] = useState({ filter: "" });
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
