@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { useAuth } from "./useAuth";
 
-import { TFullProfile, TFullProfiles, TMethod, TToken } from "../utils/types";
+import { TMethod, TToken } from "../utils/types";
 
 type TStateStatus = {
   loading: boolean;
