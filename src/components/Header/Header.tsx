@@ -6,6 +6,7 @@ import styles from "./Header.module.scss";
 
 import { useAuth } from "../../hook/useAuth";
 import { useFetch } from "../../hook/useFetch";
+import adminAvatar from "../../icons/AvatarBackground/gray-avatar.jpg";
 import { Logo } from "../../icons/Logo/Logo";
 import { getFullProfile } from "../../utils/api";
 export const Header: FC = () => {
@@ -20,10 +21,17 @@ export const Header: FC = () => {
       </Link>
       {data !== null && (
         <div className={styles.user}>
-          <Link to={`profile/${user?.id}`} className={styles.link}>
-            <img className={styles.user__avatar} src={data.profile.photo} alt='аватар' />
-            <p className={styles.user__name}>{data.profile.name}</p>
-          </Link>
+          {user?.role === "student" ? (
+            <Link to={`profile/${user?.id}`} className={styles.link}>
+              <img className={styles.user__avatar} src={data.profile.photo} alt='аватар' />
+              <p className={styles.user__name}>{data.profile.name}</p>
+            </Link>
+          ) : (
+            <Link to={"/admin"} className={styles.link}>
+              <img className={styles.user__avatar} src={adminAvatar} alt='аватар' />
+              <p className={styles.user__name}>Админка</p>
+            </Link>
+          )}
         </div>
       )}
     </header>
