@@ -45,3 +45,22 @@ export const useFetch = (url: string, method: TMethod, body?: {} | null) => {
 
   return { ...status, handleRequest };
 };
+
+export const useMutation = () => {
+  const { user } = useAuth();
+  const handleRequest = async (url: string, method: TMethod, data: {} | null = null) => {
+    try {
+      const token = user?.token;
+      const res = await axios(url, {
+        method: method,
+        data: data,
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return { handleRequest };
+};

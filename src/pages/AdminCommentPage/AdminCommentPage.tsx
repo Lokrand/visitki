@@ -28,13 +28,13 @@ const CommentFrame = () => {
 export const AdminCommentPage: FC = () => {
   return (
     <>
-      <Input
+      {/* <Input
         label='Фильтровать'
         inputName='AdminCommentPage'
         placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
         setValue='kek'
         form='oue'
-      />
+      /> */}
       <div className={styles.main}>
         <p className={styles.column}>Когорта</p>
         <p className={styles.column}>Дата</p>
