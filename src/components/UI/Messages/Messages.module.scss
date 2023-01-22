@@ -1,0 +1,10 @@
+.messages {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4px;
+
+  margin-top: 2px;
+
+  font: 400 16px/24px var(--text-font-family);
+  color: var(--text-light);
+}

@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import styles from "./mainpage.module.scss";
+import styles from "./mainPage.module.scss";
 
 import { Card } from "../../components/Card/Card";
 import { useFetch } from "../../hook/useFetch";
@@ -20,20 +20,20 @@ export const MainPage: FC<IMainPage> = ({ cohort }) => {
 
   const { url } = getAllProfiles();
   const { data, error, isloading } = useFetch(url);
-  console.log(data);
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Студенты не найдены</h1>;
-
   let students = [];
   let cities: string | any[] = [];
   if (data) {
     students = data.items;
+    if (cohort) students = students.filter((el: any) => el.cohort === cohort);
     for (let i = 0; i < students.length; i++) {
       if (cities.includes(students[i].profile.city.name)) continue;
       else cities.push(students[i].profile.city.name);
     }
     if (currentFilter === "Все города") {
       students = data.items;
+      if (cohort) students = students.filter((el: any) => el.cohort === cohort);
     } else {
       students = students.filter((el: any) => el.profile.city.name === currentFilter);
       cities = cities.filter((el) => el !== currentFilter);
@@ -99,6 +99,7 @@ export const MainPage: FC<IMainPage> = ({ cohort }) => {
               name={student.profile.name}
               city={student.profile.city.name}
               img={student.profile.photo}
+              cohort={cohort}
             />
           );
         })}

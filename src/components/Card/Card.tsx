@@ -8,15 +8,17 @@ import { useFetch } from "../../hook/useFetch";
 import { getFullProfile } from "../../utils/api";
 import { ModalComments } from "../ModalComments/ModalComments";
 import { Chat } from "../UI/Chat/Chat";
+import { Messages } from "../UI/Messages/Messages";
 
 interface ICard {
   id: string;
   name: string;
   city: string;
   img: string;
+  cohort?: string;
 }
 
-export const Card: FC<ICard> = ({ id, name, city, img }) => {
+export const Card: FC<ICard> = ({ id, name, city, img, cohort }) => {
   const [modalCommentsActive, setModalCommentsActive] = useState(false);
   const [hoverActive, setHoverActive] = useState(false);
   const handleChatClick = () => {
@@ -28,7 +30,6 @@ export const Card: FC<ICard> = ({ id, name, city, img }) => {
 
   let counter = 0;
   if (data) counter = data.reactions;
-  // console.log("data", data);
   const handleMouseEnter = () => {
     setHoverActive(true);
   };
@@ -73,6 +74,7 @@ export const Card: FC<ICard> = ({ id, name, city, img }) => {
       <p className={styles.card__city} onClick={routeToDetails}>
         {city}
       </p>
+      {cohort ? <Messages id={id} /> : null}
       {hoverActive && <Chat counter={counter} forImage={true} onClick={handleChatClick} />}
       <ModalComments active={modalCommentsActive} id={id} modalFor='main' />
     </div>
