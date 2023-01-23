@@ -4,7 +4,7 @@ export const COMMENTS_URL = "/comments";
 export const PROFILES_URL = "/profiles";
 
 // Список маршрутов
-export const MAIN_ROUTE = "/visitki";
+export const MAIN_ROUTE = "/visitki/";
 export const LOGIN_ROUTE = `${MAIN_ROUTE}login`;
 //куратор может заходить на страницу любой когорты по адресу /cohort/{name} (COHORT_ROUTE) по ссылкам из админки.
 export const COHORT_ROUTE = `${MAIN_ROUTE}cohort/:name`;
