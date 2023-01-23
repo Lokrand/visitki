@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b0d29d9f.css",
+    "main.js": "/static/js/main.eec9ae26.js",
+    "static/media/gray-avatar.jpg": "/static/media/gray-avatar.1a8e564877daf5beed9c.jpg",
+    "static/media/IBMPlexSans-Medium.woff": "/static/media/IBMPlexSans-Medium.ec22ea3142b488f48c8b.woff",
+    "static/media/IBMPlexSans.woff": "/static/media/IBMPlexSans.9f2053ee915629980221.woff",
+    "static/media/IBMPlexSans-Bold.woff": "/static/media/IBMPlexSans-Bold.0563a80e82efbad172ff.woff",
+    "static/media/IBMPlexSans-Medium.woff2": "/static/media/IBMPlexSans-Medium.bb6bb1b56ef163ca467c.woff2",
+    "static/media/IBMPlexSans-Bold.woff2": "/static/media/IBMPlexSans-Bold.ffdd8696ca983efc2c20.woff2",
+    "static/media/IBMPlexSans.woff2": "/static/media/IBMPlexSans.5b67d03f5cc7578e9411.woff2",
+    "static/media/shock.svg": "/static/media/shock.b54f4d2ca09c038c0df23238bb744af1.svg",
+    "static/media/laugh.svg": "/static/media/laugh.8c50bd81e9d98697f972455499dda48b.svg",
+    "static/media/love.svg": "/static/media/love.3cc9bb80f6f3c8300ca93f1e6c310b52.svg",
+    "static/media/hello.svg": "/static/media/hello.ea9475f5c940d62e89379b1738db2ef9.svg",
+    "static/media/irritation.svg": "/static/media/irritation.84ca69c7e991e656bae5cddfa21c6dd0.svg",
+    "static/media/smile.svg": "/static/media/smile.f41f3d230a2ecd4ccfe792850a144415.svg",
+    "static/media/sad.svg": "/static/media/sad.1399a6fa59ffec6ac56df5858332666e.svg",
+    "static/media/dislike.svg": "/static/media/dislike.772bf501ab0a9d3d0aeee8ea0d20c1f3.svg",
+    "static/media/like.svg": "/static/media/like.c9520193ee24214eff7cd63e766c2daa.svg",
+    "static/media/yandex-logo.svg": "/static/media/yandex-logo.31f30db780ecc8b6eba8fc659e766f9a.svg",
+    "static/media/border-top-wavy-line.svg": "/static/media/border-top-wavy-line.311a9ea5d30243ab032f.svg",
+    "static/media/blackHeart.svg": "/static/media/blackHeart.d4f1ff1018d13e505b7745856549af77.svg",
+    "index.html": "/index.html",
+    "static/media/border-top-diamond-line.svg": "/static/media/border-top-diamond-line.41a89763a29115100422.svg",
+    "static/media/border-top-line.svg": "/static/media/border-top-line.8d1eaf5f2106d22bd2d1.svg",
+    "main.b0d29d9f.css.map": "/static/css/main.b0d29d9f.css.map",
+    "main.eec9ae26.js.map": "/static/js/main.eec9ae26.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0d29d9f.css",
+    "static/js/main.eec9ae26.js"
+  ]
+}
