@@ -1,6 +1,6 @@
 import React, { FC, FormEventHandler, MouseEventHandler, useMemo, useState } from "react";
 
-import styles from "./admincommentpage.module.scss";
+import styles from "./AdminCommentPageStyles.module.scss";
 
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import useDebounce from "../../hook/useDebounce";

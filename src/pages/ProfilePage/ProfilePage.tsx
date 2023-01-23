@@ -2,7 +2,7 @@ import React, { FC, FormEventHandler, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
-import styles from "./profilepage.module.scss";
+import styles from "./ProfilePageStyles.module.scss";
 
 import Input from "../../components/Input/Input";
 import InputCalendar from "../../components/InputCalendar/InputCalendar";

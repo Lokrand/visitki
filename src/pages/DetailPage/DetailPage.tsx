@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
-import styles from "./detailpage.module.scss";
+import styles from "./DetailPageStyles.module.scss";
 
 import { ModalComments } from "../../components/ModalComments/ModalComments";
 import { Chat } from "../../components/UI/Chat/Chat";

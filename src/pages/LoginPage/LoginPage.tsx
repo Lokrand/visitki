@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import styles from "./loginpage.module.scss";
+import styles from "./LoginPageStyles.module.scss";
 
 import { Button } from "../../components/UI/Button";
 import { Title } from "../../components/UI/Title";
