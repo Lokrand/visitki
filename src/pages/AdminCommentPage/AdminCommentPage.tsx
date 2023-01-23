@@ -5,6 +5,7 @@ import styles from "./admincommentpage.module.scss";
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
+import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
 import { COMMENTS_URL } from "../../utils/constants";
 
