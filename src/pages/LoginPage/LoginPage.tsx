@@ -40,7 +40,7 @@ export const LoginPage: FC = () => {
 
   const handlerLogin = () => {
     window.location.href =
-      "https://oauth.yandex.ru/authorize?response_type=token&client_id=cfa419b389d2459a8c19d502eba6df11";
+      "https://oauth.yandex.ru/authorize?response_type=token&client_id=1e8df444d81a4560bd06573b547765d7";
   };
 
   return (
