@@ -1,8 +1,8 @@
 # Платформа-визитница VISITKI
 
-## Ссылка на проект
+[Ссылка на проект](https://Lokrand.github.io/visitki)
 
-https://Lokrand.github.io/visitki
+[Ссылка на бриф проекта](https://www.notion.so/VISITKI-89b6b56fbef743c5833b6fb483c50817)
 
 ## О проекте
 
