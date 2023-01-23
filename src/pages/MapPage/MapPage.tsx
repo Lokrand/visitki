@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { YandexMap } from "../../components/YandexMap/YandexMap";
 
-export const MapPage = () => {
+export const MapPage: FC = () => {
   return <YandexMap />;
 };

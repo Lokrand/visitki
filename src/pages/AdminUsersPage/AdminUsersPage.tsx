@@ -1,6 +1,6 @@
 import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
 
-import styles from "./AdminUsersPage.module.scss";
+import styles from "./AdminUsersPageStyle.module.scss";
 
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
 
