@@ -7,7 +7,6 @@ import styles from "./Header.module.scss";
 import { useAuth } from "../../hook/useAuth";
 import { useFetch } from "../../hook/useFetch";
 import { AdminAvatar } from "../../icons/AdminAvatar/AdminAvatar";
-import adminAvatar from "../../icons/AvatarBackground/gray-avatar.jpg";
 import { Logo } from "../../icons/Logo/Logo";
 import { getFullProfile } from "../../utils/api";
 export const Header: FC = () => {
@@ -31,7 +30,7 @@ export const Header: FC = () => {
           ) : (
             <Link to={"/admin"} className={styles.link}>
               <AdminAvatar className={styles.user__avatar} />
-              <p className={styles.user__name}>Админка</p>
+              <p className={styles.user__name}>{data.email}</p>
             </Link>
           )}
         </div>
