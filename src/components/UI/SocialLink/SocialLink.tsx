@@ -1,7 +1,5 @@
 import { FC } from "react";
 
-import { Link } from "react-router-dom";
-
 import styles from "./SocialLink.module.scss";
 interface ISocialLinkProps {
   nameSocialNetwork: "telegram" | "github";
@@ -11,7 +9,7 @@ interface ISocialLinkProps {
 export const SocialLink: FC<ISocialLinkProps> = ({ nameSocialNetwork, userName }) => {
   if (nameSocialNetwork === "telegram") {
     return (
-      <Link className={styles.link} to={`https://t.me/${userName}`}>
+      <a className={styles.link} href={`https://t.me/${userName}`}>
         <svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
           <path
             fillRule='evenodd'
@@ -20,19 +18,19 @@ export const SocialLink: FC<ISocialLinkProps> = ({ nameSocialNetwork, userName }
             fill='#100C34'
           />
         </svg>
-      </Link>
+      </a>
     );
   }
   if (nameSocialNetwork === "github") {
     return (
-      <Link className={styles.link} to={`https://github.com/${userName}`}>
+      <a className={styles.link} href={`https://github.com/${userName}`}>
         <svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M15.835 3C8.47186 3 2.5 9.12169 2.5 16.6721C2.5 22.7129 6.32048 27.8377 11.62 29.6458C12.2857 29.7723 12.5013 29.3484 12.5013 28.9884V26.4431C8.7919 27.2703 8.01958 24.8298 8.01958 24.8298C7.41284 23.2495 6.53828 22.8291 6.53828 22.8291C5.32813 21.9803 6.63052 21.9985 6.63052 21.9985C7.96957 22.0942 8.67411 23.4079 8.67411 23.4079C9.86314 25.4975 11.7934 24.8936 12.5546 24.5438C12.6735 23.6608 13.0191 23.057 13.4014 22.7163C10.4399 22.3688 7.32616 21.1964 7.32616 15.9589C7.32616 14.4652 7.84733 13.2461 8.69966 12.2891C8.56187 11.9438 8.10514 10.5527 8.82968 8.67051C8.82968 8.67051 9.94982 8.30364 12.4979 10.0719C13.5614 9.76884 14.7015 9.6173 15.835 9.61161C16.9685 9.6173 18.1097 9.76884 19.1754 10.0719C21.7213 8.30364 22.8392 8.67051 22.8392 8.67051C23.5649 10.5538 23.1081 11.945 22.9703 12.2891C23.826 13.2461 24.3427 14.4663 24.3427 15.9589C24.3427 21.2101 21.2234 22.3665 18.2542 22.7049C18.732 23.1288 19.1688 23.9605 19.1688 25.2366V28.9884C19.1688 29.3519 19.3821 29.7791 20.0589 29.6447C25.354 27.8343 29.17 22.7106 29.17 16.6721C29.17 9.12169 23.1993 3 15.835 3Z'
             fill='#100C34'
           />
         </svg>
-      </Link>
+      </a>
     );
   }
   return null;
