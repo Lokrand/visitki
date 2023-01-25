@@ -3,6 +3,7 @@ import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "
 import styles from "./AdminUsersPageStyles.module.scss";
 
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
+import { Text } from "../../components/UI/Text";
 
 import { useFetch } from "../../hook/useFetch";
 
@@ -28,6 +29,7 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
 
 export const AdminUsersPage: FC = () => {
   const { mutationData } = useMutation();
+  const [isHiddenAlert, setIsHiddenAlert] = useState(false);
 
   const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
@@ -41,6 +43,7 @@ export const AdminUsersPage: FC = () => {
             return mutationData(USERS_URL, "POST", el);
           }),
         );
+        setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
       }
@@ -126,18 +129,37 @@ export const AdminUsersPage: FC = () => {
             <StudentFrame key={student._id} student={student} />
           ))}
         </div>
-        <div className={styles.adder}>
-          <h3 className={styles.title}>Добавить студентов</h3>
-          <p className={styles.text}>
-            Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
-            студентов, вторая колонка — номер когорты.
-          </p>
-          <form method='post' encType='multipart/form-data'>
-            <label className={styles.inputfile}>
-              <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />
-              <span>Выберите файл</span>
-            </label>
-          </form>
+        <div className={styles["right-wrapper"]}>
+          <div>
+            <h3 className={styles.title}>Добавить студентов</h3>
+            <p className={styles.text}>
+              Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
+              студентов, вторая колонка — номер когорты.
+            </p>
+            <form method='post' encType='multipart/form-data'>
+              <label className={styles.inputfile}>
+                <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />
+                <span>Выберите файл</span>
+              </label>
+            </form>
+          </div>
+          {isHiddenAlert && (
+            <div className={styles["alert-error"]}>
+              <Text>Проверьте, что загруженные данные корректны и сохраните их или удалите и загрузите заново.</Text>
+              <ul className={styles["alert-error__list-btn"]}>
+                <li>
+                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_alert"]].join(" ")}>
+                    Удалить
+                  </button>
+                </li>
+                <li>
+                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_normal"]].join(" ")}>
+                    Сохранить
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>
