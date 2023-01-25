@@ -1,4 +1,4 @@
-import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
+import { FC, MouseEventHandler, useState, ChangeEventHandler } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -16,7 +16,7 @@ import { Cross } from "../../icons/Cross/Cross";
 import { getAllUsers } from "../../utils/api";
 
 import { USERS_URL } from "../../utils/constants";
-import { TReqUserData } from "../../utils/types";
+import { TReqUserData, TUser } from "../../utils/types";
 
 const parseUsersCsv = (str: string): TReqUserData[] => {
   const result: TReqUserData[] = [];
@@ -37,7 +37,7 @@ export const AdminUsersPage: FC = () => {
   const { searchData } = useSearch();
   const debouncedSearch = useDebounce(searchData, 500);
 
-  const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
+  const handleFileLoad: ChangeEventHandler<HTMLInputElement> = (ev) => {
     ev.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
@@ -63,8 +63,8 @@ export const AdminUsersPage: FC = () => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
   const [displayStyle, setDisplayStyle] = useState({ display: "none" });
-  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
-    const target = e.target as HTMLInputElement;
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const target = e.target;
     debouncedSearch(url, { limit: 10, search: target.value });
     setValue({ filter: target.value });
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
@@ -89,7 +89,7 @@ export const AdminUsersPage: FC = () => {
   const { url } = getAllUsers();
   const { data, error, isloading } = useFetch(url);
 
-  let students: any[] = [];
+  let students: TUser[] = [];
 
   if (data) {
     students = data.items;

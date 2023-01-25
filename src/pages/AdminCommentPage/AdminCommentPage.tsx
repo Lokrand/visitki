@@ -1,4 +1,4 @@
-import React, { FC, FormEventHandler, MouseEventHandler, useMemo, useState } from "react";
+import React, { ChangeEventHandler, FC, MouseEventHandler, useMemo, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import { useFetch } from "../../hook/useFetch";
 import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
+import { TComment } from "../../utils/types";
 
 export const AdminCommentPage: FC = () => {
   const search = useSearch();
@@ -17,8 +18,8 @@ export const AdminCommentPage: FC = () => {
 
   const { url } = getAllComments();
   const { data, isloading, error } = useFetch(url);
-  let comments: any[] = [];
-  let renderComment: any[] = [];
+  let comments: TComment[] = [];
+  let renderComment: TComment[] = [];
 
   if (data) {
     comments = data.items;
@@ -27,8 +28,8 @@ export const AdminCommentPage: FC = () => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
   const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
-  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
-    const target = e.target as HTMLInputElement;
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const target = e.target;
     debouncedSearch(url, { limit: 10, search: target.value });
     setValue(target.value);
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
@@ -126,7 +127,7 @@ export const AdminCommentPage: FC = () => {
         <p className={styles.column}>Откуда комментарий</p>
         <p className={styles.column}>Текст комментария</p>
       </div>
-      {comments.map((el: any) => {
+      {comments.map((el: TComment) => {
         return (
           <CommentFrame
             key={el._id}

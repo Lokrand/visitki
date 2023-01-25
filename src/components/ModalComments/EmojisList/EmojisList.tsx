@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 
 import styles from "./EmojisList.module.scss";
 

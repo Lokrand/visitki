@@ -6,6 +6,7 @@ import styles from "./YandexMap.module.scss";
 import { useFetch } from "../../hook/useFetch";
 import Mark from "../../icons/Mark/yandex-logo.svg";
 import { getAllProfiles } from "../../utils/api";
+import { TFullProfile } from "../../utils/types";
 
 export const YandexMap = () => {
   const mapRef = useRef(null);
@@ -46,7 +47,7 @@ export const YandexMap = () => {
         </div>`,
     );
 
-    data?.items.map((item: any) => {
+    data?.items.map((item: TFullProfile) => {
       const myPlacemarkWithContent = new ymaps.Placemark(
         item.profile.city.geocode,
         {

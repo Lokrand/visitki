@@ -6,6 +6,7 @@ import styles from "./ModalComments.module.scss";
 
 import { useFetch } from "../../hook/useFetch";
 import { getAllComments } from "../../utils/api";
+import { TComment } from "../../utils/types";
 import { TextareaNewComment } from "../UI/TextareaNewComment/TextareaNewComment";
 
 interface IModalComments {
@@ -18,8 +19,8 @@ export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
   const { url } = getAllComments();
   const { data } = useFetch(url);
 
-  let comments: any[] = [];
-  let renderComment = [];
+  let comments: TComment[] = [];
+  let renderComment: string[] = [];
 
   if (data) {
     comments = data.items;
