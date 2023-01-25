@@ -32,18 +32,16 @@ export const CommentFrame: FC<ICommentFrame> = ({ id, commentDate, from, to, tar
     navigate(`cohort/${cohort}`);
   };
   return (
-    <>
-      <div className={styles.frames}>
-        <p className={`${styles.frame} ${styles.frame_active}`} onClick={handleRedirectOnCohortPage}>
-          {cohort}
-        </p>
-        <p className={`${styles.frame}`}>{commentDate}</p>
-        <p className={`${styles.frame}`}>{from}</p>
-        <p className={`${styles.frame}`}>{to}</p>
-        <p className={`${styles.frame}`}>{target}</p>
-        <p className={`${styles.frame}`}>{text}</p>
-        <CrossRed />
-      </div>
-    </>
+    <div className={styles.frames}>
+      <p className={`${styles.frame} ${styles.frame_active}`} onClick={handleRedirectOnCohortPage}>
+        {cohort}
+      </p>
+      <p className={`${styles.frame}`}>{commentDate}</p>
+      <p className={`${styles.frame}`}>{from}</p>
+      <p className={`${styles.frame}`}>{to}</p>
+      <p className={`${styles.frame}`}>{target}</p>
+      <p className={`${styles.frame}`}>{text}</p>
+      <CrossRed />
+    </div>
   );
 };
