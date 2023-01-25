@@ -17,7 +17,6 @@ export const YandexMap = () => {
     "control.ZoomControl",
     "control.GeolocationControl",
     "control.SearchControl",
-    "control.FullscreenControl",
   ]);
   const { url } = getAllProfiles();
   const { data } = useFetch(url);
@@ -30,7 +29,7 @@ export const YandexMap = () => {
     const map = new ymaps.Map(mapRef.current, {
       center: [55.76, 37.64],
       zoom: 7,
-      controls: ["zoomControl", "geolocationControl", "searchControl", "fullscreenControl"],
+      controls: ["zoomControl", "geolocationControl", "searchControl"],
     });
     const MyMarkContentLayoutClass = ymaps.templateLayoutFactory.createClass(
       `<div class={{properties.containerStyle}}>               
