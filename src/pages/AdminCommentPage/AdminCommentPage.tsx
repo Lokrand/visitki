@@ -1,5 +1,7 @@
 import React, { FC, FormEventHandler, MouseEventHandler, useMemo, useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import styles from "./AdminCommentPageStyles.module.scss";
 
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
@@ -86,12 +88,12 @@ export const AdminCommentPage: FC = () => {
   return (
     <section>
       <div className={styles.container}>
-        <a href='/admin/users' className={styles.title}>
+        <Link to='/admin/users' className={styles.title}>
           Студенты
-        </a>
-        <a href='/admin' className={styles.title}>
+        </Link>
+        <Link to='/admin' className={styles.title}>
           Комментарии
-        </a>
+        </Link>
       </div>
       <div className={styles.filter}>
         <label className={styles.label}>Фильтровать</label>

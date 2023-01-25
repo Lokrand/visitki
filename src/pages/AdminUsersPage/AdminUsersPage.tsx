@@ -1,5 +1,7 @@
 import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
 
+import { Link } from "react-router-dom";
+
 import styles from "./AdminUsersPageStyles.module.scss";
 
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
@@ -89,12 +91,12 @@ export const AdminUsersPage: FC = () => {
   return (
     <section>
       <div className={styles.container}>
-        <a href='/admin/users' className={styles.title}>
+        <Link to='/admin/users' className={styles.title}>
           Студенты
-        </a>
-        <a href='/admin' className={styles.title}>
+        </Link>
+        <Link to='/admin' className={styles.title}>
           Комментарии
-        </a>
+        </Link>
       </div>
       <div className={styles.wrapper}>
         <div className={styles.table}>
