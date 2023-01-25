@@ -1,25 +1,31 @@
 .frames {
   display: grid;
-  grid-template-columns: 250px 300px 1fr;
+  grid-template-columns: 1fr 1fr 1.5fr 0.2fr;
   padding: 12px 0;
   border-bottom: 1px solid var(--placeholder);
 }
 
 .frame {
-  min-height: 32px;
+  box-sizing: border-box;
+  min-height: 26px;
+  margin-right: 10px;
 
   font-family: var(--text-font-family);
   font-size: 16px;
   line-height: 1.5;
 
   border: none;
+  outline: none;
 }
 
 .frame:hover {
   cursor: pointer;
-  box-sizing: border-box;
-  border: 1px solid var(--text-dark);
+  border: 1px solid var(--placeholder);
   border-radius: 4px;
+}
+
+.frame:focus {
+  border: 1px solid var(--text-dark);
 }
 
 .cohort {
@@ -42,4 +48,8 @@
       opacity: 0.6;
     }
   }
+}
+
+.icon {
+  padding-top: 6px;
 }

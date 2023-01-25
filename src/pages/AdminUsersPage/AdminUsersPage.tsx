@@ -1,4 +1,4 @@
-import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
+import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent, useMemo, SetStateAction } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -9,14 +9,14 @@ import { Text } from "../../components/UI/Text";
 
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
-
 import { useMutation } from "../../hook/useMutation";
 import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
+import { Delete } from "../../icons/Delete/Delete";
 import { getAllUsers } from "../../utils/api";
 
 import { USERS_URL } from "../../utils/constants";
-import { TReqUserData } from "../../utils/types";
+import { TReqUserData, TUser } from "../../utils/types";
 
 const parseUsersCsv = (str: string): TReqUserData[] => {
   const result: TReqUserData[] = [];
@@ -36,7 +36,7 @@ export const AdminUsersPage: FC = () => {
   const [isHiddenAlert, setIsHiddenAlert] = useState(false);
   const { searchData } = useSearch();
   const debouncedSearch = useDebounce(searchData, 500);
-
+  const [studentsNew, setStudentsNew] = useState<TReqUserData[]>([]);
   const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
     const reader = new FileReader();
@@ -44,11 +44,14 @@ export const AdminUsersPage: FC = () => {
       const text = e.target?.result;
       if (typeof text === "string") {
         const newUsers = parseUsersCsv(text);
-        const result = await Promise.all(
-          newUsers.map((el) => {
-            return mutationData(USERS_URL, "POST", el);
-          }),
-        );
+        setStudentsNew(newUsers);
+        //это наверное теперь должно происходить по клику сохранить, но у меня опять ошибка и все ломается
+        //help
+        // const result = await Promise.all(
+        //   newUsers.map((el) => {
+        //     return mutationData(USERS_URL, "POST", el);
+        //   }),
+        // );
         setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
@@ -58,7 +61,6 @@ export const AdminUsersPage: FC = () => {
       reader.readAsText(ev.target.files[0]);
     }
   };
-
   const [form, setValue] = useState({ filter: "" });
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
@@ -88,12 +90,35 @@ export const AdminUsersPage: FC = () => {
 
   const { url } = getAllUsers();
   const { data, error, isloading } = useFetch(url);
-
-  let students: any[] = [];
-
-  if (data) {
-    students = data.items;
-  }
+  const [students, setStudents] = useState<TUser[]>([]);
+  const [itemToHide, setItemToHide] = useState("");
+  const [order, setOrder] = useState(false);
+  const [color, setColor] = useState("#3B23B7");
+  const [border, setBorder] = useState("1px solid #3B23B7");
+  useMemo(() => {
+    if (data) {
+      setStudents(data.items);
+    }
+    if (itemToHide) {
+      setStudents(
+        students.map((student) => {
+          if (student._id === itemToHide) {
+            return { ...student, cohort: "deleted" };
+          } else return student;
+        }),
+      );
+    }
+  }, [data, itemToHide]);
+  const sortByCohort = (arr: any) => {
+    return arr.sort((a: any, b: any) => {
+      return a.cohort.toLowerCase().localeCompare(b.cohort.toLowerCase());
+    });
+  };
+  const sortByMail = (arr: any) => {
+    return arr.sort((a: any, b: any) => {
+      return a.email.toLowerCase().localeCompare(b.email.toLowerCase());
+    });
+  };
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
 
@@ -129,13 +154,43 @@ export const AdminUsersPage: FC = () => {
             </span>
           </div>
           <div className={styles.main}>
-            <p className={styles.column}>Номер когорты</p>
-            <p className={styles.column}>E-mail</p>
+            <p
+              className={styles.column}
+              onClick={() => {
+                setOrder(!order);
+                sortByCohort(students);
+              }}
+            >
+              Номер когорты
+            </p>
+            <p
+              className={styles.column}
+              onClick={() => {
+                setOrder(!order);
+                sortByMail(students);
+              }}
+            >
+              E-mail
+            </p>
             <p className={styles.column}>Имя и фамилия студента</p>
           </div>
-          {students.map((student) => (
-            <StudentFrame key={student._id} student={student} />
-          ))}
+          {studentsNew.map((student: any, i: number) => {
+            return (
+              <StudentFrame key={i} student={student} setItemToHide={setItemToHide} color={color} border={border} />
+            );
+          })}
+          {students.map((student) => {
+            if (student.cohort !== "deleted") {
+              return (
+                <StudentFrame
+                  key={student._id}
+                  student={student}
+                  setItemToHide={setItemToHide}
+                  icon={isHiddenAlert ? <Delete /> : false}
+                />
+              );
+            }
+          })}
         </div>
         <div className={styles["right-wrapper"]}>
           <div>
@@ -156,12 +211,28 @@ export const AdminUsersPage: FC = () => {
               <Text>Проверьте, что загруженные данные корректны и сохраните их или удалите и загрузите заново.</Text>
               <ul className={styles["alert-error__list-btn"]}>
                 <li>
-                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_alert"]].join(" ")}>
+                  <button
+                    className={[styles["alert-error__btn"], styles["alert-error__btn_type_alert"]].join(" ")}
+                    onClick={() => {
+                      setStudentsNew([]);
+                    }}
+                  >
                     Удалить
                   </button>
                 </li>
                 <li>
-                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_normal"]].join(" ")}>
+                  <button
+                    className={[styles["alert-error__btn"], styles["alert-error__btn_type_normal"]].join(" ")}
+                    onClick={() => {
+                      setColor("#100C34");
+                      setBorder("1px solid #83828F");
+                      setIsHiddenAlert(false);
+                      studentsNew.map((el: any) => {
+                        console.log(el);
+                        //return mutationData(USERS_URL, "POST", el);
+                      });
+                    }}
+                  >
                     Сохранить
                   </button>
                 </li>
