@@ -7,19 +7,16 @@ import styles from "./AdminCommentPageStyles.module.scss";
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
+import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
-import { COMMENTS_URL } from "../../utils/constants";
 
 export const AdminCommentPage: FC = () => {
-  const search = (query: string) => {
-    fetch(`${COMMENTS_URL}?offset=38055382&limit=20&search=` + query).then((res: any) =>
-      res.json().then((res: any) => console.log(res)),
-    );
-  };
-  const debouncedSearch = useDebounce(search, 500);
+  const search = useSearch();
+  const debouncedSearch = useDebounce(search.searchData, 500);
+
   const { url } = getAllComments();
-  const { data } = useFetch(url);
+  const { data, isloading, error } = useFetch(url);
   let comments: any[] = [];
   let renderComment: any[] = [];
 
@@ -32,7 +29,7 @@ export const AdminCommentPage: FC = () => {
   const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
   const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
     const target = e.target as HTMLInputElement;
-    debouncedSearch(target.value);
+    debouncedSearch(url, { limit: 10, search: target.value });
     setValue(target.value);
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
@@ -85,6 +82,10 @@ export const AdminCommentPage: FC = () => {
       return (target = "из блока Сфера");
     }
   };
+
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
+  if (error) return <h1>Не удалось получить информацию о комментариях с сервера</h1>;
+
   return (
     <section>
       <div className={styles.container}>

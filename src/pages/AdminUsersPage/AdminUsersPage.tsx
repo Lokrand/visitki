@@ -7,9 +7,11 @@ import styles from "./AdminUsersPageStyles.module.scss";
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
 import { Text } from "../../components/UI/Text";
 
+import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
 
 import { useMutation } from "../../hook/useMutation";
+import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllUsers } from "../../utils/api";
 
@@ -32,6 +34,8 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
 export const AdminUsersPage: FC = () => {
   const { mutationData } = useMutation();
   const [isHiddenAlert, setIsHiddenAlert] = useState(false);
+  const { searchData } = useSearch();
+  const debouncedSearch = useDebounce(searchData, 500);
 
   const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
@@ -61,6 +65,7 @@ export const AdminUsersPage: FC = () => {
   const [displayStyle, setDisplayStyle] = useState({ display: "none" });
   const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
     const target = e.target as HTMLInputElement;
+    debouncedSearch(url, { limit: 10, search: target.value });
     setValue({ filter: target.value });
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
@@ -82,14 +87,15 @@ export const AdminUsersPage: FC = () => {
   };
 
   const { url } = getAllUsers();
-  const { data, error } = useFetch(url);
+  const { data, error, isloading } = useFetch(url);
 
-  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
   let students: any[] = [];
 
   if (data) {
     students = data.items;
   }
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
+  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
 
   return (
     <section>
