@@ -1,12 +1,17 @@
 import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent } from "react";
 
+import { Link } from "react-router-dom";
+
 import styles from "./AdminUsersPageStyles.module.scss";
 
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
+import { Text } from "../../components/UI/Text";
 
+import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
 
 import { useMutation } from "../../hook/useMutation";
+import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllUsers } from "../../utils/api";
 
@@ -28,6 +33,9 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
 
 export const AdminUsersPage: FC = () => {
   const { mutationData } = useMutation();
+  const [isHiddenAlert, setIsHiddenAlert] = useState(false);
+  const { searchData } = useSearch();
+  const debouncedSearch = useDebounce(searchData, 500);
 
   const handleFileLoad = (ev: ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
@@ -41,6 +49,7 @@ export const AdminUsersPage: FC = () => {
             return mutationData(USERS_URL, "POST", el);
           }),
         );
+        setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
       }
@@ -56,6 +65,7 @@ export const AdminUsersPage: FC = () => {
   const [displayStyle, setDisplayStyle] = useState({ display: "none" });
   const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
     const target = e.target as HTMLInputElement;
+    debouncedSearch(url, { limit: 10, search: target.value });
     setValue({ filter: target.value });
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
@@ -77,24 +87,25 @@ export const AdminUsersPage: FC = () => {
   };
 
   const { url } = getAllUsers();
-  const { data, error } = useFetch(url);
+  const { data, error, isloading } = useFetch(url);
 
-  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
   let students: any[] = [];
 
   if (data) {
     students = data.items;
   }
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
+  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
 
   return (
     <section>
       <div className={styles.container}>
-        <a href='/admin/users' className={styles.title}>
+        <Link to='/admin/users' className={styles.title}>
           Студенты
-        </a>
-        <a href='/admin' className={styles.title}>
+        </Link>
+        <Link to='/admin' className={styles.title}>
           Комментарии
-        </a>
+        </Link>
       </div>
       <div className={styles.wrapper}>
         <div className={styles.table}>
@@ -126,18 +137,37 @@ export const AdminUsersPage: FC = () => {
             <StudentFrame key={student._id} student={student} />
           ))}
         </div>
-        <div className={styles.adder}>
-          <h3 className={styles.title}>Добавить студентов</h3>
-          <p className={styles.text}>
-            Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
-            студентов, вторая колонка — номер когорты.
-          </p>
-          <form method='post' encType='multipart/form-data'>
-            <label className={styles.inputfile}>
-              <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />
-              <span>Выберите файл</span>
-            </label>
-          </form>
+        <div className={styles["right-wrapper"]}>
+          <div>
+            <h3 className={styles.title}>Добавить студентов</h3>
+            <p className={styles.text}>
+              Чтобы добавить новых студентов, загрузите csv или xlsx файл: первая колонка должна содержать email
+              студентов, вторая колонка — номер когорты.
+            </p>
+            <form method='post' encType='multipart/form-data'>
+              <label className={styles.inputfile}>
+                <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />
+                <span>Выберите файл</span>
+              </label>
+            </form>
+          </div>
+          {isHiddenAlert && (
+            <div className={styles["alert-error"]}>
+              <Text>Проверьте, что загруженные данные корректны и сохраните их или удалите и загрузите заново.</Text>
+              <ul className={styles["alert-error__list-btn"]}>
+                <li>
+                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_alert"]].join(" ")}>
+                    Удалить
+                  </button>
+                </li>
+                <li>
+                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_normal"]].join(" ")}>
+                    Сохранить
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>

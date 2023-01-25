@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import styles from "./SocialLink.module.scss";
-
 interface ISocialLinkProps {
   nameSocialNetwork: "telegram" | "github";
   userName: string | undefined;

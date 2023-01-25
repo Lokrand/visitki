@@ -9,6 +9,7 @@ export const handleRequest = async (
   method: TMethod,
   token: TToken,
   data: {} | null = null,
+  params: {} | null = null,
 ) => {
   try {
     setStatus({ ...status, isloading: true });
@@ -16,7 +17,11 @@ export const handleRequest = async (
       method: method,
       data: data,
       headers: token ? { Authorization: `Bearer ${token}` } : {},
+      params: params,
     });
+    if (res.statusText !== "OK") {
+      throw new Error();
+    }
     setStatus({ ...status, isloading: false, data: res.data });
   } catch (error) {
     setStatus({ ...status, isloading: false, error });

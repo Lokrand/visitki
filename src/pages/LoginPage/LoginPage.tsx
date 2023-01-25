@@ -20,7 +20,7 @@ export const LoginPage: FC = () => {
   const token = location.hash.split("&")[0].split("=")[1] || null;
   const initialUserData: TInitialUserData = {
     isLogin: false,
-    id: "e638ad9bce6d7efd1b5b035b",
+    id: "2cb3baaa7528a9bb5e2c20d9",
     role: "student",
     token: null,
   };
