@@ -27,7 +27,7 @@ const InputTextArea: FC<IInputProps> = ({ label, inputName, placeholder, maxLeng
     text = form.profile[inputName];
   }
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    const target = e.target as HTMLTextAreaElement;
+    const target = e.target;
     if (inputName === "quote") {
       setValue({ ...form, profile: { ...form.profile, [target.name]: target.value } });
     } else if (inputName !== "quote") {

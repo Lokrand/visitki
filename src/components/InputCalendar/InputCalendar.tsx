@@ -1,5 +1,5 @@
 import ru from "date-fns/locale/ru";
-import React, { FC, forwardRef, useRef, useState, MouseEventHandler, SetStateAction, Dispatch, useEffect } from "react";
+import React, { FC, forwardRef, useState, MouseEventHandler, SetStateAction, Dispatch, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 
@@ -37,7 +37,6 @@ const InputCalendar: FC<IInputCalendar> = ({
   const [startDate, setStartDate] = useState<Date | null | undefined>(null);
   const [isMonth, setIsMonth] = useState(false);
   const [isYear, setIsYear] = useState(false);
-  const ref = useRef();
   const [yearValue, setYearValue] = useState<string | number>("");
   const [monthValue, setMonthValue] = useState("");
   const mediaQuery = window.matchMedia("(max-width: 414px)");

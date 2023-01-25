@@ -15,7 +15,7 @@ interface IProfilePhoto {
 const ProfilePhoto: FC<IProfilePhoto> = ({ setValue, form, isErrorPhoto, setIsErrorPhoto }) => {
   const [hover, setHover] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [img, setImg] = useState() as any;
+  const [img, setImg] = useState<string>();
   const [sizeLimit, setSizelimit] = useState(false);
   const handleInputHover: MouseEventHandler<HTMLLabelElement> = (e) => {
     if (e.type === "mouseenter") {

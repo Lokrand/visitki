@@ -7,13 +7,13 @@ import styles from "./FrameComment.module.scss";
 import { useFetch } from "../../hook/useFetch";
 import { CrossRed } from "../../icons/CrossRed/CrossRed";
 import { getAllUsers } from "../../utils/api";
-
+import { TUser } from "../../utils/types";
 interface ICommentFrame {
   id: string;
   commentDate: string;
   from: string;
   to: string;
-  target: any;
+  target: string | undefined;
   text: string;
 }
 
@@ -21,10 +21,10 @@ export const CommentFrame: FC<ICommentFrame> = ({ id, commentDate, from, to, tar
   const { url } = getAllUsers();
   const { data, error, isloading } = useFetch(url);
   const navigate = useNavigate();
-  let user;
+  let user: TUser[];
   let cohort = "";
   if (data) {
-    user = data.items.filter((el: any) => el._id === id);
+    user = data.items.filter((el: TUser) => el._id === id);
     cohort = user[0].cohort;
   }
 

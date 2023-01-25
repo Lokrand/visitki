@@ -108,7 +108,7 @@ export const ProfilePage: FC = () => {
     }
     return Promise.reject(res.status);
   }
-  function request(url: any, options: any) {
+  function request(url: string, options: any) {
     return fetch(url, options).then(checkResponse);
   }
   function changeUserProfile(profile: any, info: any) {

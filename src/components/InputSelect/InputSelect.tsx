@@ -38,7 +38,7 @@ const InputSelect: FC<IInputSelectsProps> = ({
 }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = useState("");
   const [isActive, setActive] = useState(false);
   let height = !isActive ? 0 : options.length >= 5 ? "180px" : `${options.length * 36}px`;
   const re = new RegExp(`^${inputValue}`, "i");

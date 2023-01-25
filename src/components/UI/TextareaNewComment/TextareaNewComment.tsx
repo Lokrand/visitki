@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { ChangeEventHandler, FC, useState } from "react";
 
 import styles from "./TextareaNewComment.module.scss";
 
@@ -15,7 +15,7 @@ export const TextareaNewComment: FC<ITextareaNewComment> = ({ modalFor, id }) =>
 
   const { mutationData } = useMutation();
 
-  const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeComment: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setCommentValue(e.target.value);
   };
 

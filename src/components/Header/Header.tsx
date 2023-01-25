@@ -9,6 +9,7 @@ import { useFetch } from "../../hook/useFetch";
 import adminAvatar from "../../icons/AvatarBackground/gray-avatar.jpg";
 import { Logo } from "../../icons/Logo/Logo";
 import { getFullProfile } from "../../utils/api";
+
 export const Header: FC = () => {
   const { user } = useAuth();
   const { url } = getFullProfile(user?.id);

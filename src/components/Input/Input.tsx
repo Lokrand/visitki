@@ -1,10 +1,8 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction } from "react";
-import { FC, useState, FormEventHandler } from "react";
+import React, { ChangeEventHandler, MouseEventHandler, useState, FC } from "react";
 
 import styles from "./Input.module.scss";
 
 import { Cross } from "../../icons/Cross/Cross";
-import { TForm } from "../../utils/types";
 
 interface IInputProps {
   label: string;
@@ -17,9 +15,9 @@ interface IInputProps {
 const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
-  const handleInputChange: FormEventHandler<HTMLInputElement> | undefined = (e) => {
-    const target = e.target as HTMLInputElement;
+  const [displayStyle, setDisplayStyle] = useState({ display: "none" });
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const target = e.target;
     setValue({ ...form, profile: { ...form.profile, [inputName]: target.value } });
     target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
