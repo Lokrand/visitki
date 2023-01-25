@@ -17,7 +17,7 @@ export const AdminCommentPage: FC = () => {
   };
   const debouncedSearch = useDebounce(search, 500);
   const { url } = getAllComments();
-  const { data } = useFetch(url);
+  const { data, isloading, error } = useFetch(url);
   let comments: any[] = [];
   let renderComment: any[] = [];
 
@@ -83,6 +83,10 @@ export const AdminCommentPage: FC = () => {
       return (target = "из блока Сфера");
     }
   };
+
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
+  if (error) return <h1>Не удалось получить информацию о комментариях с сервера</h1>;
+
   return (
     <section>
       <div className={styles.container}>

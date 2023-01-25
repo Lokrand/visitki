@@ -77,14 +77,15 @@ export const AdminUsersPage: FC = () => {
   };
 
   const { url } = getAllUsers();
-  const { data, error } = useFetch(url);
+  const { data, error, isloading } = useFetch(url);
 
-  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
   let students: any[] = [];
 
   if (data) {
     students = data.items;
   }
+  if (isloading) return <h1>Идет загрузка данных...</h1>;
+  if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
 
   return (
     <section>
