@@ -13,14 +13,13 @@ export const Header: FC = () => {
   const { user } = useAuth();
   const { url } = getFullProfile(user?.id);
   const { data } = useFetch(url);
-  console.log(user?.id);
-  console.log(data);
+
   return (
     <header className={styles.header}>
       <Link to='/'>
         <Logo className={styles.header__logo} />
       </Link>
-      {data !== null && (
+      {data && user?.id && (
         <div className={styles.user}>
           {user?.role === "student" ? (
             <Link to={`profile/${user?.id}`} className={styles.link}>

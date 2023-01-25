@@ -19,7 +19,7 @@ export const useFetch = (url: string) => {
     } else {
       setStatus({ ...status, isloading: false, error: "Ошибка: Не удалось получить токен" });
     }
-  }, []);
+  }, [url, user]);
 
   return { ...status };
 };
