@@ -71,6 +71,6 @@ export const YandexMap = () => {
       );
       map.geoObjects.add(myPlacemarkWithContent);
     });
-  }, [ymaps]);
-  return <section className={styles.map} ref={mapRef}></section>;
+  }, [ymaps, data]);
+  return data && <section className={styles.map} ref={mapRef}></section>;
 };
