@@ -18,7 +18,7 @@ export const LoginPage: FC = () => {
   const initialUserData: TInitialUserData = {
     isLogin: false,
     id: "2cb3baaa7528a9bb5e2c20d9",
-    role: "student",
+    role: "curator",
     token: null,
   };
 
