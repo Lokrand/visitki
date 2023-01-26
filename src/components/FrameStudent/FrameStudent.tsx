@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 
 import styles from "./FrameStudent.module.scss";
 
-import { Delete } from "../../icons/Delete/Delete";
 import { TUser } from "../../utils/types";
 
 type StudentFrame = {
@@ -39,7 +38,6 @@ export const StudentFrame: FC<StudentFrame> = ({ student }) => {
       ) : (
         <input value={nameValue} className={`${styles.student} ${styles.frame}`} onChange={handleNameInput} />
       )}
-      <Delete />
     </div>
   );
 };

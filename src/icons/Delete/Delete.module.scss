@@ -1,9 +1,14 @@
 .main {
   align-self: center;
   justify-self: end;
-}
+  transition: opacity 0.2s linear;
 
-.main:hover {
-  cursor: pointer;
-  opacity: 0.7;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  &:active {
+    opacity: 1;
+  }
 }
