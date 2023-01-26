@@ -17,7 +17,7 @@ export const StudentFrame: FC<StudentFrame> = ({ student }) => {
   const [emailValue, setEmailValue] = useState(student.email);
   const [nameValue, setNameValue] = useState("");
   const handleNameClick = () => {
-    navigate(`detail/${student._id}`);
+    navigate(`/detail/${student._id}`);
   };
   const handleCohortInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     setCohortValue(e.target.value);
