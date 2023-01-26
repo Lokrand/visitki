@@ -13,7 +13,13 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     cb();
   };
 
-  const value: TAuthValue = { user, loginUser };
+  const logoutUser = (cb: () => void): void => {
+    setUser(null);
+    localStorage.removeItem("user");
+    cb();
+  };
+
+  const value: TAuthValue = { user, loginUser, logoutUser };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
