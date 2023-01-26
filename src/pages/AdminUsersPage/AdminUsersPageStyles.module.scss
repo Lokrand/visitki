@@ -21,14 +21,6 @@
 .column {
   margin-left: 8px;
   font-family: var(--text-font-family);
-
-  &:nth-of-type(1) {
-    cursor: pointer;
-  }
-
-  &:nth-of-type(2) {
-    cursor: pointer;
-  }
 }
 
 .frames {
@@ -111,7 +103,7 @@
 }
 
 .text {
-  margin: 12px 0 25px;
+  margin: 12px 0 8px;
 
   font-family: var(--text-font-family);
   font-size: 16px;
@@ -188,7 +180,7 @@
 .title {
   margin: 0;
 
-  font: 700 18px/20px var(--text-font-family);
+  font: 700 14px/18px var(--text-font-family);
   color: var(--text-dark);
   text-decoration: none;
   text-transform: uppercase;

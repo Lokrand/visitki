@@ -4,7 +4,6 @@
   font-size: 16px;
   line-height: 1.5;
   border: none;
-  outline: none;
 }
 .frames {
   display: grid;
@@ -18,12 +17,9 @@
 
 .frame:hover {
   cursor: pointer;
-  border: 1px solid var(--placeholder);
-  border-radius: 4px;
-}
-
-.frame:focus {
+  box-sizing: border-box;
   border: 1px solid var(--text-dark);
+  border-radius: 4px;
 }
 
 .cohort {
@@ -46,8 +42,4 @@
       opacity: 0.6;
     }
   }
-}
-
-.icon {
-  padding-top: 6px;
 }
