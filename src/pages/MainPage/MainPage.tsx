@@ -1,14 +1,15 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import styles from "./MainPageStyles.module.scss";
 
 import { Card } from "../../components/Card/Card";
+import { useAuth } from "../../hook/useAuth";
 import { useFetch } from "../../hook/useFetch";
 import { Arrow } from "../../icons/Arrow/Arrow";
 import { getAllProfiles } from "../../utils/api";
-import { MAP_ROUTE } from "../../utils/constants";
+import { ADMIN_ROUTE, MAP_ROUTE } from "../../utils/constants";
 import { TFullProfile } from "../../utils/types";
 
 interface IMainPage {
@@ -18,9 +19,15 @@ interface IMainPage {
 export const MainPage: FC<IMainPage> = ({ cohort }) => {
   const [filterModalActive, setFilterModalActive] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("Все города");
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const { url } = getAllProfiles();
   const { data, error, isloading } = useFetch(url);
+
+  useEffect(() => {
+    if (user && user.role === "curator") navigate(ADMIN_ROUTE, { replace: true });
+  }, []);
 
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Студенты не найдены</h1>;
