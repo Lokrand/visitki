@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import styles from "./FrameComment.module.scss";
 
 import { useFetch } from "../../hook/useFetch";
-import { CrossRed } from "../../icons/CrossRed/CrossRed";
+import { Delete } from "../../icons/Delete/Delete";
 import { getAllUsers } from "../../utils/api";
 import { TUser } from "../../utils/types";
 interface ICommentFrame {
@@ -41,7 +41,7 @@ export const CommentFrame: FC<ICommentFrame> = ({ id, commentDate, from, to, tar
       <p className={`${styles.frame}`}>{to}</p>
       <p className={`${styles.frame}`}>{target}</p>
       <p className={`${styles.frame}`}>{text}</p>
-      <CrossRed />
+      <Delete />
     </div>
   );
 };

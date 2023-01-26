@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 import styles from "./FrameStudent.module.scss";
 
+import { Delete } from "../../icons/Delete/Delete";
 import { TUser } from "../../utils/types";
 
 type StudentFrame = {
@@ -28,7 +29,7 @@ export const StudentFrame: FC<StudentFrame> = ({ student }) => {
     setNameValue(e.target.value);
   };
   return (
-    <div className={styles.frames}>
+    <div className={`${styles.frames} `}>
       <input value={cohortValue} className={`${styles.cohort} ${styles.frame}`} onChange={handleCohortInput} />
       <input value={emailValue} className={`${styles.email} ${styles.frame}`} onChange={handleEmailInput} />
       {student.name ? (
@@ -38,6 +39,7 @@ export const StudentFrame: FC<StudentFrame> = ({ student }) => {
       ) : (
         <input value={nameValue} className={`${styles.student} ${styles.frame}`} onChange={handleNameInput} />
       )}
+      <Delete />
     </div>
   );
 };
