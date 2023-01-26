@@ -21,17 +21,34 @@ export const Header: FC = () => {
         <Logo className={styles.header__logo} />
       </Link>
       {data && user?.id && (
-        <div className={styles.user}>
+        <div className={styles["header__nav-wrapper"]}>
           {user?.role === "student" ? (
-            <Link to={`profile/${user?.id}`} className={styles.link}>
-              <img className={styles.user__avatar} src={data.profile.photo} alt='аватар' />
-              <p className={styles.user__name}>{data.profile.name}</p>
-            </Link>
+            <>
+              <div className={styles.header__user}>
+                {/* <img className={styles["header__user-avatar"]} src={data.profile.photo} alt='аватар' /> */}
+                <img
+                  className={styles["header__user-avatar"]}
+                  src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAd3CMwyQAR1BSCjlfllXzvrg6a4oolAe8qg&usqp=CAU'
+                  alt='аватар'
+                />
+                <p className={styles["header__user-name"]}>{data.profile.name}</p>
+              </div>
+              <ul className={styles.header__nav}>
+                <li>
+                  <Link className={styles["header__nav-link"]} to={"./profile"}>
+                    Профиль
+                  </Link>
+                </li>
+                <li>
+                  <button className={styles["header__nav-link"]}>Выйти</button>
+                </li>
+              </ul>
+            </>
           ) : (
-            <Link to={"/admin"} className={styles.link}>
-              <AdminAvatar className={styles.user__avatar} />
-              <p className={styles.user__name}>{data.email}</p>
-            </Link>
+            <div className={styles.header__user}>
+              <AdminAvatar className={styles["header__user-avatar"]} />
+              <p className={styles["header__user-name"]}>{data.email}</p>
+            </div>
           )}
         </div>
       )}
