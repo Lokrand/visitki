@@ -134,9 +134,9 @@ export const AdminUsersPage: FC = () => {
             <p className={styles.column}>Имя и фамилия студента</p>
           </div>
           {students.map((student) => (
-            <div>
+            <div key={student._id}>
               {student ? (
-                <StudentFrame key={student._id} student={student} />
+                <StudentFrame student={student} />
               ) : (
                 <p className={styles.error}>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</p>
               )}
