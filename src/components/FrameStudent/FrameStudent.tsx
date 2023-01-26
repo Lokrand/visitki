@@ -6,7 +6,7 @@ import styles from "./FrameStudent.module.scss";
 
 import { useForm } from "../../hook/useForm";
 
-import { TUser } from "../../utils/types";
+import { TReqUserData, TUser } from "../../utils/types";
 
 type TStudentFrame = {
   student: TUser;
@@ -36,47 +36,45 @@ export const StudentFrame: FC<TStudentFrame> = ({ student, setItemToHide, color,
   };
 
   return (
-    <>
-      <form className={styles.frames} style={{ borderBottom: border }}>
+    <form className={styles.frames} style={{ borderBottom: border }}>
+      <input
+        name='cohort'
+        value={values.cohort}
+        className={`${styles.cohort} ${styles.frame}`}
+        onChange={handleChange}
+        onKeyDown={onEnter}
+        style={{ color: color }}
+      />
+      <input
+        name='email'
+        value={values.email}
+        className={`${styles.email} ${styles.frame}`}
+        onChange={handleChange}
+        onKeyDown={onEnter}
+        style={{ color: color }}
+      />
+      {student.name ? (
+        <p className={styles.student_text} onClick={handleNameClick}>
+          {student.name}
+        </p>
+      ) : (
         <input
-          name='cohort'
-          value={values.cohort}
-          className={`${styles.cohort} ${styles.frame}`}
+          name='name'
+          value={values.name}
+          className={`${styles.student} ${styles.frame}`}
           onChange={handleChange}
           onKeyDown={onEnter}
           style={{ color: color }}
         />
-        <input
-          name='email'
-          value={values.email}
-          className={`${styles.email} ${styles.frame}`}
-          onChange={handleChange}
-          onKeyDown={onEnter}
-          style={{ color: color }}
-        />
-        {student.name ? (
-          <p className={styles.student_text} onClick={handleNameClick}>
-            {student.name}
-          </p>
-        ) : (
-          <input
-            name='name'
-            value={values.name}
-            className={`${styles.student} ${styles.frame}`}
-            onChange={handleChange}
-            onKeyDown={onEnter}
-            style={{ color: color }}
-          />
-        )}
-        <span
-          className={styles.icon}
-          onClick={() => {
-            setItemToHide(student._id);
-          }}
-        >
-          {icon}
-        </span>
-      </form>
-    </>
+      )}
+      <span
+        className={styles.icon}
+        onClick={() => {
+          setItemToHide(student._id);
+        }}
+      >
+        {icon}
+      </span>
+    </form>
   );
 };

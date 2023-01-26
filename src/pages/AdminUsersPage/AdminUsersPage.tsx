@@ -109,13 +109,13 @@ export const AdminUsersPage: FC = () => {
       );
     }
   }, [data, itemToHide]);
-  const sortByCohort = (arr: any) => {
-    return arr.sort((a: any, b: any) => {
+  const sortByCohort = (arr: TUser[]) => {
+    return arr.sort((a, b) => {
       return a.cohort.toLowerCase().localeCompare(b.cohort.toLowerCase());
     });
   };
-  const sortByMail = (arr: any) => {
-    return arr.sort((a: any, b: any) => {
+  const sortByMail = (arr: TUser[]) => {
+    return arr.sort((a, b) => {
       return a.email.toLowerCase().localeCompare(b.email.toLowerCase());
     });
   };
@@ -227,7 +227,7 @@ export const AdminUsersPage: FC = () => {
                       setColor("#100C34");
                       setBorder("1px solid #83828F");
                       setIsHiddenAlert(false);
-                      studentsNew.map((el: any) => {
+                      studentsNew.map((el) => {
                         console.log(el);
                         //return mutationData(USERS_URL, "POST", el);
                       });
