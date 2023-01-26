@@ -13,7 +13,7 @@ export const useMutation = () => {
     error: null,
   });
 
-  const mutationData = (url: string, method: TMethod, data: any) => {
+  const mutationData = (url: string, method: TMethod, data?: any) => {
     user && handleRequest(status, setStatus, url, method, user.token, data);
   };
 

@@ -8,10 +8,11 @@ import { CommentFrame } from "../../components/FrameComment/FrameComment";
 import { useAuth } from "../../hook/useAuth";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
+import { useMutation } from "../../hook/useMutation";
 import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
-import { MAIN_ROUTE } from "../../utils/constants";
+import { COMMENTS_URL, MAIN_ROUTE } from "../../utils/constants";
 import { TComment } from "../../utils/types";
 
 export const AdminCommentPage: FC = () => {
@@ -19,19 +20,19 @@ export const AdminCommentPage: FC = () => {
   const debouncedSearch = useDebounce(search.searchData, 500);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { mutationData } = useMutation();
+  const { url } = getAllComments();
+  const { data, isloading, error } = useFetch(url);
+  const [comments, setComments] = useState<TComment[]>([]);
 
   useEffect(() => {
     if (user && user.role === "student") navigate(MAIN_ROUTE, { replace: true });
-  }, []);
+    if (data) {
+      setComments(data.items);
+    }
+  }, [data]);
 
-  const { url } = getAllComments();
-  const { data, isloading, error } = useFetch(url);
-  let comments: TComment[] = [];
   let renderComment: TComment[] = [];
-
-  if (data) {
-    comments = data.items;
-  }
   const [searchParam, setValue] = useState("");
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
@@ -92,11 +93,16 @@ export const AdminCommentPage: FC = () => {
     }
   };
 
+  const handleDelete = (id: string) => {
+    mutationData(`${COMMENTS_URL}/${id}`, "DELETE");
+    setComments([...comments.filter((el) => el._id !== id)]);
+  };
+
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Не удалось получить информацию о комментариях с сервера</h1>;
 
   return (
-    <section>
+    <section className={styles["main-container"]}>
       <div className={styles.container}>
         <Link to='/admin/users' className={styles.title}>
           Студенты
@@ -127,27 +133,35 @@ export const AdminCommentPage: FC = () => {
         </div>
       </div>
 
-      <div className={styles.main}>
-        <p className={styles.column}>Когорта</p>
-        <p className={styles.column}>Дата</p>
-        <p className={styles.column}>Отправитель</p>
-        <p className={styles.column}>Получатель</p>
-        <p className={styles.column}>Откуда комментарий</p>
-        <p className={styles.column}>Текст комментария</p>
-      </div>
-      {comments.map((el: TComment) => {
-        return (
-          <CommentFrame
-            key={el._id}
-            id={el.from._id}
-            commentDate={"20.12.2022"}
-            target={checkTarget(el.target)}
-            from={el.from.name}
-            to={el.to.name}
-            text={el.text}
-          />
-        );
-      })}
+      {comments.length !== 0 ? (
+        <div className={styles.main}>
+          <p className={styles.column}>Когорта</p>
+          <p className={styles.column}>Дата</p>
+          <p className={styles.column}>Отправитель</p>
+          <p className={styles.column}>Получатель</p>
+          <p className={styles.column}>Откуда комментарий</p>
+          <p className={styles.column}>Текст комментария</p>
+        </div>
+      ) : (
+        <h1 className={styles.alert}>Не найдено ниодного комментария</h1>
+      )}
+
+      {comments &&
+        comments.map((el: TComment) => {
+          return (
+            <CommentFrame
+              key={el._id}
+              id={el._id}
+              userId={el.from._id}
+              commentDate={"20.12.2022"}
+              target={checkTarget(el.target)}
+              from={el.from.name}
+              to={el.to.name}
+              text={el.text}
+              handleDelete={handleDelete}
+            />
+          );
+        })}
     </section>
   );
 };
