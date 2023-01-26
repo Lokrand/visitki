@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, useState, ChangeEventHandler, useEffect } from "react";
+import { FC, MouseEventHandler, useState, ChangeEventHandler, useEffect, useMemo } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -14,6 +14,7 @@ import { useFetch } from "../../hook/useFetch";
 import { useMutation } from "../../hook/useMutation";
 import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
+import { Delete } from "../../icons/Delete/Delete";
 import { getAllUsers } from "../../utils/api";
 
 import { MAIN_ROUTE, USERS_URL } from "../../utils/constants";
@@ -39,7 +40,7 @@ export const AdminUsersPage: FC = () => {
   const [isHiddenAlert, setIsHiddenAlert] = useState(false);
   const { searchData } = useSearch();
   const debouncedSearch = useDebounce(searchData, 500);
-
+  const [studentsNew, setStudentsNew] = useState<TReqUserData[]>([]);
   useEffect(() => {
     if (user && user.role === "student") navigate(MAIN_ROUTE, { replace: true });
   }, []);
@@ -51,11 +52,13 @@ export const AdminUsersPage: FC = () => {
       const text = e.target?.result;
       if (typeof text === "string") {
         const newUsers = parseUsersCsv(text);
-        const result = await Promise.all(
-          newUsers.map((el) => {
-            return mutationData(USERS_URL, "POST", el);
-          }),
-        );
+        setStudentsNew(newUsers);
+        //перенесла это в кнопку "сохранить, но не уверена, что правильно
+        // const result = await Promise.all(
+        //   newUsers.map((el) => {
+        //     return mutationData(USERS_URL, "POST", el);
+        //   }),
+        // );
         setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
@@ -95,12 +98,35 @@ export const AdminUsersPage: FC = () => {
 
   const { url } = getAllUsers();
   const { data, error, isloading } = useFetch(url);
-
-  let students: TUser[] = [];
-
-  if (data) {
-    students = data.items;
-  }
+  const [students, setStudents] = useState<TUser[]>([]);
+  const [itemToHide, setItemToHide] = useState("");
+  const [order, setOrder] = useState(false);
+  const [color, setColor] = useState("#3B23B7");
+  const [border, setBorder] = useState("1px solid #3B23B7");
+  useMemo(() => {
+    if (data) {
+      setStudents(data.items);
+    }
+    if (itemToHide) {
+      setStudents(
+        students.map((student) => {
+          if (student._id === itemToHide) {
+            return { ...student, cohort: "deleted" };
+          } else return student;
+        }),
+      );
+    }
+  }, [data, itemToHide]);
+  const sortByCohort = (arr: TUser[]) => {
+    return arr.sort((a, b) => {
+      return a.cohort.toLowerCase().localeCompare(b.cohort.toLowerCase());
+    });
+  };
+  const sortByMail = (arr: TUser[]) => {
+    return arr.sort((a, b) => {
+      return a.email.toLowerCase().localeCompare(b.email.toLowerCase());
+    });
+  };
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</h1>;
 
@@ -136,19 +162,43 @@ export const AdminUsersPage: FC = () => {
             </span>
           </div>
           <div className={styles.main}>
-            <p className={styles.column}>Номер когорты</p>
-            <p className={styles.column}>E-mail</p>
+            <p
+              className={styles.column}
+              onClick={() => {
+                setOrder(!order);
+                sortByCohort(students);
+              }}
+            >
+              Номер когорты
+            </p>
+            <p
+              className={styles.column}
+              onClick={() => {
+                setOrder(!order);
+                sortByMail(students);
+              }}
+            >
+              E-mail
+            </p>
             <p className={styles.column}>Имя и фамилия студента</p>
           </div>
-          {students.map((student) => (
-            <div key={student._id}>
-              {student ? (
-                <StudentFrame student={student} />
-              ) : (
-                <p className={styles.error}>Не удалось никого найти. Исправьте запрос или сбросьте фильтр</p>
-              )}
-            </div>
-          ))}
+          {studentsNew.map((student: any, i: number) => {
+            return (
+              <StudentFrame key={i} student={student} setItemToHide={setItemToHide} color={color} border={border} />
+            );
+          })}
+          {students.map((student) => {
+            if (student.cohort !== "deleted") {
+              return (
+                <StudentFrame
+                  key={student._id}
+                  student={student}
+                  setItemToHide={setItemToHide}
+                  icon={isHiddenAlert ? <Delete /> : false}
+                />
+              );
+            }
+          })}
         </div>
         <div className={styles["right-wrapper"]}>
           <div>
@@ -169,12 +219,28 @@ export const AdminUsersPage: FC = () => {
               <Text>Проверьте, что загруженные данные корректны и сохраните их или удалите и загрузите заново.</Text>
               <ul className={styles["alert-error__list-btn"]}>
                 <li>
-                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_alert"]].join(" ")}>
+                  <button
+                    className={[styles["alert-error__btn"], styles["alert-error__btn_type_alert"]].join(" ")}
+                    onClick={() => {
+                      setStudentsNew([]);
+                    }}
+                  >
                     Удалить
                   </button>
                 </li>
                 <li>
-                  <button className={[styles["alert-error__btn"], styles["alert-error__btn_type_normal"]].join(" ")}>
+                  <button
+                    className={[styles["alert-error__btn"], styles["alert-error__btn_type_normal"]].join(" ")}
+                    onClick={() => {
+                      setColor("#100C34");
+                      setBorder("1px solid #83828F");
+                      setIsHiddenAlert(false);
+                      studentsNew.map((el) => {
+                        console.log(el);
+                        return mutationData(USERS_URL, "POST", el);
+                      });
+                    }}
+                  >
                     Сохранить
                   </button>
                 </li>

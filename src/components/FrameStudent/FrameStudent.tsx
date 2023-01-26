@@ -1,45 +1,88 @@
-import React, { ChangeEventHandler, FC, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  Dispatch,
+  FC,
+  KeyboardEventHandler,
+  ReactNode,
+  SetStateAction,
+  useState,
+} from "react";
 
 import { useNavigate } from "react-router";
 
 import styles from "./FrameStudent.module.scss";
 
-import { Delete } from "../../icons/Delete/Delete";
+import { useForm } from "../../hook/useForm";
+
 import { TUser } from "../../utils/types";
 
-type StudentFrame = {
+type TStudentFrame = {
   student: TUser;
+  setItemToHide: Dispatch<SetStateAction<string>>;
+  color?: string;
+  border?: string;
+  icon?: ReactNode;
 };
 
-export const StudentFrame: FC<StudentFrame> = ({ student }) => {
+export const StudentFrame: FC<TStudentFrame> = ({ student, setItemToHide, color, icon, border }) => {
   const navigate = useNavigate();
-  const [cohortValue, setCohortValue] = useState(student.cohort);
-  const [emailValue, setEmailValue] = useState(student.email);
-  const [nameValue, setNameValue] = useState("");
   const handleNameClick = () => {
     navigate(`detail/${student._id}`);
   };
-  const handleCohortInput: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setCohortValue(e.target.value);
+  const { values, handleChange, setValues } = useForm({
+    cohort: student.cohort,
+    email: student.email,
+    name: student.name,
+  });
+  const submitHandler = () => {
+    console.log(values);
   };
-  const handleEmailInput: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setEmailValue(e.target.value);
-  };
-  const handleNameInput: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setNameValue(e.target.value);
+
+  const handleSubmit: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter") {
+      submitHandler();
+    }
   };
   return (
-    <div className={`${styles.frames} `}>
-      <input value={cohortValue} className={`${styles.cohort} ${styles.frame}`} onChange={handleCohortInput} />
-      <input value={emailValue} className={`${styles.email} ${styles.frame}`} onChange={handleEmailInput} />
+    <form className={styles.frames} style={{ borderBottom: border }}>
+      <input
+        name='cohort'
+        value={values.cohort}
+        className={`${styles.cohort} ${styles.frame}`}
+        onChange={handleChange}
+        onKeyDown={handleSubmit}
+        style={{ color: color }}
+      />
+      <input
+        name='email'
+        value={values.email}
+        className={`${styles.email} ${styles.frame}`}
+        onChange={handleChange}
+        onKeyDown={handleSubmit}
+        style={{ color: color }}
+      />
       {student.name ? (
         <p className={styles.student_text} onClick={handleNameClick}>
           {student.name}
         </p>
       ) : (
-        <input value={nameValue} className={`${styles.student} ${styles.frame}`} onChange={handleNameInput} />
+        <input
+          name='name'
+          value={values.name}
+          className={`${styles.student} ${styles.frame}`}
+          onChange={handleChange}
+          onKeyDown={handleSubmit}
+          style={{ color: color }}
+        />
       )}
-      <Delete />
-    </div>
+      <span
+        className={styles.icon}
+        onClick={() => {
+          setItemToHide(student._id);
+        }}
+      >
+        {icon}
+      </span>
+    </form>
   );
 };
