@@ -12,7 +12,7 @@ export const AdminAvatar: FC<TAdminAvatarProps> = ({ className }) => {
       xmlns='http://www.w3.org/2000/svg'
       className={className}
     >
-      <circle cx='16' cy='16' r='16' fill='#100C34' fill-opacity='0.15' />
+      <circle cx='16' cy='16' r='16' fill='#100C34' fillOpacity='0.15' />
     </svg>
   );
 };
