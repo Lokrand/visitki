@@ -6,7 +6,7 @@ import styles from "./FrameStudent.module.scss";
 
 import { useForm } from "../../hook/useForm";
 
-import { TReqUserData, TUser } from "../../utils/types";
+import { TUser } from "../../utils/types";
 
 type TStudentFrame = {
   student: TUser;

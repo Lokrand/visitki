@@ -1,4 +1,4 @@
-import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent, useMemo, SetStateAction } from "react";
+import { FC, FormEventHandler, MouseEventHandler, useState, ChangeEvent, useMemo } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -47,11 +47,11 @@ export const AdminUsersPage: FC = () => {
         setStudentsNew(newUsers);
         //это наверное теперь должно происходить по клику сохранить, но у меня опять ошибка и все ломается
         //help
-        // const result = await Promise.all(
-        //   newUsers.map((el) => {
-        //     return mutationData(USERS_URL, "POST", el);
-        //   }),
-        // );
+        const result = await Promise.all(
+          newUsers.map((el) => {
+            return mutationData(USERS_URL, "POST", el);
+          }),
+        );
         setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
@@ -201,7 +201,14 @@ export const AdminUsersPage: FC = () => {
             </p>
             <form method='post' encType='multipart/form-data'>
               <label className={styles.inputfile}>
-                <input type='file' accept={".csv"} onChange={handleFileLoad} className={styles.fileButton} name='' />
+                <input
+                  type='file'
+                  accept={".csv"}
+                  onChange={handleFileLoad}
+                  className={styles.fileButton}
+                  name=''
+                  multiple
+                />
                 <span>Выберите файл</span>
               </label>
             </form>
