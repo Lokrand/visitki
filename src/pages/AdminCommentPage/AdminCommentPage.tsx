@@ -102,7 +102,7 @@ export const AdminCommentPage: FC = () => {
   if (error) return <h1>Не удалось получить информацию о комментариях с сервера</h1>;
 
   return (
-    <section>
+    <section className={styles["main-container"]}>
       <div className={styles.container}>
         <Link to='/admin/users' className={styles.title}>
           Студенты
