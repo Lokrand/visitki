@@ -29,7 +29,7 @@ export const CommentFrame: FC<ICommentFrame> = ({ id, commentDate, from, to, tar
   }
 
   const handleRedirectOnCohortPage = () => {
-    navigate(`cohort/${cohort}`);
+    navigate(`/cohort/${cohort}`);
   };
   return (
     <div className={styles.frames}>
