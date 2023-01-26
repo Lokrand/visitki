@@ -14,9 +14,6 @@ export const LoginPage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, loginUser } = useAuth();
-  const fromPath: string = location.state?.from?.pathname || MAIN_ROUTE;
-  const [fromPage] = useLocalStorage(fromPath, "from");
-
   const token = location.hash.split("&")[0].split("=")[1] || null;
   const initialUserData: TInitialUserData = {
     isLogin: false,
@@ -26,14 +23,14 @@ export const LoginPage: FC = () => {
   };
 
   useEffect(() => {
-    if (user?.isLogin) navigate(user.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true });
+    if (user && user.isLogin) navigate(user.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true });
 
     if (token) {
       initialUserData.isLogin = true;
       initialUserData.token = token;
-      loginUser(initialUserData, () =>
-        navigate(fromPage || user?.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true }),
-      );
+      loginUser(initialUserData, () => {
+        navigate(initialUserData.role === "student" ? MAIN_ROUTE : ADMIN_ROUTE, { replace: true });
+      });
       localStorage.removeItem("from");
     }
   }, [token]);

@@ -19,6 +19,7 @@ export type TInitialUserData = {
 export type TAuthValue = {
   user: TInitialUserData | null;
   loginUser: (user: TInitialUserData, cb: () => void) => void;
+  logoutUser: (cb: () => void) => void;
 };
 
 export type TReqUserData = {
