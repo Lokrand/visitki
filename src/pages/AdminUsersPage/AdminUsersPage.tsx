@@ -45,11 +45,11 @@ export const AdminUsersPage: FC = () => {
       if (typeof text === "string") {
         const newUsers = parseUsersCsv(text);
         setStudentsNew(newUsers);
-        //это наверное теперь должно происходить по клику сохранить, но у меня опять ошибка и все ломается
+        //это наверное теперь должно происходить по клику сохранить, но не уверена, что уходит как надо
         //help
         const result = await Promise.all(
           newUsers.map((el) => {
-            return mutationData(USERS_URL, "POST", el);
+            //return mutationData(USERS_URL, "POST", el);
           }),
         );
         setIsHiddenAlert(true);
@@ -236,7 +236,7 @@ export const AdminUsersPage: FC = () => {
                       setIsHiddenAlert(false);
                       studentsNew.map((el) => {
                         console.log(el);
-                        //return mutationData(USERS_URL, "POST", el);
+                        return mutationData(USERS_URL, "POST", el);
                       });
                     }}
                   >
