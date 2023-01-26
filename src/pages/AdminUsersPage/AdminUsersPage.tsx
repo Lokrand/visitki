@@ -49,9 +49,10 @@ export const AdminUsersPage: FC = () => {
     ev.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      const text = e.target?.result;
+      console.log(e.target?.result);
+      let text = e.target?.result;
       if (typeof text === "string") {
-        const newUsers = parseUsersCsv(text);
+        let newUsers = parseUsersCsv(text);
         setStudentsNew(newUsers);
         //перенесла это в кнопку "сохранить, но не уверена, что правильно
         // const result = await Promise.all(
@@ -67,6 +68,7 @@ export const AdminUsersPage: FC = () => {
     if (ev.target.files) {
       reader.readAsText(ev.target.files[0]);
     }
+    ev.target.value = "";
   };
 
   const [form, setValue] = useState({ filter: "" });
