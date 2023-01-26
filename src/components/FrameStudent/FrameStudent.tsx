@@ -1,12 +1,4 @@
-import React, {
-  ChangeEventHandler,
-  Dispatch,
-  FC,
-  KeyboardEventHandler,
-  ReactNode,
-  SetStateAction,
-  useState,
-} from "react";
+import React, { Dispatch, FC, KeyboardEventHandler, ReactNode, SetStateAction } from "react";
 
 import { useNavigate } from "react-router";
 
@@ -14,8 +6,9 @@ import styles from "./FrameStudent.module.scss";
 
 import { useForm } from "../../hook/useForm";
 
+import { useMutation } from "../../hook/useMutation";
+import { USERS_URL } from "../../utils/constants";
 import { TUser } from "../../utils/types";
-
 type TStudentFrame = {
   student: TUser;
   setItemToHide: Dispatch<SetStateAction<string>>;
@@ -25,6 +18,7 @@ type TStudentFrame = {
 };
 
 export const StudentFrame: FC<TStudentFrame> = ({ student, setItemToHide, color, icon, border }) => {
+  const { mutationData } = useMutation();
   const navigate = useNavigate();
   const handleNameClick = () => {
     navigate(`detail/${student._id}`);
@@ -32,10 +26,10 @@ export const StudentFrame: FC<TStudentFrame> = ({ student, setItemToHide, color,
   const { values, handleChange, setValues } = useForm({
     cohort: student.cohort,
     email: student.email,
-    name: student.name,
   });
   const submitHandler = () => {
     console.log(values);
+    return mutationData(USERS_URL, "POST", values);
   };
 
   const handleSubmit: KeyboardEventHandler<HTMLInputElement> = (e) => {
@@ -66,14 +60,7 @@ export const StudentFrame: FC<TStudentFrame> = ({ student, setItemToHide, color,
           {student.name}
         </p>
       ) : (
-        <input
-          name='name'
-          value={values.name}
-          className={`${styles.student} ${styles.frame}`}
-          onChange={handleChange}
-          onKeyDown={handleSubmit}
-          style={{ color: color }}
-        />
+        <p className={`${styles.student} ${styles.frame}`} style={{ color: color }}></p>
       )}
       <span
         className={styles.icon}
