@@ -1,12 +1,13 @@
-import { FC, MouseEventHandler, useState, ChangeEventHandler } from "react";
+import { FC, MouseEventHandler, useState, ChangeEventHandler, useEffect } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./AdminUsersPageStyles.module.scss";
 
 import { StudentFrame } from "../../components/FrameStudent/FrameStudent";
 import { Text } from "../../components/UI/Text";
 
+import { useAuth } from "../../hook/useAuth";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
 
@@ -15,7 +16,7 @@ import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllUsers } from "../../utils/api";
 
-import { USERS_URL } from "../../utils/constants";
+import { MAIN_ROUTE, USERS_URL } from "../../utils/constants";
 import { TReqUserData, TUser } from "../../utils/types";
 
 const parseUsersCsv = (str: string): TReqUserData[] => {
@@ -33,9 +34,15 @@ const parseUsersCsv = (str: string): TReqUserData[] => {
 
 export const AdminUsersPage: FC = () => {
   const { mutationData } = useMutation();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [isHiddenAlert, setIsHiddenAlert] = useState(false);
   const { searchData } = useSearch();
   const debouncedSearch = useDebounce(searchData, 500);
+
+  useEffect(() => {
+    if (user && user.role === "student") navigate(MAIN_ROUTE, { replace: true });
+  }, []);
 
   const handleFileLoad: ChangeEventHandler<HTMLInputElement> = (ev) => {
     ev.preventDefault();

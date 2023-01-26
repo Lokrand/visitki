@@ -1,20 +1,28 @@
-import React, { ChangeEventHandler, FC, MouseEventHandler, useMemo, useState } from "react";
+import React, { ChangeEventHandler, FC, MouseEventHandler, useEffect, useMemo, useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./AdminCommentPageStyles.module.scss";
 
 import { CommentFrame } from "../../components/FrameComment/FrameComment";
+import { useAuth } from "../../hook/useAuth";
 import useDebounce from "../../hook/useDebounce";
 import { useFetch } from "../../hook/useFetch";
 import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { getAllComments } from "../../utils/api";
+import { MAIN_ROUTE } from "../../utils/constants";
 import { TComment } from "../../utils/types";
 
 export const AdminCommentPage: FC = () => {
   const search = useSearch();
   const debouncedSearch = useDebounce(search.searchData, 500);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && user.role === "student") navigate(MAIN_ROUTE, { replace: true });
+  }, []);
 
   const { url } = getAllComments();
   const { data, isloading, error } = useFetch(url);
