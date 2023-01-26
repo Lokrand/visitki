@@ -95,7 +95,6 @@ export const AdminUsersPage: FC = () => {
 
   const { url } = getAllUsers();
   const { data, error, isloading } = useFetch(url);
-
   let students: TUser[] = [];
 
   if (data) {

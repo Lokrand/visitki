@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import styles from "./EmojisList.module.scss";
 
@@ -25,7 +25,7 @@ interface IEmojisList {
 export const EmojisList: FC<IEmojisList> = ({ id, modalFor }) => {
   const { url } = getFullProfile(id);
   const { data } = useFetch(url);
-  let counter;
+  let counter: number = 0;
   if (data) {
     if (modalFor === "main") {
       counter = data.reactions;
@@ -43,22 +43,45 @@ export const EmojisList: FC<IEmojisList> = ({ id, modalFor }) => {
   }
   let countArr: number[] = [];
 
+  const [likeCount, setLikeCount] = useState(0);
+  const [likeActive, setLikeActive] = useState(false);
+
   if (counter > 10) {
     countArr = splitEmojis(counter);
   }
+  useEffect(() => {
+    if (counter < 10) {
+      setLikeCount(counter);
+    }
+  }, [counter]);
+  if (countArr.length > 0) {
+    setLikeCount(countArr[0]);
+  }
+  const handleLikeClick = () => {
+    setLikeCount(likeCount + 1);
+    setLikeActive(true);
+  };
+  const handleActiveLikeClick = () => {
+    setLikeCount(likeCount - 1);
+    setLikeActive(false);
+  };
 
   return (
     <div className={styles.emojis}>
       <div
         className={
-          counter || countArr[0] > 0 ? `${styles.emojis__like} ${styles.emojis__like_active}` : styles.emojis__like
+          likeCount > 0
+            ? likeActive
+              ? `${styles.emojis__like} ${styles.emojis__like_selected}`
+              : `${styles.emojis__like} ${styles.emojis__like_active}`
+            : styles.emojis__like
         }
+        onClick={likeActive ? handleActiveLikeClick : handleLikeClick}
       >
         <img src={like} alt='Лайк' />
-        {counter || countArr[0] > 0 ? (
-          <p className={styles.emojis__counter}>{counter < 10 ? counter : countArr[0]}</p>
-        ) : null}
+        {likeCount > 0 ? <p className={styles.emojis__counter}>{likeCount}</p> : null}
       </div>
+
       <div className={countArr[1] ? `${styles.emojis__like} ${styles.emojis__like_active}` : styles.emojis__like}>
         <img src={dislike} alt='Дизлайк' />
         <p className={styles.emojis__counter}>{countArr[1]}</p>
