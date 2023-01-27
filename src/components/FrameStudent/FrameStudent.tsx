@@ -28,7 +28,6 @@ export const StudentFrame: FC<TStudentFrame> = ({ student, setItemToHide, color,
     email: student.email,
   });
   const submitHandler = () => {
-    console.log(values);
     return mutationData(USERS_URL, "POST", values);
   };
 

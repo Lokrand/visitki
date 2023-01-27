@@ -49,17 +49,10 @@ export const AdminUsersPage: FC = () => {
     ev.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      console.log(e.target?.result);
       let text = e.target?.result;
       if (typeof text === "string") {
         let newUsers = parseUsersCsv(text);
         setStudentsNew(newUsers);
-        //перенесла это в кнопку "сохранить, но не уверена, что правильно
-        // const result = await Promise.all(
-        //   newUsers.map((el) => {
-        //     return mutationData(USERS_URL, "POST", el);
-        //   }),
-        // );
         setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
@@ -238,7 +231,6 @@ export const AdminUsersPage: FC = () => {
                       setBorder("1px solid #83828F");
                       setIsHiddenAlert(false);
                       studentsNew.map((el) => {
-                        console.log(el);
                         return mutationData(USERS_URL, "POST", el);
                       });
                     }}
