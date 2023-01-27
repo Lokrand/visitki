@@ -44,7 +44,7 @@ export const Card: FC<ICard> = ({ id, name, city, img, cohort }) => {
   };
   const navigate = useNavigate();
   const routeToDetails = () => {
-    navigate(`detail/${id}`);
+    navigate(`/detail/${id}`);
   };
 
   return (

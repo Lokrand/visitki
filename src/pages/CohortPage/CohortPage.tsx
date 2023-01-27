@@ -15,7 +15,7 @@ export const CohortPage: FC<ICohortPage> = () => {
   const navigate = useNavigate();
   const { cohort } = useParams<string>();
   useEffect(() => {
-    if (user?.isLogin) navigate(user.role !== "student" ? MAIN_ROUTE : COHORT_ROUTE, { replace: true });
+    if (user?.isLogin) navigate(user.role === "student" ? MAIN_ROUTE : COHORT_ROUTE, { replace: true });
   }, [user]);
 
   return <MainPage cohort={cohort} />;
