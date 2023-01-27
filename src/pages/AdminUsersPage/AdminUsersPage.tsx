@@ -52,7 +52,7 @@ export const AdminUsersPage: FC = () => {
       let text = e.target?.result;
       if (typeof text === "string") {
         let newUsers = parseUsersCsv(text);
-        setStudentsNew(newUsers);
+        setStudentsNew(studentsNew.concat(newUsers));
         setIsHiddenAlert(true);
       } else {
         console.error("Неправильный тип файла");
