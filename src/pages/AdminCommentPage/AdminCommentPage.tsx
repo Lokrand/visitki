@@ -143,7 +143,7 @@ export const AdminCommentPage: FC = () => {
           <p className={styles.column}>Текст комментария</p>
         </div>
       ) : (
-        <h1 className={styles.alert}>Не найдено ниодного комментария</h1>
+        <h1 className={styles.alert}>Не найдено ни одного комментария</h1>
       )}
 
       {comments &&
