@@ -15,7 +15,7 @@ import { useMutation } from "../../hook/useMutation";
 import { useSearch } from "../../hook/useSearch";
 import { Cross } from "../../icons/Cross/Cross";
 import { Delete } from "../../icons/Delete/Delete";
-import { getAllUsers } from "../../utils/api";
+import { addNewUser, getAllUsers } from "../../utils/api";
 
 import { MAIN_ROUTE, USERS_URL } from "../../utils/constants";
 import { TReqUserData, TUser } from "../../utils/types";
@@ -49,11 +49,10 @@ export const AdminUsersPage: FC = () => {
     ev.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      console.log(e.target?.result);
-      let text = e.target?.result;
+      const text = e.target?.result;
       if (typeof text === "string") {
-        let newUsers = parseUsersCsv(text);
-        setStudentsNew(newUsers);
+        const newUsers = parseUsersCsv(text);
+        setStudentsNew(studentsNew.concat(newUsers));
         //перенесла это в кнопку "сохранить, но не уверена, что правильно
         // const result = await Promise.all(
         //   newUsers.map((el) => {
@@ -70,7 +69,6 @@ export const AdminUsersPage: FC = () => {
     }
     ev.target.value = "";
   };
-
   const [form, setValue] = useState({ filter: "" });
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
