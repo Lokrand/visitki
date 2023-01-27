@@ -7,15 +7,18 @@ import styles from "./ModalComments.module.scss";
 import { useFetch } from "../../hook/useFetch";
 import { getAllComments } from "../../utils/api";
 import { TComment } from "../../utils/types";
+import { Modal } from "../Modal/Modal";
 import { TextareaNewComment } from "../UI/TextareaNewComment/TextareaNewComment";
 
 interface IModalComments {
+  closeModal: any;
   active: boolean;
   id: string;
   modalFor: string;
+  modalActive: boolean;
 }
 
-export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
+export const ModalComments: FC<IModalComments> = ({ modalActive, closeModal, active, id, modalFor }) => {
   const { url } = getAllComments();
   const { data } = useFetch(url);
   let comments: TComment[] = [];
@@ -40,29 +43,31 @@ export const ModalComments: FC<IModalComments> = ({ active, id, modalFor }) => {
   }
 
   return (
-    <div
-      className={
-        active
-          ? modalFor === "main"
-            ? styles.modalComments
-            : `${styles.modalComments} ${styles.modalComments__detailsPage}`
-          : `${styles.modalComments} ${styles.modalComments_inactive}`
-      }
-    >
-      <div className={styles.modalComments__comments}>
-        {renderComment &&
-          renderComment.map((el, index) => {
-            return (
-              <div key={index} className={styles.modalComments__comment}>
-                <p>{el}</p>
-              </div>
-            );
-          })}
+    <Modal modalActive={modalActive} closeModal={closeModal}>
+      <div
+        className={
+          active
+            ? modalFor === "main"
+              ? styles.modalComments
+              : `${styles.modalComments} ${styles.modalComments__detailsPage}`
+            : `${styles.modalComments} ${styles.modalComments_inactive}`
+        }
+      >
+        <div className={styles.modalComments__comments}>
+          {renderComment &&
+            renderComment.map((el, index) => {
+              return (
+                <div key={index} className={styles.modalComments__comment}>
+                  <p>{el}</p>
+                </div>
+              );
+            })}
+        </div>
+        <div className={styles.modalComments__reactionBlock}>
+          <TextareaNewComment modalFor={modalFor} id={id} />
+          <EmojisList id={id} modalFor={modalFor} />
+        </div>
       </div>
-      <div className={styles.modalComments__reactionBlock}>
-        <TextareaNewComment modalFor={modalFor} id={id} />
-        <EmojisList id={id} modalFor={modalFor} />
-      </div>
-    </div>
+    </Modal>
   );
 };

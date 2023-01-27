@@ -30,106 +30,100 @@ export const DetailPage: FC = () => {
     setModalActive(false);
   };
 
-  useEffect(() => {
-    function closeByEscape(evt: KeyboardEvent) {
-      if (evt.key === "Escape") {
-        closeModal();
-      }
-    }
-    if (modalActive) {
-      document.addEventListener("keydown", closeByEscape);
-      return () => {
-        document.removeEventListener("keydown", closeByEscape);
-      };
-    }
-  }, [modalActive, closeModal]);
-
   if (isloading) return <h1>Идет загрузка данных...</h1>;
   if (error) return <h1>Пользователь не найден</h1>;
 
   return (
     <section className={styles.container}>
-      {data && (
-        <div className={styles["main-wrapper"]}>
-          <div className={styles["top-wrapper"]}>
-            <div className={styles["social-wrapper"]}>
-              <Title size='xl'>{data?.profile.name}</Title>
-              <div className={styles.city}>
-                <Text>{data?.profile.city.name}</Text>
-              </div>
-              <ul className={styles["social-list"]}>
-                <li>
-                  <SocialLink nameSocialNetwork='telegram' userName={data?.profile.telegram} />
-                </li>
-                <li>
-                  <SocialLink nameSocialNetwork='github' userName={data?.profile.github} />
-                </li>
-              </ul>
+      <div className={styles["main-wrapper"]}>
+        <div className={styles["top-wrapper"]}>
+          <div className={styles["social-wrapper"]}>
+            <Title size='xl'>{data?.profile.name}</Title>
+            <div className={styles.city}>
+              <Text>{data?.profile.city.name}</Text>
             </div>
-            <div className={styles["photo-wrapper"]}>
-              <div className={styles["photo-conteiner"]} onMouseLeave={closeModal}>
-                <img
-                  className={styles.photo}
-                  src={data?.profile.photo}
-                  alt={`Фотография пользователя ${data?.profile.name}`}
-                />
-                <div className={styles.counter}>
-                  <Chat forImage={false} counter={data?.reactions || 0} onClick={openModal} />
-                </div>
-                <ModalComments active={modalActive} id={data?._id} modalFor='DetailsImage' />
-              </div>
-              {data?.profile.quote === "" && (
-                <p className={styles.quote}>
-                  <Marks />
-                  <span>Делай, что должно и будь, что будет.</span>
-                </p>
-              )}
-            </div>
+            <ul className={styles["social-list"]}>
+              <li>
+                <SocialLink nameSocialNetwork='telegram' userName={data?.profile.telegram} />
+              </li>
+              <li>
+                <SocialLink nameSocialNetwork='github' userName={data?.profile.github} />
+              </li>
+            </ul>
           </div>
-          <ul className={styles["post-list"]}>
-            <li>
-              <Post
-                id={data?._id}
-                modalFor='hobby'
-                title='Увлечения'
-                text={data?.info.hobby.text || ""}
-                imgUrl={data?.info.hobby.image}
-                reactions={data?.info.hobby.reactions || 0}
+          <div className={styles["photo-wrapper"]}>
+            <div className={styles["photo-conteiner"]} onMouseLeave={closeModal}>
+              <img
+                className={styles.photo}
+                src={data?.profile.photo}
+                alt={`Фотография пользователя ${data?.profile.name}`}
               />
-            </li>
-            <li>
-              <Post
+              <div className={styles.counter}>
+                <Chat forImage={false} counter={data?.reactions || 0} onClick={openModal} />
+              </div>
+              <ModalComments
+                modalActive={modalActive}
+                closeModal={closeModal}
+                active={modalActive}
                 id={data?._id}
-                modalFor='status'
-                title='Семья'
-                text={data?.info.status.text || ""}
-                imgUrl={data?.info.status.image}
-                reactions={data?.info.status.reactions || 0}
+                modalFor='DetailsImage'
               />
-            </li>
-            <li>
-              <Post
-                id={data?._id}
-                modalFor='job'
-                title='Cфера'
-                text={data?.info.job.text || ""}
-                imgUrl={data?.info.job.image}
-                reactions={data?.info.job.reactions || 0}
-              />
-            </li>
-            <li>
-              <Post
-                id={data?._id}
-                modalFor='edu'
-                title='Учеба'
-                text={data?.info.edu.text || ""}
-                imgUrl={data?.info.edu.image}
-                reactions={data?.info.edu.reactions || 0}
-              />
-            </li>
-          </ul>
+            </div>
+            {data?.profile.quote === "" && (
+              <p className={styles.quote}>
+                <Marks />
+                <span>Делай, что должно и будь, что будет.</span>
+              </p>
+            )}
+          </div>
         </div>
-      )}
+        <ul className={styles["post-list"]}>
+          <li>
+            <Post
+              closeModal={closeModal}
+              id={data?._id}
+              modalFor='hobby'
+              title='Увлечения'
+              text={data?.info.hobby.text || ""}
+              imgUrl={data?.info.hobby.image}
+              reactions={data?.info.hobby.reactions || 0}
+            />
+          </li>
+          <li>
+            <Post
+              closeModal={closeModal}
+              id={data?._id}
+              modalFor='status'
+              title='Семья'
+              text={data?.info.status.text || ""}
+              imgUrl={data?.info.status.image}
+              reactions={data?.info.status.reactions || 0}
+            />
+          </li>
+          <li>
+            <Post
+              closeModal={closeModal}
+              id={data?._id}
+              modalFor='job'
+              title='Cфера'
+              text={data?.info.job.text || ""}
+              imgUrl={data?.info.job.image}
+              reactions={data?.info.job.reactions || 0}
+            />
+          </li>
+          <li>
+            <Post
+              closeModal={closeModal}
+              id={data?._id}
+              modalFor='edu'
+              title='Учеба'
+              text={data?.info.edu.text || ""}
+              imgUrl={data?.info.edu.image}
+              reactions={data?.info.edu.reactions || 0}
+            />
+          </li>
+        </ul>
+      </div>
     </section>
   );
 };

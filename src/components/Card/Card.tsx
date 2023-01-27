@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +25,10 @@ export const Card: FC<ICard> = ({ id, name, city, img, cohort }) => {
     setModalCommentsActive(!modalCommentsActive);
   };
 
+  const closeModal = () => {
+    setModalCommentsActive(false);
+  };
+
   const { url } = getFullProfile(id);
   const { data } = useFetch(url);
 
@@ -43,23 +47,6 @@ export const Card: FC<ICard> = ({ id, name, city, img, cohort }) => {
     navigate(`detail/${id}`);
   };
 
-  const closeModal = () => {
-    setModalCommentsActive(false);
-  };
-
-  useEffect(() => {
-    function closeByEscape(evt: KeyboardEvent) {
-      if (evt.key === "Escape") {
-        closeModal();
-      }
-    }
-    if (modalCommentsActive) {
-      document.addEventListener("keydown", closeByEscape);
-      return () => {
-        document.removeEventListener("keydown", closeByEscape);
-      };
-    }
-  }, [modalCommentsActive, closeModal]);
   return (
     <div className={styles.card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className={hoverActive ? styles["card__image-wrapper"] : ""}>
@@ -76,7 +63,13 @@ export const Card: FC<ICard> = ({ id, name, city, img, cohort }) => {
       </p>
       {cohort ? <Messages id={id} /> : null}
       {hoverActive && <Chat counter={counter} forImage={true} onClick={handleChatClick} />}
-      <ModalComments active={modalCommentsActive} id={id} modalFor='main' />
+      <ModalComments
+        modalActive={modalCommentsActive}
+        closeModal={closeModal}
+        active={modalCommentsActive}
+        id={id}
+        modalFor='main'
+      />
     </div>
   );
 };
