@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from "react";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useAuth } from "../../hook/useAuth";
 import { COHORT_ROUTE, MAIN_ROUTE } from "../../utils/constants";
@@ -13,8 +13,7 @@ interface ICohortPage {
 export const CohortPage: FC<ICohortPage> = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-  const cohort = location.pathname.split("/")[2];
+  const { cohort } = useParams<string>();
   useEffect(() => {
     if (user?.isLogin) navigate(user.role !== "student" ? MAIN_ROUTE : COHORT_ROUTE, { replace: true });
   }, [user]);
