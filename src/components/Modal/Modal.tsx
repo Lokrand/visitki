@@ -1,12 +1,12 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
-export type TModal = {
-  closeModal: any;
-  children: any;
-  modalActive: any;
-};
+interface IModal {
+  closeModal: VoidFunction;
+  children: React.ReactNode;
+  modalActive: boolean;
+}
 
-export const Modal: FC<TModal> = ({ modalActive, closeModal, children }) => {
+export const Modal: FC<IModal> = ({ modalActive, closeModal, children }) => {
   useEffect(() => {
     function closeByEscape(evt: KeyboardEvent) {
       if (evt.key === "Escape") {
