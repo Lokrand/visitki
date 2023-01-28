@@ -1,0 +1,151 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: inherit;
+  height: 48px;
+  margin-top: 4px;
+  padding-right: 35px;
+  padding-left: 16px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-dark);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  border-radius: 4px 4px 0 0;
+  outline: none;
+
+  transition: all 0.2s linear;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+
+  &_status_default {
+    border: 1px solid var(--text-dark);
+  }
+
+  &_status_active {
+    border: 1px solid var(--input-hover);
+  }
+
+  &__button {
+    position: absolute;
+    right: 15px;
+
+    width: 20px;
+    height: 20px;
+
+    border: none;
+
+    transition: all 0.2s linear;
+
+    &_default {
+      top: 43px;
+      rotate: 180deg;
+    }
+
+    &_active {
+      top: 40px;
+      rotate: 0;
+    }
+  }
+
+  &__error {
+    display: none;
+
+    &_active {
+      display: block;
+      font-size: 16px;
+      line-height: 24px;
+      color: #e90d41;
+    }
+  }
+
+  &__label {
+    width: inherit;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--text-dark);
+  }
+}
+
+.wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 76px;
+  right: 0;
+  left: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+  width: inherit;
+
+  background-color: white;
+  border: 1px solid var(--text-dark);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+
+  transition: all 0.2s linear;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 42px;
+    background: var(--placeholder);
+    border-radius: 3px;
+  }
+
+  &_default {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &_active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+
+  &__option {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    height: 36px;
+    padding-right: 6px;
+    padding-left: 6px;
+
+    font-size: 16px;
+    line-height: 24px;
+
+    transition: all 0.2s linear;
+
+    &:hover {
+      color: #fff;
+      background-color: var(--neon-pink);
+    }
+  }
+}

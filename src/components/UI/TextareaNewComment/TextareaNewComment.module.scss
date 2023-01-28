@@ -1,0 +1,29 @@
+.TextareaNewComment {
+  resize: none;
+
+  display: flex;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+
+  font: 400 14px/20px var(--text-font-family);
+
+  background-color: var(--text-white);
+  border: none;
+  border-radius: 4px;
+  outline: none;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--placeholder);
+    border-radius: 4px;
+  }
+
+  &:focus {
+    border: 2px solid var(--neon-pink);
+  }
+}

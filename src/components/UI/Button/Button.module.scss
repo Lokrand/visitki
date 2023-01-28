@@ -1,0 +1,45 @@
+.button {
+  cursor: pointer;
+
+  width: 100%;
+
+  font-family: var(--text-font-family);
+  color: var(--text-white);
+
+  background: var(--gradient-button-main);
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--gradient-button-hover);
+  }
+
+  &:active,
+  &:focus {
+    background: var(--gradient-button-active);
+  }
+
+  &:disabled {
+    cursor: default;
+    background: var(--disabled);
+  }
+
+  &_size {
+    &_l {
+      padding: 20px 45px;
+      font-size: 20px;
+      line-height: 28px;
+
+      @media screen and (max-width: 350px) {
+        padding: 16px 45px;
+      }
+    }
+
+    &_m {
+      padding: 12px 30px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.emojis {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 3px;
+  column-gap: 3px;
+
+  max-width: 299px;
+
+  &__like {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+      border-radius: 40px;
+      box-shadow: 0 0 0 1px var(--neon-pink);
+    }
+
+    &_active {
+      width: 40px;
+    }
+
+    &_selected {
+      width: 40px;
+      border-radius: 40px;
+      box-shadow: 0 0 0 1px var(--neon-pink);
+    }
+  }
+
+  &__counter {
+    font: 500 12px/12px var(--text-font-family);
+    color: var(--neon-pink);
+  }
+}

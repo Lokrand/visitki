@@ -1,9 +1,54 @@
-.h {
-  font-family: 'IBM Plex Sans';
-  font-weight: 400;
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 72px;
+  margin: 0 auto;
+
+  background-color: white;
+  border-top: 1px solid rgb(16 12 52 / 30%);
+
+  &__text {
+    margin: 0 0 0 32px;
+
+    font-family: var(--text-font-family);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--text-light);
+
+    &_praktikum {
+      margin: 0 40px 0 0;
+
+      font-family: var(--text-font-family);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--text-light);
+    }
+  }
 }
 
-.p {
-  font-family: 'IBM Plex Sans';
-  font-weight: 500;
+@media screen and (max-width: 768px) {
+  .footer {
+    &__text {
+      &_praktikum {
+        margin: 0 32px 0 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    &__text {
+      margin: 0 0 0 24px;
+
+      &_praktikum {
+        margin: 0 24px 0 0;
+      }
+    }
+  }
 }

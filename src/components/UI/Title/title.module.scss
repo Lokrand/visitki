@@ -1,0 +1,42 @@
+.title {
+  margin: 0;
+  padding: 0;
+  font-family: var(--text-font-family);
+  color: var(--text-dark);
+
+  &_size {
+    &_xl {
+      font-size: 60px;
+      font-weight: 500;
+      line-height: 60px;
+
+      @media screen and (max-width: 1290px) {
+        font-size: 40px;
+        line-height: 40px;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 32px;
+      }
+    }
+
+    &_l {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+    }
+
+    &_m {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 18px;
+      text-transform: uppercase;
+    }
+
+    &_s {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+  }
+}

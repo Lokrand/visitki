@@ -1,0 +1,48 @@
+.card {
+  cursor: pointer;
+  position: relative;
+
+  &__image {
+    display: block;
+
+    width: 325px;
+    height: 325px;
+
+    object-fit: cover;
+    filter: grayscale(100%);
+
+    @media screen and (max-width: 1110px) {
+      width: 342px;
+      height: 342px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 272px;
+      height: 272px;
+    }
+  }
+
+  &__image-wrapper {
+    box-shadow: 0 0 0 2px var(--neon-pink);
+  }
+
+  &__name {
+    font-family: var(--text-font-family);
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 28px;
+
+    &_active {
+      color: var(--neon-pink);
+    }
+  }
+
+  &__city {
+    font-family: var(--text-font-family);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px;
+    color: var(--text-light);
+  }
+}

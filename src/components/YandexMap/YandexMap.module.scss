@@ -1,0 +1,73 @@
+.map {
+  position: absolute;
+  top: 112px;
+  left: 0;
+
+  display: flex;
+
+  width: 100%;
+  height: calc(100vh - 112px - 72px);
+  margin: 0 auto;
+
+  .text {
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 115px;
+    margin-left: 4px;
+
+    font: 500 16px/24px var(--text-font-family);
+    color: var(--text-dark);
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mark {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 215px;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 155px;
+    max-height: 49px;
+
+    background-color: white;
+
+    &__info {
+      display: flex;
+      margin-bottom: 2px;
+      margin-left: 6px;
+    }
+
+    &__city {
+      overflow: hidden;
+
+      width: 100%;
+      max-width: 155px;
+
+      font: 500 16px/24px var(--text-font-family);
+      color: var(--text-light);
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .map {
+    top: 96px;
+    height: calc(100vh - 96px - 72px);
+  }
+}
+@media screen and (max-width: 460px) {
+  .map {
+    top: 80px;
+    height: calc(100vh - 80px - 72px);
+  }
+}

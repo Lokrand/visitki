@@ -1,0 +1,162 @@
+.container {
+  max-width: 1290px;
+  margin: 10px auto 0;
+}
+
+.main-wrapper {
+  max-width: 950px;
+}
+
+.top-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 767px) {
+    display: block;
+  }
+}
+
+.social-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 443px;
+  margin-top: 145px;
+  margin-right: 67px;
+
+  @media screen and (max-width: 1290px) {
+    margin-top: 100px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 10px;
+  }
+}
+
+.city {
+  margin-top: 100px;
+
+  @media screen and (max-width: 1290px) {
+    margin-top: 95px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 25px;
+  }
+}
+
+.social-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 84px;
+  margin: 0;
+  margin-top: 25px;
+  padding: 0;
+
+  list-style: none;
+}
+
+.counter {
+  opacity: 0;
+  transition: opacity 0.4s linear;
+
+  @media screen and (max-width: 767px) {
+    opacity: 1;
+  }
+}
+
+.photo-conteiner {
+  cursor: pointer;
+  position: relative;
+
+  &:hover .counter {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 767px) {
+    cursor: default;
+  }
+}
+
+.photo-wrapper {
+  position: relative;
+  display: flex;
+  gap: 85px;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1290px) {
+    display: block;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 30px;
+  }
+}
+
+.photo {
+  display: block;
+
+  aspect-ratio: 1/1;
+  width: 100%;
+  min-width: 272px;
+  max-width: 440px;
+  height: auto;
+
+  object-fit: cover;
+  object-position: center;
+  clip-path: var(--avatar-poligon);
+  filter: grayscale(100%);
+  @media screen and (max-width: 1080px) {
+    max-width: 342px;
+  }
+  @media screen and (max-width: 767px) {
+    max-width: 100%;
+  }
+}
+
+.quote {
+  position: absolute;
+  top: 180px;
+  right: -340px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 255px;
+
+  color: var(--quote-color);
+
+  @media screen and (max-width: 1290px) {
+    position: static;
+    margin-top: 30px;
+  }
+}
+
+.post-list {
+  display: grid;
+  grid-gap: 55px 70px;
+  grid-template-columns: 1fr 1fr;
+
+  min-width: 272px;
+  max-width: 950px;
+  margin-top: 70px;
+  margin-bottom: 100px;
+  padding: 0;
+
+  list-style: none;
+
+  @media screen and (max-width: 1290px) {
+    grid-gap: 20px 40px;
+    margin-top: 30px;
+    margin-bottom: 80px;
+  }
+
+  @media screen and (max-width: 767px) {
+    grid-row-gap: 30px;
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}

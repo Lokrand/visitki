@@ -1,19 +1,16 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { Login } from "../../pages/Login/Login";
-import { Main } from "../../pages/Main/Main";
-import { Footer } from "../Footer/Footer";
-import { Header } from "../Header/Header";
+import { YMaps } from "@pbe/react-yandex-maps";
+import React, { FC } from "react";
 
-export const App = () => {
+import { AuthProvider } from "../../hoc/AuthProvider";
+
+import { AppRouter } from "../AppRouter";
+
+export const App: FC = () => {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/login' element={<Login />} />
-      </Routes>
-      <Footer />
-    </>
+    <AuthProvider>
+      <YMaps>
+        <AppRouter />
+      </YMaps>
+    </AuthProvider>
   );
 };

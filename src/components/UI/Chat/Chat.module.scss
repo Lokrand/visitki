@@ -1,0 +1,43 @@
+.chat {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  transition: opacity 0.2s linear;
+
+  &__counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+
+    font: 500 12px/12px var(--text-font-family);
+    color: var(--text-white);
+
+    background-color: var(--text-dark);
+    border-radius: 20px;
+
+    &_long {
+      width: 28px;
+    }
+  }
+
+  &_hobbies {
+    top: 11px;
+    right: 16px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  align-items: center;
+
+  max-width: 440px;
+  margin: 200px auto 0;
+
+  @media screen and (max-width: 768px) {
+    gap: 80px;
+    margin-top: 220px;
+  }
+
+  @media screen and (max-width: 350px) {
+    gap: 30px;
+    margin-top: 110px;
+  }
+}
+
+.title {
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    @media screen and (max-width: 350px) {
+      font-size: 32px;
+    }
+  }
+}
