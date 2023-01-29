@@ -20,6 +20,5 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const value: TAuthValue = { user, loginUser, logoutUser };
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

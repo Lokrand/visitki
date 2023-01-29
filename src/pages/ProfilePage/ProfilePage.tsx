@@ -20,7 +20,6 @@ import { years, months } from "../../utils/calendar";
 
 import { PROFILES_URL } from "../../utils/constants";
 import { template } from "../../utils/template";
-import { TForm } from "../../utils/types";
 
 export const ProfilePage: FC = () => {
   const { id } = useParams();
@@ -178,12 +177,13 @@ export const ProfilePage: FC = () => {
         <Input label='Ник на гитхабе' inputName='github' setValue={setValue} form={form} />
         <InputSelect label='Выберите шаблон' inputName='template' options={template} setValue={setValue} form={form} />
         <InputTextArea
+          value={form.profile.quote}
+          onChange={(e) => {
+            setValue({ ...form, profile: { ...form.profile, quote: e.target.value } });
+          }}
           label='Девиз, цитата'
-          inputName='quote'
           placeholder='Не более 100 символов'
           maxLength={100}
-          setValue={setValue}
-          form={form}
         />
         <div className={styles.wrapper}>
           <InputFile
@@ -196,11 +196,15 @@ export const ProfilePage: FC = () => {
             form={form}
           />
           <InputTextArea
-            inputName='hobby'
+            value={form.info.hobby.text}
+            onChange={(e) => {
+              setValue({
+                ...form,
+                info: { ...form.info, hobby: { ...form.info.hobby, text: e.target.value } },
+              });
+            }}
             placeholder='Не более 300 символов'
             maxLength={300}
-            setValue={setValue}
-            form={form}
           />
         </div>
         <div className={styles.wrapper}>
@@ -214,28 +218,40 @@ export const ProfilePage: FC = () => {
             form={form}
           />
           <InputTextArea
-            inputName='status'
+            value={form.info.status.text}
+            onChange={(e) => {
+              setValue({
+                ...form,
+                info: { ...form.info, status: { ...form.info.status, text: e.target.value } },
+              });
+            }}
             placeholder='Не более 300 символов'
             maxLength={300}
-            setValue={setValue}
-            form={form}
           />
         </div>
         <InputTextArea
+          value={form.info.job.text}
+          onChange={(e) => {
+            setValue({
+              ...form,
+              info: { ...form.info, job: { ...form.info.job, text: e.target.value } },
+            });
+          }}
           label='Из какой сферы пришёл? Кем работаешь?'
-          inputName='job'
           placeholder='Не более 300 символов'
           maxLength={300}
-          setValue={setValue}
-          form={form}
         />
         <InputTextArea
+          value={form.info.edu.text}
+          onChange={(e) => {
+            setValue({
+              ...form,
+              info: { ...form.info, edu: { ...form.info.edu, text: e.target.value } },
+            });
+          }}
           label='Почему решил учиться на веб-разработчика?'
-          inputName='edu'
           placeholder='Не более 300 символов'
           maxLength={300}
-          setValue={setValue}
-          form={form}
         />
         <Text>Поля, отмеченные звездочкой, обязательны для&nbsp;заполнения</Text>
         <Button size={"l"}>Сохранить</Button>

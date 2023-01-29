@@ -67,24 +67,16 @@ export const AdminUsersPage: FC = () => {
   const [form, setValue] = useState({ filter: "" });
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [displayStyle, setDisplayStyle] = useState({ display: "none" });
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const target = e.target;
     debouncedSearch(url, { limit: 10, search: target.value });
     setValue({ filter: target.value });
-    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
 
-  const handleInputFocus = () => {
-    setFocus(true);
-  };
-  const handleInputBlur = () => {
-    setFocus(false);
-  };
   const handleButtonClick = () => {
     setValue({ filter: "" });
-    setDisplayStyle({ display: "none" });
   };
+
   const handleInputHover: MouseEventHandler<HTMLInputElement> = (e) => {
     if (e.type === "mouseleave" && !focus) {
       setHover(false);
@@ -145,16 +137,18 @@ export const AdminUsersPage: FC = () => {
               value={form.filter}
               className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
                  ${hover ? styles.input_status_active : styles.input_status_default}`}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
+              onFocus={() => setFocus(true)}
+              onBlur={() => setFocus(false)}
               onMouseEnter={handleInputHover}
               onMouseLeave={handleInputHover}
               onChange={handleInputChange}
               placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
             />
-            <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
-              <Cross />
-            </span>
+            {form.filter && (
+              <span className={styles.button} onClick={handleButtonClick}>
+                <Cross />
+              </span>
+            )}
           </div>
           <div className={styles.main}>
             <p

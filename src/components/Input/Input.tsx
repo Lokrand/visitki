@@ -15,24 +15,13 @@ interface IInputProps {
 const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [displayStyle, setDisplayStyle] = useState({ display: "none" });
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const target = e.target;
     setValue({ ...form, profile: { ...form.profile, [inputName]: target.value } });
-    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
-  };
-
-  const handleInputFocus = () => {
-    setFocus(true);
-  };
-
-  const handleInputBlur = () => {
-    setFocus(false);
   };
 
   const handleButtonClick = () => {
     setValue({ ...form, profile: { ...form.profile, [inputName]: "" } });
-    setDisplayStyle({ display: "none" });
   };
 
   const handleInputHover: MouseEventHandler<HTMLInputElement> = (e) => {
@@ -49,16 +38,18 @@ const Input: FC<IInputProps> = ({ label, inputName, setValue, form, placeholder 
         value={form.profile[inputName]}
         className={`${styles.input} ${focus ? styles.input_status_active : styles.input_status_default}
                 ${hover ? styles.input_status_active : styles.input_status_default}`}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
         onMouseEnter={handleInputHover}
         onMouseLeave={handleInputHover}
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
-        <Cross />
-      </span>
+      {form.profile[inputName] && (
+        <span className={styles.button} onClick={handleButtonClick}>
+          <Cross />
+        </span>
+      )}
     </div>
   );
 };
