@@ -6,7 +6,6 @@ import styles from "./LoginPageStyles.module.scss";
 import { Button } from "../../components/UI/Button";
 import { Title } from "../../components/UI/Title";
 import { useAuth } from "../../hook/useAuth";
-import { useLocalStorage } from "../../hook/useLocalStorage";
 import { ADMIN_ROUTE, MAIN_ROUTE } from "../../utils/constants";
 import { TInitialUserData } from "../../utils/types";
 

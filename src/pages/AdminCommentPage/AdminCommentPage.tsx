@@ -32,32 +32,14 @@ export const AdminCommentPage: FC = () => {
     }
   }, [data]);
 
-  let renderComment: TComment[] = [];
   const [searchParam, setValue] = useState("");
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
-  const [displayStyle, setDisplayStyle] = React.useState({ display: "none" });
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const target = e.target;
     debouncedSearch(url, { limit: 10, search: target.value });
     setValue(target.value);
-    target.value.length ? setDisplayStyle({ display: "block" }) : setDisplayStyle({ display: "none" });
   };
-
-  const filter = () => {
-    return (renderComment = comments.filter((comment) => {
-      if (comment.from.name.match(searchParam)) {
-        return comment;
-      }
-      if (comment.to.name.match(searchParam)) {
-        return comment;
-      }
-    }));
-  };
-
-  useMemo(() => {
-    filter();
-  }, [searchParam]);
 
   const handleInputFocus = () => {
     setFocus(true);
@@ -69,7 +51,6 @@ export const AdminCommentPage: FC = () => {
 
   const handleButtonClick = () => {
     setValue("");
-    setDisplayStyle({ display: "none" });
   };
 
   const handleInputHover: MouseEventHandler<HTMLInputElement> = (e) => {
@@ -127,9 +108,11 @@ export const AdminCommentPage: FC = () => {
             onChange={handleInputChange}
             placeholder='По имени или фамилии или почте или номеру когорты (введите любой из этих параметров)'
           />
-          <span className={styles.button} style={displayStyle} onClick={handleButtonClick}>
-            <Cross />
-          </span>
+          {searchParam && (
+            <span className={styles.button} onClick={handleButtonClick}>
+              <Cross />
+            </span>
+          )}
         </div>
       </div>
 

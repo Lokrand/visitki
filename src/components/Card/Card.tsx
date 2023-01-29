@@ -6,6 +6,7 @@ import styles from "./Card.module.scss";
 
 import { useFetch } from "../../hook/useFetch";
 import { getFullProfile } from "../../utils/api";
+import { TFullProfile } from "../../utils/types";
 import { ModalComments } from "../ModalComments/ModalComments";
 import { Chat } from "../UI/Chat/Chat";
 import { Messages } from "../UI/Messages/Messages";
@@ -30,7 +31,7 @@ export const Card: FC<ICard> = ({ id, name, city, img, cohort }) => {
   };
 
   const { url } = getFullProfile(id);
-  const { data } = useFetch(url);
+  const { data } = useFetch<TFullProfile>(url);
 
   let counter = 0;
   if (data) counter = data.reactions;

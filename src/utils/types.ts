@@ -3,9 +3,9 @@ export type TToken = string | null;
 export type TTemplate = "default" | "romantic" | "daring";
 export type TRoleUser = "student" | "curator";
 
-export type TStateStatus = {
+export type TStateStatus<T = any> = {
   isloading: boolean;
-  data: any;
+  data: T | undefined;
   error: null | unknown;
 };
 

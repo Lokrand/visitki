@@ -5,11 +5,11 @@ import { useAuth } from "./useAuth";
 import { TStateStatus } from "../utils/types";
 import { handleRequest } from "../utils/utils";
 
-export const useFetch = (url: string) => {
+export const useFetch = <T extends any = any>(url: string) => {
   const { user } = useAuth();
-  const [status, setStatus] = useState<TStateStatus>({
+  const [status, setStatus] = useState<TStateStatus<T>>({
     isloading: false,
-    data: null,
+    data: undefined,
     error: null,
   });
 
