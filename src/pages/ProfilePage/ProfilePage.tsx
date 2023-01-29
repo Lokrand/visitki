@@ -14,17 +14,18 @@ import ProfilePhoto from "../../components/ProfilePhoto/ProfilePhoto";
 import { Button } from "../../components/UI/Button";
 import { Text } from "../../components/UI/Text";
 import { useFetch } from "../../hook/useFetch";
+import { useMutation } from "../../hook/useMutation";
 import { getFullProfile } from "../../utils/api";
 
 import { years, months } from "../../utils/calendar";
 
 import { PROFILES_URL } from "../../utils/constants";
 import { template } from "../../utils/template";
-import { TForm } from "../../utils/types";
 
 export const ProfilePage: FC = () => {
   const { id } = useParams();
   const { url } = getFullProfile(id);
+  const { mutationData } = useMutation();
   const { data, error, isloading } = useFetch(url);
   const [form, setValue] = useState({
     profile: {
@@ -100,35 +101,15 @@ export const ProfilePage: FC = () => {
   const [isErrorCity, setIsErrorCity] = useState(false);
   const [isErrorBirthday, setIsErrorBirthday] = useState(false);
   const [isErrorPhoto, setIsErrorPhoto] = useState(false);
-  //!!!!!!Тестовый вариант отправки!!!!!
-  const token = "y0_AgAAAABFA_OnAAj_OgAAAADZpb4FW6SfL6mCS3mlNzXjWiTo39dRbJo";
-  function checkResponse(res: any) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(res.status);
-  }
-  function request(url: string, options: any) {
-    return fetch(url, options).then(checkResponse);
-  }
-  function changeUserProfile(profile: any, info: any) {
-    return request(`${PROFILES_URL}/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ profile, info }),
-    });
-  }
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     validate();
     if (form.profile.photo !== "" && form.profile.city.name !== "" && form.profile.birthday !== "") {
-      changeUserProfile(form.profile, form.info);
+      mutationData(`${PROFILES_URL}/${id}`, "PATCH", form);
     }
   };
+
   const scrollToTop = () => {
     window.scroll({
       top: 0,
